@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package redisx;
-option go_package = "./;redisx";
+option go_package = "github.com/soyacen/grocer/redisx;redisx";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";

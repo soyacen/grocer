@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: nacosx/config.proto
 
 package nacosx
 
@@ -31,7 +31,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_nacosx_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_nacosx_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_nacosx_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -77,7 +77,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_nacosx_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -89,7 +89,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_nacosx_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -102,7 +102,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_nacosx_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetAddress() *wrapperspb.StringValue {
@@ -126,11 +126,11 @@ func (x *Options) GetNamespace() *wrapperspb.StringValue {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_nacosx_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_nacosx_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x06nacosx\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
+	"\x13nacosx/config.proto\x12\x06nacosx\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
 	"\x06Config\x125\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x1b.nacosx.Config.ConfigsEntryR\aconfigs\x1aK\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -139,29 +139,29 @@ const file_config_proto_rawDesc = "" +
 	"\aOptions\x126\n" +
 	"\aaddress\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\aaddress\x12/\n" +
 	"\x04port\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x04port\x12:\n" +
-	"\tnamespace\x18\x05 \x01(\v2\x1c.google.protobuf.StringValueR\tnamespaceB\vZ\t./;nacosxb\x06proto3"
+	"\tnamespace\x18\x05 \x01(\v2\x1c.google.protobuf.StringValueR\tnamespaceB)Z'github.com/soyacen/grocer/nacosx;nacosxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_nacosx_config_proto_rawDescOnce sync.Once
+	file_nacosx_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_nacosx_config_proto_rawDescGZIP() []byte {
+	file_nacosx_config_proto_rawDescOnce.Do(func() {
+		file_nacosx_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_nacosx_config_proto_rawDesc), len(file_nacosx_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_nacosx_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_config_proto_goTypes = []any{
+var file_nacosx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_nacosx_config_proto_goTypes = []any{
 	(*Config)(nil),                 // 0: nacosx.Config
 	(*Options)(nil),                // 1: nacosx.Options
 	nil,                            // 2: nacosx.Config.ConfigsEntry
 	(*wrapperspb.StringValue)(nil), // 3: google.protobuf.StringValue
 	(*wrapperspb.Int32Value)(nil),  // 4: google.protobuf.Int32Value
 }
-var file_config_proto_depIdxs = []int32{
+var file_nacosx_config_proto_depIdxs = []int32{
 	2, // 0: nacosx.Config.configs:type_name -> nacosx.Config.ConfigsEntry
 	3, // 1: nacosx.Options.address:type_name -> google.protobuf.StringValue
 	4, // 2: nacosx.Options.port:type_name -> google.protobuf.Int32Value
@@ -174,26 +174,26 @@ var file_config_proto_depIdxs = []int32{
 	0, // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_nacosx_config_proto_init() }
+func file_nacosx_config_proto_init() {
+	if File_nacosx_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_nacosx_config_proto_rawDesc), len(file_nacosx_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_nacosx_config_proto_goTypes,
+		DependencyIndexes: file_nacosx_config_proto_depIdxs,
+		MessageInfos:      file_nacosx_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_nacosx_config_proto = out.File
+	file_nacosx_config_proto_goTypes = nil
+	file_nacosx_config_proto_depIdxs = nil
 }

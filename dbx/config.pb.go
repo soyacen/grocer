@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: dbx/config.proto
 
 package dbx
 
@@ -32,7 +32,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_dbx_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_dbx_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_dbx_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -82,7 +82,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_dbx_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +94,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_dbx_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +107,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_dbx_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetDriverName() *wrapperspb.StringValue {
@@ -159,11 +159,11 @@ func (x *Options) GetConnMaxIdleTime() *durationpb.Duration {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_dbx_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_dbx_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x03dbx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x86\x01\n" +
+	"\x10dbx/config.proto\x12\x03dbx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x86\x01\n" +
 	"\x06Config\x122\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x18.dbx.Config.ConfigsEntryR\aconfigs\x1aH\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -177,22 +177,22 @@ const file_config_proto_rawDesc = "" +
 	"\x0emax_idle_conns\x18\x04 \x01(\v2\x1b.google.protobuf.Int32ValueR\fmaxIdleConns\x12A\n" +
 	"\x0emax_open_conns\x18\x05 \x01(\v2\x1b.google.protobuf.Int32ValueR\fmaxOpenConns\x12E\n" +
 	"\x11conn_max_lifetime\x18\x06 \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxLifetime\x12F\n" +
-	"\x12conn_max_idle_time\x18\a \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxIdleTimeB\bZ\x06./;dbxb\x06proto3"
+	"\x12conn_max_idle_time\x18\a \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxIdleTimeB#Z!github.com/soyacen/grocer/dbx;dbxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_dbx_config_proto_rawDescOnce sync.Once
+	file_dbx_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_dbx_config_proto_rawDescGZIP() []byte {
+	file_dbx_config_proto_rawDescOnce.Do(func() {
+		file_dbx_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dbx_config_proto_rawDesc), len(file_dbx_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_dbx_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_config_proto_goTypes = []any{
+var file_dbx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_dbx_config_proto_goTypes = []any{
 	(*Config)(nil),                 // 0: dbx.Config
 	(*Options)(nil),                // 1: dbx.Options
 	nil,                            // 2: dbx.Config.ConfigsEntry
@@ -200,7 +200,7 @@ var file_config_proto_goTypes = []any{
 	(*durationpb.Duration)(nil),    // 4: google.protobuf.Duration
 	(*wrapperspb.Int32Value)(nil),  // 5: google.protobuf.Int32Value
 }
-var file_config_proto_depIdxs = []int32{
+var file_dbx_config_proto_depIdxs = []int32{
 	2, // 0: dbx.Config.configs:type_name -> dbx.Config.ConfigsEntry
 	3, // 1: dbx.Options.driver_name:type_name -> google.protobuf.StringValue
 	3, // 2: dbx.Options.dsn:type_name -> google.protobuf.StringValue
@@ -217,26 +217,26 @@ var file_config_proto_depIdxs = []int32{
 	0, // [0:9] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_dbx_config_proto_init() }
+func file_dbx_config_proto_init() {
+	if File_dbx_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dbx_config_proto_rawDesc), len(file_dbx_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_dbx_config_proto_goTypes,
+		DependencyIndexes: file_dbx_config_proto_depIdxs,
+		MessageInfos:      file_dbx_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_dbx_config_proto = out.File
+	file_dbx_config_proto_goTypes = nil
+	file_dbx_config_proto_depIdxs = nil
 }

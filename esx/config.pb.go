@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: esx/config.proto
 
 package esx
 
@@ -31,7 +31,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_esx_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_esx_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_esx_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -97,7 +97,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_esx_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -109,7 +109,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_esx_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122,7 +122,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_esx_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetAddresses() []string {
@@ -272,11 +272,11 @@ func (x *Options) GetDisableMetaHeader() *wrapperspb.BoolValue {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_esx_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_esx_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x03esx\x1a\x1egoogle/protobuf/wrappers.proto\"\x86\x01\n" +
+	"\x10esx/config.proto\x12\x03esx\x1a\x1egoogle/protobuf/wrappers.proto\"\x86\x01\n" +
 	"\x06Config\x122\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x18.esx.Config.ConfigsEntryR\aconfigs\x1aH\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -329,22 +329,22 @@ const file_config_proto_rawDesc = "" +
 	"\x0f_enable_metricsB\x16\n" +
 	"\x14_enable_debug_loggerB\x1c\n" +
 	"\x1a_enable_compatibility_modeB\x16\n" +
-	"\x14_disable_meta_headerB\bZ\x06./;esxb\x06proto3"
+	"\x14_disable_meta_headerB#Z!github.com/soyacen/grocer/esx;esxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_esx_config_proto_rawDescOnce sync.Once
+	file_esx_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_esx_config_proto_rawDescGZIP() []byte {
+	file_esx_config_proto_rawDescOnce.Do(func() {
+		file_esx_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_esx_config_proto_rawDesc), len(file_esx_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_esx_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_config_proto_goTypes = []any{
+var file_esx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_esx_config_proto_goTypes = []any{
 	(*Config)(nil),                 // 0: esx.Config
 	(*Options)(nil),                // 1: esx.Options
 	nil,                            // 2: esx.Config.ConfigsEntry
@@ -355,7 +355,7 @@ var file_config_proto_goTypes = []any{
 	(*wrapperspb.Int32Value)(nil),  // 7: google.protobuf.Int32Value
 	(*wrapperspb.Int64Value)(nil),  // 8: google.protobuf.Int64Value
 }
-var file_config_proto_depIdxs = []int32{
+var file_esx_config_proto_depIdxs = []int32{
 	2,  // 0: esx.Config.configs:type_name -> esx.Config.ConfigsEntry
 	4,  // 1: esx.Options.username:type_name -> google.protobuf.StringValue
 	4,  // 2: esx.Options.password:type_name -> google.protobuf.StringValue
@@ -384,27 +384,27 @@ var file_config_proto_depIdxs = []int32{
 	0,  // [0:21] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_esx_config_proto_init() }
+func file_esx_config_proto_init() {
+	if File_esx_config_proto != nil {
 		return
 	}
-	file_config_proto_msgTypes[1].OneofWrappers = []any{}
+	file_esx_config_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_esx_config_proto_rawDesc), len(file_esx_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_esx_config_proto_goTypes,
+		DependencyIndexes: file_esx_config_proto_depIdxs,
+		MessageInfos:      file_esx_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_esx_config_proto = out.File
+	file_esx_config_proto_goTypes = nil
+	file_esx_config_proto_depIdxs = nil
 }

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package jeagerx;
-option go_package = "./;jeagerx";
+option go_package = "github.com/soyacen/grocer/jeagerx;jeagerx";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
@@ -43,12 +43,12 @@ message HTTPOptions {
 
 // 定义 TLS 配置
 message TLSConfig {
-  google.protobuf.BoolValue   insecure_skip_verify = 1;  // 跳过证书验证
-  google.protobuf.StringValue server_name          = 2;  // 服务器名称
-  google.protobuf.StringValue cert_file            = 3;  // 证书文件路径
-  google.protobuf.StringValue key_file             = 4;  // 私钥文件路径
-  google.protobuf.StringValue ca_file              = 5;  // CA 证书文件路径
-  google.protobuf.BoolValue   enable_client_auth   = 6;  // 是否启用客户端认证
+  google.protobuf.BoolValue   insecure_skip_verify = 1; // 跳过证书验证
+  google.protobuf.StringValue server_name          = 2; // 服务器名称
+  google.protobuf.StringValue cert_file            = 3; // 证书文件路径
+  google.protobuf.StringValue key_file             = 4; // 私钥文件路径
+  google.protobuf.StringValue ca_file              = 5; // CA 证书文件路径
+  google.protobuf.BoolValue   enable_client_auth   = 6; // 是否启用客户端认证
 }
 
 message RetryConfig {

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: jeagerx/config.proto
 
 package jeagerx
 
@@ -37,7 +37,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_jeagerx_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -49,7 +49,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_jeagerx_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +62,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_jeagerx_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetSamplingRate() *wrapperspb.DoubleValue {
@@ -105,7 +105,7 @@ type GRPCOptions struct {
 
 func (x *GRPCOptions) Reset() {
 	*x = GRPCOptions{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_jeagerx_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117,7 +117,7 @@ func (x *GRPCOptions) String() string {
 func (*GRPCOptions) ProtoMessage() {}
 
 func (x *GRPCOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_jeagerx_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +130,7 @@ func (x *GRPCOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GRPCOptions.ProtoReflect.Descriptor instead.
 func (*GRPCOptions) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_jeagerx_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GRPCOptions) GetEndpoint() *wrapperspb.StringValue {
@@ -220,7 +220,7 @@ type HTTPOptions struct {
 
 func (x *HTTPOptions) Reset() {
 	*x = HTTPOptions{}
-	mi := &file_config_proto_msgTypes[2]
+	mi := &file_jeagerx_config_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -232,7 +232,7 @@ func (x *HTTPOptions) String() string {
 func (*HTTPOptions) ProtoMessage() {}
 
 func (x *HTTPOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[2]
+	mi := &file_jeagerx_config_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +245,7 @@ func (x *HTTPOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HTTPOptions.ProtoReflect.Descriptor instead.
 func (*HTTPOptions) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{2}
+	return file_jeagerx_config_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *HTTPOptions) GetEndpoint() *wrapperspb.StringValue {
@@ -326,7 +326,7 @@ type TLSConfig struct {
 
 func (x *TLSConfig) Reset() {
 	*x = TLSConfig{}
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_jeagerx_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -338,7 +338,7 @@ func (x *TLSConfig) String() string {
 func (*TLSConfig) ProtoMessage() {}
 
 func (x *TLSConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_jeagerx_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -351,7 +351,7 @@ func (x *TLSConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TLSConfig.ProtoReflect.Descriptor instead.
 func (*TLSConfig) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{3}
+	return file_jeagerx_config_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TLSConfig) GetInsecureSkipVerify() *wrapperspb.BoolValue {
@@ -408,7 +408,7 @@ type RetryConfig struct {
 
 func (x *RetryConfig) Reset() {
 	*x = RetryConfig{}
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_jeagerx_config_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -420,7 +420,7 @@ func (x *RetryConfig) String() string {
 func (*RetryConfig) ProtoMessage() {}
 
 func (x *RetryConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_jeagerx_config_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -433,7 +433,7 @@ func (x *RetryConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RetryConfig.ProtoReflect.Descriptor instead.
 func (*RetryConfig) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{4}
+	return file_jeagerx_config_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RetryConfig) GetEnabled() *wrapperspb.BoolValue {
@@ -464,11 +464,11 @@ func (x *RetryConfig) GetMaxElapsedTime() *durationpb.Duration {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_jeagerx_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_jeagerx_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\ajeagerx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xbd\x01\n" +
+	"\x14jeagerx/config.proto\x12\ajeagerx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xbd\x01\n" +
 	"\x06Config\x12A\n" +
 	"\rsampling_rate\x18\x01 \x01(\v2\x1c.google.protobuf.DoubleValueR\fsamplingRate\x127\n" +
 	"\fgrpc_options\x18\x02 \x01(\v2\x14.jeagerx.GRPCOptionsR\vgrpcOptions\x127\n" +
@@ -517,23 +517,22 @@ const file_config_proto_rawDesc = "" +
 	"\aenabled\x18\x01 \x01(\v2\x1a.google.protobuf.BoolValueR\aenabled\x12D\n" +
 	"\x10initial_interval\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\x0finitialInterval\x12<\n" +
 	"\fmax_interval\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\vmaxInterval\x12C\n" +
-	"\x10max_elapsed_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\x0emaxElapsedTimeB\fZ\n" +
-	"./;jeagerxb\x06proto3"
+	"\x10max_elapsed_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\x0emaxElapsedTimeB+Z)github.com/soyacen/grocer/jeagerx;jeagerxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_jeagerx_config_proto_rawDescOnce sync.Once
+	file_jeagerx_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_jeagerx_config_proto_rawDescGZIP() []byte {
+	file_jeagerx_config_proto_rawDescOnce.Do(func() {
+		file_jeagerx_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_jeagerx_config_proto_rawDesc), len(file_jeagerx_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_jeagerx_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_config_proto_goTypes = []any{
+var file_jeagerx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_jeagerx_config_proto_goTypes = []any{
 	(*Config)(nil),                 // 0: jeagerx.Config
 	(*GRPCOptions)(nil),            // 1: jeagerx.GRPCOptions
 	(*HTTPOptions)(nil),            // 2: jeagerx.HTTPOptions
@@ -547,7 +546,7 @@ var file_config_proto_goTypes = []any{
 	(*durationpb.Duration)(nil),    // 10: google.protobuf.Duration
 	(*wrapperspb.Int32Value)(nil),  // 11: google.protobuf.Int32Value
 }
-var file_config_proto_depIdxs = []int32{
+var file_jeagerx_config_proto_depIdxs = []int32{
 	7,  // 0: jeagerx.Config.sampling_rate:type_name -> google.protobuf.DoubleValue
 	1,  // 1: jeagerx.Config.grpc_options:type_name -> jeagerx.GRPCOptions
 	2,  // 2: jeagerx.Config.http_options:type_name -> jeagerx.HTTPOptions
@@ -587,26 +586,26 @@ var file_config_proto_depIdxs = []int32{
 	0,  // [0:32] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_jeagerx_config_proto_init() }
+func file_jeagerx_config_proto_init() {
+	if File_jeagerx_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_jeagerx_config_proto_rawDesc), len(file_jeagerx_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_jeagerx_config_proto_goTypes,
+		DependencyIndexes: file_jeagerx_config_proto_depIdxs,
+		MessageInfos:      file_jeagerx_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_jeagerx_config_proto = out.File
+	file_jeagerx_config_proto_goTypes = nil
+	file_jeagerx_config_proto_depIdxs = nil
 }

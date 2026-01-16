@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: kafkax/config.proto
 
 package kafkax
 
@@ -32,7 +32,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_kafkax_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_kafkax_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -80,7 +80,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_kafkax_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -92,7 +92,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_kafkax_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -105,7 +105,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetReceiver() *Options_Receiver {
@@ -154,7 +154,7 @@ type Options_Receiver struct {
 
 func (x *Options_Receiver) Reset() {
 	*x = Options_Receiver{}
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_kafkax_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -166,7 +166,7 @@ func (x *Options_Receiver) String() string {
 func (*Options_Receiver) ProtoMessage() {}
 
 func (x *Options_Receiver) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_kafkax_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -179,7 +179,7 @@ func (x *Options_Receiver) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Receiver.ProtoReflect.Descriptor instead.
 func (*Options_Receiver) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 0}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Options_Receiver) GetGroupId() *wrapperspb.StringValue {
@@ -214,7 +214,7 @@ type Options_Sender struct {
 
 func (x *Options_Sender) Reset() {
 	*x = Options_Sender{}
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_kafkax_config_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -226,7 +226,7 @@ func (x *Options_Sender) String() string {
 func (*Options_Sender) ProtoMessage() {}
 
 func (x *Options_Sender) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_kafkax_config_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -239,7 +239,7 @@ func (x *Options_Sender) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Sender.ProtoReflect.Descriptor instead.
 func (*Options_Sender) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 1}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 1}
 }
 
 func (x *Options_Sender) GetRequiredAcks() *wrapperspb.Int32Value {
@@ -272,7 +272,7 @@ type Options_Receiver_Group struct {
 
 func (x *Options_Receiver_Group) Reset() {
 	*x = Options_Receiver_Group{}
-	mi := &file_config_proto_msgTypes[5]
+	mi := &file_kafkax_config_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -284,7 +284,7 @@ func (x *Options_Receiver_Group) String() string {
 func (*Options_Receiver_Group) ProtoMessage() {}
 
 func (x *Options_Receiver_Group) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[5]
+	mi := &file_kafkax_config_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -297,7 +297,7 @@ func (x *Options_Receiver_Group) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Receiver_Group.ProtoReflect.Descriptor instead.
 func (*Options_Receiver_Group) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 0, 0}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 0, 0}
 }
 
 func (x *Options_Receiver_Group) GetRebalance() *Options_Receiver_Group_Rebalance {
@@ -316,7 +316,7 @@ type Options_Receiver_Offset struct {
 
 func (x *Options_Receiver_Offset) Reset() {
 	*x = Options_Receiver_Offset{}
-	mi := &file_config_proto_msgTypes[6]
+	mi := &file_kafkax_config_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -328,7 +328,7 @@ func (x *Options_Receiver_Offset) String() string {
 func (*Options_Receiver_Offset) ProtoMessage() {}
 
 func (x *Options_Receiver_Offset) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[6]
+	mi := &file_kafkax_config_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -341,7 +341,7 @@ func (x *Options_Receiver_Offset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Receiver_Offset.ProtoReflect.Descriptor instead.
 func (*Options_Receiver_Offset) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 0, 1}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 0, 1}
 }
 
 func (x *Options_Receiver_Offset) GetInitial() *wrapperspb.Int64Value {
@@ -360,7 +360,7 @@ type Options_Receiver_Group_Rebalance struct {
 
 func (x *Options_Receiver_Group_Rebalance) Reset() {
 	*x = Options_Receiver_Group_Rebalance{}
-	mi := &file_config_proto_msgTypes[7]
+	mi := &file_kafkax_config_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -372,7 +372,7 @@ func (x *Options_Receiver_Group_Rebalance) String() string {
 func (*Options_Receiver_Group_Rebalance) ProtoMessage() {}
 
 func (x *Options_Receiver_Group_Rebalance) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[7]
+	mi := &file_kafkax_config_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -385,7 +385,7 @@ func (x *Options_Receiver_Group_Rebalance) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Receiver_Group_Rebalance.ProtoReflect.Descriptor instead.
 func (*Options_Receiver_Group_Rebalance) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 0, 0, 0}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 0, 0, 0}
 }
 
 func (x *Options_Receiver_Group_Rebalance) GetGroupStrategies() *wrapperspb.StringValue {
@@ -404,7 +404,7 @@ type Options_Sender_RequiredAcks struct {
 
 func (x *Options_Sender_RequiredAcks) Reset() {
 	*x = Options_Sender_RequiredAcks{}
-	mi := &file_config_proto_msgTypes[8]
+	mi := &file_kafkax_config_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -416,7 +416,7 @@ func (x *Options_Sender_RequiredAcks) String() string {
 func (*Options_Sender_RequiredAcks) ProtoMessage() {}
 
 func (x *Options_Sender_RequiredAcks) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[8]
+	mi := &file_kafkax_config_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -429,7 +429,7 @@ func (x *Options_Sender_RequiredAcks) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Sender_RequiredAcks.ProtoReflect.Descriptor instead.
 func (*Options_Sender_RequiredAcks) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 1, 0}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 1, 0}
 }
 
 func (x *Options_Sender_RequiredAcks) GetValue() *wrapperspb.Int32Value {
@@ -451,7 +451,7 @@ type Options_Sender_Retry struct {
 
 func (x *Options_Sender_Retry) Reset() {
 	*x = Options_Sender_Retry{}
-	mi := &file_config_proto_msgTypes[9]
+	mi := &file_kafkax_config_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -463,7 +463,7 @@ func (x *Options_Sender_Retry) String() string {
 func (*Options_Sender_Retry) ProtoMessage() {}
 
 func (x *Options_Sender_Retry) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[9]
+	mi := &file_kafkax_config_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +476,7 @@ func (x *Options_Sender_Retry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Sender_Retry.ProtoReflect.Descriptor instead.
 func (*Options_Sender_Retry) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 1, 1}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 1, 1}
 }
 
 func (x *Options_Sender_Retry) GetMax() *wrapperspb.Int64Value {
@@ -517,7 +517,7 @@ type Options_Sender_Return struct {
 
 func (x *Options_Sender_Return) Reset() {
 	*x = Options_Sender_Return{}
-	mi := &file_config_proto_msgTypes[10]
+	mi := &file_kafkax_config_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -529,7 +529,7 @@ func (x *Options_Sender_Return) String() string {
 func (*Options_Sender_Return) ProtoMessage() {}
 
 func (x *Options_Sender_Return) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[10]
+	mi := &file_kafkax_config_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -542,7 +542,7 @@ func (x *Options_Sender_Return) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_Sender_Return.ProtoReflect.Descriptor instead.
 func (*Options_Sender_Return) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 1, 2}
+	return file_kafkax_config_proto_rawDescGZIP(), []int{1, 1, 2}
 }
 
 func (x *Options_Sender_Return) GetSuccesses() *wrapperspb.BoolValue {
@@ -559,11 +559,11 @@ func (x *Options_Sender_Return) GetErrors() *wrapperspb.BoolValue {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_kafkax_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_kafkax_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x06kafkax\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
+	"\x13kafkax/config.proto\x12\x06kafkax\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
 	"\x06Config\x125\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x1b.kafkax.Config.ConfigsEntryR\aconfigs\x1aK\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -599,22 +599,22 @@ const file_config_proto_rawDesc = "" +
 	"\x10max_buffer_bytes\x18\x04 \x01(\v2\x1b.google.protobuf.Int64ValueR\x0emaxBufferBytes\x1av\n" +
 	"\x06Return\x128\n" +
 	"\tsuccesses\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\tsuccesses\x122\n" +
-	"\x06errors\x18\x01 \x01(\v2\x1a.google.protobuf.BoolValueR\x06errorsB\vZ\t./;kafkaxb\x06proto3"
+	"\x06errors\x18\x01 \x01(\v2\x1a.google.protobuf.BoolValueR\x06errorsB)Z'github.com/soyacen/grocer/kafkax;kafkaxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_kafkax_config_proto_rawDescOnce sync.Once
+	file_kafkax_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_kafkax_config_proto_rawDescGZIP() []byte {
+	file_kafkax_config_proto_rawDescOnce.Do(func() {
+		file_kafkax_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_kafkax_config_proto_rawDesc), len(file_kafkax_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_kafkax_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
-var file_config_proto_goTypes = []any{
+var file_kafkax_config_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_kafkax_config_proto_goTypes = []any{
 	(*Config)(nil),                           // 0: kafkax.Config
 	(*Options)(nil),                          // 1: kafkax.Options
 	nil,                                      // 2: kafkax.Config.ConfigsEntry
@@ -632,7 +632,7 @@ var file_config_proto_goTypes = []any{
 	(*durationpb.Duration)(nil),              // 14: google.protobuf.Duration
 	(*wrapperspb.BoolValue)(nil),             // 15: google.protobuf.BoolValue
 }
-var file_config_proto_depIdxs = []int32{
+var file_kafkax_config_proto_depIdxs = []int32{
 	2,  // 0: kafkax.Config.configs:type_name -> kafkax.Config.ConfigsEntry
 	3,  // 1: kafkax.Options.receiver:type_name -> kafkax.Options.Receiver
 	4,  // 2: kafkax.Options.sender:type_name -> kafkax.Options.Sender
@@ -662,26 +662,26 @@ var file_config_proto_depIdxs = []int32{
 	0,  // [0:22] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_kafkax_config_proto_init() }
+func file_kafkax_config_proto_init() {
+	if File_kafkax_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_kafkax_config_proto_rawDesc), len(file_kafkax_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_kafkax_config_proto_goTypes,
+		DependencyIndexes: file_kafkax_config_proto_depIdxs,
+		MessageInfos:      file_kafkax_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_kafkax_config_proto = out.File
+	file_kafkax_config_proto_goTypes = nil
+	file_kafkax_config_proto_depIdxs = nil
 }

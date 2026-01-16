@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: redisx/config.proto
 
 package redisx
 
@@ -32,7 +32,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_redisx_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_redisx_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_redisx_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -129,7 +129,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_redisx_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +141,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_redisx_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +154,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetAddrs() []string {
@@ -421,7 +421,7 @@ type Options_TLSOptions struct {
 
 func (x *Options_TLSOptions) Reset() {
 	*x = Options_TLSOptions{}
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_redisx_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -433,7 +433,7 @@ func (x *Options_TLSOptions) String() string {
 func (*Options_TLSOptions) ProtoMessage() {}
 
 func (x *Options_TLSOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[3]
+	mi := &file_redisx_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -446,7 +446,7 @@ func (x *Options_TLSOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_TLSOptions.ProtoReflect.Descriptor instead.
 func (*Options_TLSOptions) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 0}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Options_TLSOptions) GetCertFile() string {
@@ -489,7 +489,7 @@ type Options_ClusterOptions struct {
 
 func (x *Options_ClusterOptions) Reset() {
 	*x = Options_ClusterOptions{}
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_redisx_config_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -501,7 +501,7 @@ func (x *Options_ClusterOptions) String() string {
 func (*Options_ClusterOptions) ProtoMessage() {}
 
 func (x *Options_ClusterOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[4]
+	mi := &file_redisx_config_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -514,7 +514,7 @@ func (x *Options_ClusterOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_ClusterOptions.ProtoReflect.Descriptor instead.
 func (*Options_ClusterOptions) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 1}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 1}
 }
 
 func (x *Options_ClusterOptions) GetMaxRedirects() *wrapperspb.Int32Value {
@@ -555,7 +555,7 @@ type Options_FailOverOptions struct {
 
 func (x *Options_FailOverOptions) Reset() {
 	*x = Options_FailOverOptions{}
-	mi := &file_config_proto_msgTypes[5]
+	mi := &file_redisx_config_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -567,7 +567,7 @@ func (x *Options_FailOverOptions) String() string {
 func (*Options_FailOverOptions) ProtoMessage() {}
 
 func (x *Options_FailOverOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[5]
+	mi := &file_redisx_config_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +580,7 @@ func (x *Options_FailOverOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_FailOverOptions.ProtoReflect.Descriptor instead.
 func (*Options_FailOverOptions) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 2}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 2}
 }
 
 func (x *Options_FailOverOptions) GetMasterName() *wrapperspb.StringValue {
@@ -601,7 +601,7 @@ type Options_MaintNotificationsConfig struct {
 
 func (x *Options_MaintNotificationsConfig) Reset() {
 	*x = Options_MaintNotificationsConfig{}
-	mi := &file_config_proto_msgTypes[6]
+	mi := &file_redisx_config_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -613,7 +613,7 @@ func (x *Options_MaintNotificationsConfig) String() string {
 func (*Options_MaintNotificationsConfig) ProtoMessage() {}
 
 func (x *Options_MaintNotificationsConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[6]
+	mi := &file_redisx_config_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +626,7 @@ func (x *Options_MaintNotificationsConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_MaintNotificationsConfig.ProtoReflect.Descriptor instead.
 func (*Options_MaintNotificationsConfig) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1, 3}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 3}
 }
 
 func (x *Options_MaintNotificationsConfig) GetEnabled() *wrapperspb.BoolValue {
@@ -643,11 +643,11 @@ func (x *Options_MaintNotificationsConfig) GetChannel() *wrapperspb.StringValue 
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_redisx_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_redisx_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x06redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
+	"\x13redisx/config.proto\x12\x06redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
 	"\x06Config\x125\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x1b.redisx.Config.ConfigsEntryR\aconfigs\x1aK\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -711,22 +711,22 @@ const file_config_proto_rawDesc = "" +
 	"masterName\x1a\x88\x01\n" +
 	"\x18MaintNotificationsConfig\x124\n" +
 	"\aenabled\x18\x01 \x01(\v2\x1a.google.protobuf.BoolValueR\aenabled\x126\n" +
-	"\achannel\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\achannelB\vZ\t./;redisxb\x06proto3"
+	"\achannel\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\achannelB)Z'github.com/soyacen/grocer/redisx;redisxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_redisx_config_proto_rawDescOnce sync.Once
+	file_redisx_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_redisx_config_proto_rawDescGZIP() []byte {
+	file_redisx_config_proto_rawDescOnce.Do(func() {
+		file_redisx_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_redisx_config_proto_rawDesc), len(file_redisx_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_redisx_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_config_proto_goTypes = []any{
+var file_redisx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_redisx_config_proto_goTypes = []any{
 	(*Config)(nil),                           // 0: redisx.Config
 	(*Options)(nil),                          // 1: redisx.Options
 	nil,                                      // 2: redisx.Config.ConfigsEntry
@@ -739,7 +739,7 @@ var file_config_proto_goTypes = []any{
 	(*durationpb.Duration)(nil),              // 9: google.protobuf.Duration
 	(*wrapperspb.BoolValue)(nil),             // 10: google.protobuf.BoolValue
 }
-var file_config_proto_depIdxs = []int32{
+var file_redisx_config_proto_depIdxs = []int32{
 	2,  // 0: redisx.Config.configs:type_name -> redisx.Config.ConfigsEntry
 	7,  // 1: redisx.Options.client_name:type_name -> google.protobuf.StringValue
 	8,  // 2: redisx.Options.db:type_name -> google.protobuf.Int32Value
@@ -791,26 +791,26 @@ var file_config_proto_depIdxs = []int32{
 	0,  // [0:44] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_redisx_config_proto_init() }
+func file_redisx_config_proto_init() {
+	if File_redisx_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_redisx_config_proto_rawDesc), len(file_redisx_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_redisx_config_proto_goTypes,
+		DependencyIndexes: file_redisx_config_proto_depIdxs,
+		MessageInfos:      file_redisx_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_redisx_config_proto = out.File
+	file_redisx_config_proto_goTypes = nil
+	file_redisx_config_proto_depIdxs = nil
 }

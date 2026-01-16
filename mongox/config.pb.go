@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: config.proto
+// source: mongox/config.proto
 
 package mongox
 
@@ -31,7 +31,7 @@ type Config struct {
 
 func (x *Config) Reset() {
 	*x = Config{}
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_mongox_config_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *Config) String() string {
 func (*Config) ProtoMessage() {}
 
 func (x *Config) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[0]
+	mi := &file_mongox_config_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *Config) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Config.ProtoReflect.Descriptor instead.
 func (*Config) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{0}
+	return file_mongox_config_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Config) GetConfigs() map[string]*Options {
@@ -76,7 +76,7 @@ type Options struct {
 
 func (x *Options) Reset() {
 	*x = Options{}
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_mongox_config_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +88,7 @@ func (x *Options) String() string {
 func (*Options) ProtoMessage() {}
 
 func (x *Options) ProtoReflect() protoreflect.Message {
-	mi := &file_config_proto_msgTypes[1]
+	mi := &file_mongox_config_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +101,7 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options.ProtoReflect.Descriptor instead.
 func (*Options) Descriptor() ([]byte, []int) {
-	return file_config_proto_rawDescGZIP(), []int{1}
+	return file_mongox_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Options) GetUri() *wrapperspb.StringValue {
@@ -118,11 +118,11 @@ func (x *Options) GetEnableOtel() *wrapperspb.BoolValue {
 	return nil
 }
 
-var File_config_proto protoreflect.FileDescriptor
+var File_mongox_config_proto protoreflect.FileDescriptor
 
-const file_config_proto_rawDesc = "" +
+const file_mongox_config_proto_rawDesc = "" +
 	"\n" +
-	"\fconfig.proto\x12\x06mongox\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
+	"\x13mongox/config.proto\x12\x06mongox\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
 	"\x06Config\x125\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x1b.mongox.Config.ConfigsEntryR\aconfigs\x1aK\n" +
 	"\fConfigsEntry\x12\x10\n" +
@@ -131,29 +131,29 @@ const file_config_proto_rawDesc = "" +
 	"\aOptions\x12.\n" +
 	"\x03uri\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\x03uri\x12;\n" +
 	"\venable_otel\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\n" +
-	"enableOtelB\vZ\t./;mongoxb\x06proto3"
+	"enableOtelB)Z'github.com/soyacen/grocer/mongox;mongoxb\x06proto3"
 
 var (
-	file_config_proto_rawDescOnce sync.Once
-	file_config_proto_rawDescData []byte
+	file_mongox_config_proto_rawDescOnce sync.Once
+	file_mongox_config_proto_rawDescData []byte
 )
 
-func file_config_proto_rawDescGZIP() []byte {
-	file_config_proto_rawDescOnce.Do(func() {
-		file_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)))
+func file_mongox_config_proto_rawDescGZIP() []byte {
+	file_mongox_config_proto_rawDescOnce.Do(func() {
+		file_mongox_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_mongox_config_proto_rawDesc), len(file_mongox_config_proto_rawDesc)))
 	})
-	return file_config_proto_rawDescData
+	return file_mongox_config_proto_rawDescData
 }
 
-var file_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_config_proto_goTypes = []any{
+var file_mongox_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_mongox_config_proto_goTypes = []any{
 	(*Config)(nil),                 // 0: mongox.Config
 	(*Options)(nil),                // 1: mongox.Options
 	nil,                            // 2: mongox.Config.ConfigsEntry
 	(*wrapperspb.StringValue)(nil), // 3: google.protobuf.StringValue
 	(*wrapperspb.BoolValue)(nil),   // 4: google.protobuf.BoolValue
 }
-var file_config_proto_depIdxs = []int32{
+var file_mongox_config_proto_depIdxs = []int32{
 	2, // 0: mongox.Config.configs:type_name -> mongox.Config.ConfigsEntry
 	3, // 1: mongox.Options.uri:type_name -> google.protobuf.StringValue
 	4, // 2: mongox.Options.enable_otel:type_name -> google.protobuf.BoolValue
@@ -165,26 +165,26 @@ var file_config_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_config_proto_init() }
-func file_config_proto_init() {
-	if File_config_proto != nil {
+func init() { file_mongox_config_proto_init() }
+func file_mongox_config_proto_init() {
+	if File_mongox_config_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_proto_rawDesc), len(file_config_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_mongox_config_proto_rawDesc), len(file_mongox_config_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_config_proto_goTypes,
-		DependencyIndexes: file_config_proto_depIdxs,
-		MessageInfos:      file_config_proto_msgTypes,
+		GoTypes:           file_mongox_config_proto_goTypes,
+		DependencyIndexes: file_mongox_config_proto_depIdxs,
+		MessageInfos:      file_mongox_config_proto_msgTypes,
 	}.Build()
-	File_config_proto = out.File
-	file_config_proto_goTypes = nil
-	file_config_proto_depIdxs = nil
+	File_mongox_config_proto = out.File
+	file_mongox_config_proto_goTypes = nil
+	file_mongox_config_proto_depIdxs = nil
 }

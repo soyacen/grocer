@@ -1,6 +1,6 @@
 syntax = "proto3";
 package kafkax;
-option go_package = "./;kafkax";
+option go_package = "github.com/soyacen/grocer/kafkax;kafkax";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
