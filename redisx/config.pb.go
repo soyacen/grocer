@@ -7,6 +7,7 @@
 package redisx
 
 import (
+	protobufx "github.com/soyacen/grocer/protobufx"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
@@ -107,7 +108,7 @@ type Options struct {
 	// Larger buffers can improve performance for large pipelines and commands with many arguments.
 	// Smaller buffers can improve memory usage for larger pools.
 	WriteBufferSize *wrapperspb.Int32Value `protobuf:"bytes,25,opt,name=write_buffer_size,json=writeBufferSize,proto3" json:"write_buffer_size,omitempty"`
-	TlsConfig       *Options_TLSOptions    `protobuf:"bytes,26,opt,name=tls_config,json=tlsConfig,proto3" json:"tls_config,omitempty"`
+	TlsConfig       *protobufx.TLSOptions  `protobuf:"bytes,26,opt,name=tls_config,json=tlsConfig,proto3" json:"tls_config,omitempty"`
 	// Only cluster clients.
 	ClusterOptions *Options_ClusterOptions `protobuf:"bytes,27,opt,name=cluster_options,json=clusterOptions,proto3" json:"cluster_options,omitempty"`
 	// Only failover clients.
@@ -332,7 +333,7 @@ func (x *Options) GetWriteBufferSize() *wrapperspb.Int32Value {
 	return nil
 }
 
-func (x *Options) GetTlsConfig() *Options_TLSOptions {
+func (x *Options) GetTlsConfig() *protobufx.TLSOptions {
 	if x != nil {
 		return x.TlsConfig
 	}
@@ -409,74 +410,6 @@ func (x *Options) GetEnableMetrics() *wrapperspb.BoolValue {
 	return nil
 }
 
-type Options_TLSOptions struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CertFile      string                 `protobuf:"bytes,1,opt,name=cert_file,json=certFile,proto3" json:"cert_file,omitempty"`
-	KeyFile       string                 `protobuf:"bytes,2,opt,name=key_file,json=keyFile,proto3" json:"key_file,omitempty"`
-	CaFile        string                 `protobuf:"bytes,3,opt,name=ca_file,json=caFile,proto3" json:"ca_file,omitempty"`
-	ServerName    string                 `protobuf:"bytes,4,opt,name=server_name,json=serverName,proto3" json:"server_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Options_TLSOptions) Reset() {
-	*x = Options_TLSOptions{}
-	mi := &file_redisx_config_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Options_TLSOptions) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Options_TLSOptions) ProtoMessage() {}
-
-func (x *Options_TLSOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_redisx_config_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Options_TLSOptions.ProtoReflect.Descriptor instead.
-func (*Options_TLSOptions) Descriptor() ([]byte, []int) {
-	return file_redisx_config_proto_rawDescGZIP(), []int{1, 0}
-}
-
-func (x *Options_TLSOptions) GetCertFile() string {
-	if x != nil {
-		return x.CertFile
-	}
-	return ""
-}
-
-func (x *Options_TLSOptions) GetKeyFile() string {
-	if x != nil {
-		return x.KeyFile
-	}
-	return ""
-}
-
-func (x *Options_TLSOptions) GetCaFile() string {
-	if x != nil {
-		return x.CaFile
-	}
-	return ""
-}
-
-func (x *Options_TLSOptions) GetServerName() string {
-	if x != nil {
-		return x.ServerName
-	}
-	return ""
-}
-
 type Options_ClusterOptions struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	MaxRedirects   *wrapperspb.Int32Value `protobuf:"bytes,1,opt,name=max_redirects,json=maxRedirects,proto3" json:"max_redirects,omitempty"`
@@ -489,7 +422,7 @@ type Options_ClusterOptions struct {
 
 func (x *Options_ClusterOptions) Reset() {
 	*x = Options_ClusterOptions{}
-	mi := &file_redisx_config_proto_msgTypes[4]
+	mi := &file_redisx_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -501,7 +434,7 @@ func (x *Options_ClusterOptions) String() string {
 func (*Options_ClusterOptions) ProtoMessage() {}
 
 func (x *Options_ClusterOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_redisx_config_proto_msgTypes[4]
+	mi := &file_redisx_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -514,7 +447,7 @@ func (x *Options_ClusterOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_ClusterOptions.ProtoReflect.Descriptor instead.
 func (*Options_ClusterOptions) Descriptor() ([]byte, []int) {
-	return file_redisx_config_proto_rawDescGZIP(), []int{1, 1}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Options_ClusterOptions) GetMaxRedirects() *wrapperspb.Int32Value {
@@ -555,7 +488,7 @@ type Options_FailOverOptions struct {
 
 func (x *Options_FailOverOptions) Reset() {
 	*x = Options_FailOverOptions{}
-	mi := &file_redisx_config_proto_msgTypes[5]
+	mi := &file_redisx_config_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -567,7 +500,7 @@ func (x *Options_FailOverOptions) String() string {
 func (*Options_FailOverOptions) ProtoMessage() {}
 
 func (x *Options_FailOverOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_redisx_config_proto_msgTypes[5]
+	mi := &file_redisx_config_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +513,7 @@ func (x *Options_FailOverOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_FailOverOptions.ProtoReflect.Descriptor instead.
 func (*Options_FailOverOptions) Descriptor() ([]byte, []int) {
-	return file_redisx_config_proto_rawDescGZIP(), []int{1, 2}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 1}
 }
 
 func (x *Options_FailOverOptions) GetMasterName() *wrapperspb.StringValue {
@@ -601,7 +534,7 @@ type Options_MaintNotificationsConfig struct {
 
 func (x *Options_MaintNotificationsConfig) Reset() {
 	*x = Options_MaintNotificationsConfig{}
-	mi := &file_redisx_config_proto_msgTypes[6]
+	mi := &file_redisx_config_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -613,7 +546,7 @@ func (x *Options_MaintNotificationsConfig) String() string {
 func (*Options_MaintNotificationsConfig) ProtoMessage() {}
 
 func (x *Options_MaintNotificationsConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_redisx_config_proto_msgTypes[6]
+	mi := &file_redisx_config_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +559,7 @@ func (x *Options_MaintNotificationsConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Options_MaintNotificationsConfig.ProtoReflect.Descriptor instead.
 func (*Options_MaintNotificationsConfig) Descriptor() ([]byte, []int) {
-	return file_redisx_config_proto_rawDescGZIP(), []int{1, 3}
+	return file_redisx_config_proto_rawDescGZIP(), []int{1, 2}
 }
 
 func (x *Options_MaintNotificationsConfig) GetEnabled() *wrapperspb.BoolValue {
@@ -647,12 +580,12 @@ var File_redisx_config_proto protoreflect.FileDescriptor
 
 const file_redisx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x13redisx/config.proto\x12\x06redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
+	"\x13redisx/config.proto\x12\x06redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x13protobufx/tls.proto\"\x8c\x01\n" +
 	"\x06Config\x125\n" +
 	"\aconfigs\x18\x01 \x03(\v2\x1b.redisx.Config.ConfigsEntryR\aconfigs\x1aK\n" +
 	"\fConfigsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12%\n" +
-	"\x05value\x18\x02 \x01(\v2\x0f.redisx.OptionsR\x05value:\x028\x01\"\xe3\x17\n" +
+	"\x05value\x18\x02 \x01(\v2\x0f.redisx.OptionsR\x05value:\x028\x01\"\xde\x16\n" +
 	"\aOptions\x12\x14\n" +
 	"\x05addrs\x18\x01 \x03(\tR\x05addrs\x12=\n" +
 	"\vclient_name\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\n" +
@@ -681,9 +614,9 @@ const file_redisx_config_proto_rawDesc = "" +
 	"\x12conn_max_idle_time\x18\x16 \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxIdleTime\x12E\n" +
 	"\x11conn_max_lifetime\x18\x17 \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxLifetime\x12E\n" +
 	"\x10read_buffer_size\x18\x18 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0ereadBufferSize\x12G\n" +
-	"\x11write_buffer_size\x18\x19 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fwriteBufferSize\x129\n" +
+	"\x11write_buffer_size\x18\x19 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fwriteBufferSize\x124\n" +
 	"\n" +
-	"tls_config\x18\x1a \x01(\v2\x1a.redisx.Options.TLSOptionsR\ttlsConfig\x12G\n" +
+	"tls_config\x18\x1a \x01(\v2\x15.protobufx.TLSOptionsR\ttlsConfig\x12G\n" +
 	"\x0fcluster_options\x18\x1b \x01(\v2\x1e.redisx.Options.ClusterOptionsR\x0eclusterOptions\x12J\n" +
 	"\x10failover_options\x18\x1c \x01(\v2\x1f.redisx.Options.FailOverOptionsR\x0ffailoverOptions\x12E\n" +
 	"\x10disable_identity\x18\x1d \x01(\v2\x1a.google.protobuf.BoolValueR\x0fdisableIdentity\x12E\n" +
@@ -693,14 +626,7 @@ const file_redisx_config_proto_rawDesc = "" +
 	"\x0fis_cluster_mode\x18! \x01(\v2\x1a.google.protobuf.BoolValueR\risClusterMode\x12f\n" +
 	"\x1amaint_notifications_config\x18\" \x01(\v2(.redisx.Options.MaintNotificationsConfigR\x18maintNotificationsConfig\x12A\n" +
 	"\x0eenable_tracing\x18# \x01(\v2\x1a.google.protobuf.BoolValueR\renableTracing\x12A\n" +
-	"\x0eenable_metrics\x18$ \x01(\v2\x1a.google.protobuf.BoolValueR\renableMetrics\x1a~\n" +
-	"\n" +
-	"TLSOptions\x12\x1b\n" +
-	"\tcert_file\x18\x01 \x01(\tR\bcertFile\x12\x19\n" +
-	"\bkey_file\x18\x02 \x01(\tR\akeyFile\x12\x17\n" +
-	"\aca_file\x18\x03 \x01(\tR\x06caFile\x12\x1f\n" +
-	"\vserver_name\x18\x04 \x01(\tR\n" +
-	"serverName\x1a\x94\x02\n" +
+	"\x0eenable_metrics\x18$ \x01(\v2\x1a.google.protobuf.BoolValueR\renableMetrics\x1a\x94\x02\n" +
 	"\x0eClusterOptions\x12@\n" +
 	"\rmax_redirects\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\fmaxRedirects\x127\n" +
 	"\tread_only\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\breadOnly\x12D\n" +
@@ -725,65 +651,65 @@ func file_redisx_config_proto_rawDescGZIP() []byte {
 	return file_redisx_config_proto_rawDescData
 }
 
-var file_redisx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_redisx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_redisx_config_proto_goTypes = []any{
 	(*Config)(nil),                           // 0: redisx.Config
 	(*Options)(nil),                          // 1: redisx.Options
 	nil,                                      // 2: redisx.Config.ConfigsEntry
-	(*Options_TLSOptions)(nil),               // 3: redisx.Options.TLSOptions
-	(*Options_ClusterOptions)(nil),           // 4: redisx.Options.ClusterOptions
-	(*Options_FailOverOptions)(nil),          // 5: redisx.Options.FailOverOptions
-	(*Options_MaintNotificationsConfig)(nil), // 6: redisx.Options.MaintNotificationsConfig
-	(*wrapperspb.StringValue)(nil),           // 7: google.protobuf.StringValue
-	(*wrapperspb.Int32Value)(nil),            // 8: google.protobuf.Int32Value
-	(*durationpb.Duration)(nil),              // 9: google.protobuf.Duration
-	(*wrapperspb.BoolValue)(nil),             // 10: google.protobuf.BoolValue
+	(*Options_ClusterOptions)(nil),           // 3: redisx.Options.ClusterOptions
+	(*Options_FailOverOptions)(nil),          // 4: redisx.Options.FailOverOptions
+	(*Options_MaintNotificationsConfig)(nil), // 5: redisx.Options.MaintNotificationsConfig
+	(*wrapperspb.StringValue)(nil),           // 6: google.protobuf.StringValue
+	(*wrapperspb.Int32Value)(nil),            // 7: google.protobuf.Int32Value
+	(*durationpb.Duration)(nil),              // 8: google.protobuf.Duration
+	(*wrapperspb.BoolValue)(nil),             // 9: google.protobuf.BoolValue
+	(*protobufx.TLSOptions)(nil),             // 10: protobufx.TLSOptions
 }
 var file_redisx_config_proto_depIdxs = []int32{
 	2,  // 0: redisx.Config.configs:type_name -> redisx.Config.ConfigsEntry
-	7,  // 1: redisx.Options.client_name:type_name -> google.protobuf.StringValue
-	8,  // 2: redisx.Options.db:type_name -> google.protobuf.Int32Value
-	8,  // 3: redisx.Options.protocol:type_name -> google.protobuf.Int32Value
-	7,  // 4: redisx.Options.username:type_name -> google.protobuf.StringValue
-	7,  // 5: redisx.Options.password:type_name -> google.protobuf.StringValue
-	7,  // 6: redisx.Options.sentinel_username:type_name -> google.protobuf.StringValue
-	7,  // 7: redisx.Options.sentinel_password:type_name -> google.protobuf.StringValue
-	8,  // 8: redisx.Options.max_retries:type_name -> google.protobuf.Int32Value
-	9,  // 9: redisx.Options.min_retry_backoff:type_name -> google.protobuf.Duration
-	9,  // 10: redisx.Options.max_retry_backoff:type_name -> google.protobuf.Duration
-	9,  // 11: redisx.Options.dial_timeout:type_name -> google.protobuf.Duration
-	9,  // 12: redisx.Options.read_timeout:type_name -> google.protobuf.Duration
-	9,  // 13: redisx.Options.write_timeout:type_name -> google.protobuf.Duration
-	10, // 14: redisx.Options.context_timeout_enabled:type_name -> google.protobuf.BoolValue
-	10, // 15: redisx.Options.pool_fifo:type_name -> google.protobuf.BoolValue
-	8,  // 16: redisx.Options.pool_size:type_name -> google.protobuf.Int32Value
-	9,  // 17: redisx.Options.pool_timeout:type_name -> google.protobuf.Duration
-	8,  // 18: redisx.Options.min_idle_conns:type_name -> google.protobuf.Int32Value
-	8,  // 19: redisx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
-	8,  // 20: redisx.Options.max_active_conns:type_name -> google.protobuf.Int32Value
-	9,  // 21: redisx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
-	9,  // 22: redisx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
-	8,  // 23: redisx.Options.read_buffer_size:type_name -> google.protobuf.Int32Value
-	8,  // 24: redisx.Options.write_buffer_size:type_name -> google.protobuf.Int32Value
-	3,  // 25: redisx.Options.tls_config:type_name -> redisx.Options.TLSOptions
-	4,  // 26: redisx.Options.cluster_options:type_name -> redisx.Options.ClusterOptions
-	5,  // 27: redisx.Options.failover_options:type_name -> redisx.Options.FailOverOptions
-	10, // 28: redisx.Options.disable_identity:type_name -> google.protobuf.BoolValue
-	7,  // 29: redisx.Options.identity_suffix:type_name -> google.protobuf.StringValue
-	8,  // 30: redisx.Options.failing_timeout_seconds:type_name -> google.protobuf.Int32Value
-	10, // 31: redisx.Options.unstable_resp3:type_name -> google.protobuf.BoolValue
-	10, // 32: redisx.Options.is_cluster_mode:type_name -> google.protobuf.BoolValue
-	6,  // 33: redisx.Options.maint_notifications_config:type_name -> redisx.Options.MaintNotificationsConfig
-	10, // 34: redisx.Options.enable_tracing:type_name -> google.protobuf.BoolValue
-	10, // 35: redisx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
+	6,  // 1: redisx.Options.client_name:type_name -> google.protobuf.StringValue
+	7,  // 2: redisx.Options.db:type_name -> google.protobuf.Int32Value
+	7,  // 3: redisx.Options.protocol:type_name -> google.protobuf.Int32Value
+	6,  // 4: redisx.Options.username:type_name -> google.protobuf.StringValue
+	6,  // 5: redisx.Options.password:type_name -> google.protobuf.StringValue
+	6,  // 6: redisx.Options.sentinel_username:type_name -> google.protobuf.StringValue
+	6,  // 7: redisx.Options.sentinel_password:type_name -> google.protobuf.StringValue
+	7,  // 8: redisx.Options.max_retries:type_name -> google.protobuf.Int32Value
+	8,  // 9: redisx.Options.min_retry_backoff:type_name -> google.protobuf.Duration
+	8,  // 10: redisx.Options.max_retry_backoff:type_name -> google.protobuf.Duration
+	8,  // 11: redisx.Options.dial_timeout:type_name -> google.protobuf.Duration
+	8,  // 12: redisx.Options.read_timeout:type_name -> google.protobuf.Duration
+	8,  // 13: redisx.Options.write_timeout:type_name -> google.protobuf.Duration
+	9,  // 14: redisx.Options.context_timeout_enabled:type_name -> google.protobuf.BoolValue
+	9,  // 15: redisx.Options.pool_fifo:type_name -> google.protobuf.BoolValue
+	7,  // 16: redisx.Options.pool_size:type_name -> google.protobuf.Int32Value
+	8,  // 17: redisx.Options.pool_timeout:type_name -> google.protobuf.Duration
+	7,  // 18: redisx.Options.min_idle_conns:type_name -> google.protobuf.Int32Value
+	7,  // 19: redisx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
+	7,  // 20: redisx.Options.max_active_conns:type_name -> google.protobuf.Int32Value
+	8,  // 21: redisx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
+	8,  // 22: redisx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
+	7,  // 23: redisx.Options.read_buffer_size:type_name -> google.protobuf.Int32Value
+	7,  // 24: redisx.Options.write_buffer_size:type_name -> google.protobuf.Int32Value
+	10, // 25: redisx.Options.tls_config:type_name -> protobufx.TLSOptions
+	3,  // 26: redisx.Options.cluster_options:type_name -> redisx.Options.ClusterOptions
+	4,  // 27: redisx.Options.failover_options:type_name -> redisx.Options.FailOverOptions
+	9,  // 28: redisx.Options.disable_identity:type_name -> google.protobuf.BoolValue
+	6,  // 29: redisx.Options.identity_suffix:type_name -> google.protobuf.StringValue
+	7,  // 30: redisx.Options.failing_timeout_seconds:type_name -> google.protobuf.Int32Value
+	9,  // 31: redisx.Options.unstable_resp3:type_name -> google.protobuf.BoolValue
+	9,  // 32: redisx.Options.is_cluster_mode:type_name -> google.protobuf.BoolValue
+	5,  // 33: redisx.Options.maint_notifications_config:type_name -> redisx.Options.MaintNotificationsConfig
+	9,  // 34: redisx.Options.enable_tracing:type_name -> google.protobuf.BoolValue
+	9,  // 35: redisx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
 	1,  // 36: redisx.Config.ConfigsEntry.value:type_name -> redisx.Options
-	8,  // 37: redisx.Options.ClusterOptions.max_redirects:type_name -> google.protobuf.Int32Value
-	10, // 38: redisx.Options.ClusterOptions.read_only:type_name -> google.protobuf.BoolValue
-	10, // 39: redisx.Options.ClusterOptions.route_by_latency:type_name -> google.protobuf.BoolValue
-	10, // 40: redisx.Options.ClusterOptions.route_randomly:type_name -> google.protobuf.BoolValue
-	7,  // 41: redisx.Options.FailOverOptions.master_name:type_name -> google.protobuf.StringValue
-	10, // 42: redisx.Options.MaintNotificationsConfig.enabled:type_name -> google.protobuf.BoolValue
-	7,  // 43: redisx.Options.MaintNotificationsConfig.channel:type_name -> google.protobuf.StringValue
+	7,  // 37: redisx.Options.ClusterOptions.max_redirects:type_name -> google.protobuf.Int32Value
+	9,  // 38: redisx.Options.ClusterOptions.read_only:type_name -> google.protobuf.BoolValue
+	9,  // 39: redisx.Options.ClusterOptions.route_by_latency:type_name -> google.protobuf.BoolValue
+	9,  // 40: redisx.Options.ClusterOptions.route_randomly:type_name -> google.protobuf.BoolValue
+	6,  // 41: redisx.Options.FailOverOptions.master_name:type_name -> google.protobuf.StringValue
+	9,  // 42: redisx.Options.MaintNotificationsConfig.enabled:type_name -> google.protobuf.BoolValue
+	6,  // 43: redisx.Options.MaintNotificationsConfig.channel:type_name -> google.protobuf.StringValue
 	44, // [44:44] is the sub-list for method output_type
 	44, // [44:44] is the sub-list for method input_type
 	44, // [44:44] is the sub-list for extension type_name
@@ -802,7 +728,7 @@ func file_redisx_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_redisx_config_proto_rawDesc), len(file_redisx_config_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

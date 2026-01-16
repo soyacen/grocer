@@ -5,18 +5,13 @@ option go_package = "github.com/soyacen/grocer/redisx;redisx";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
+import "protobufx/tls.proto";
 
 message Config {
   map<string, Options> configs = 1;
 }
 
 message Options {
-  message TLSOptions {
-    string cert_file   = 1;
-    string key_file    = 2;
-    string ca_file     = 3;
-    string server_name = 4;
-  }
 
   message ClusterOptions {
     google.protobuf.Int32Value max_redirects    = 1;
@@ -85,7 +80,7 @@ message Options {
   // Smaller buffers can improve memory usage for larger pools.
   google.protobuf.Int32Value write_buffer_size = 25;
 
-  TLSOptions tls_config = 26;
+  protobufx.TLSOptions tls_config = 26;
 
   // Only cluster clients.
   ClusterOptions cluster_options = 27;

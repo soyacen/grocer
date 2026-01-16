@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: protobufx/wrappers.proto
+// source: protobufx/tls.proto
 
 package protobufx
 
@@ -34,7 +34,7 @@ type TLSOptions struct {
 
 func (x *TLSOptions) Reset() {
 	*x = TLSOptions{}
-	mi := &file_protobufx_wrappers_proto_msgTypes[0]
+	mi := &file_protobufx_tls_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *TLSOptions) String() string {
 func (*TLSOptions) ProtoMessage() {}
 
 func (x *TLSOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_protobufx_wrappers_proto_msgTypes[0]
+	mi := &file_protobufx_tls_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *TLSOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TLSOptions.ProtoReflect.Descriptor instead.
 func (*TLSOptions) Descriptor() ([]byte, []int) {
-	return file_protobufx_wrappers_proto_rawDescGZIP(), []int{0}
+	return file_protobufx_tls_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *TLSOptions) GetCertFile() *wrapperspb.StringValue {
@@ -90,11 +90,11 @@ func (x *TLSOptions) GetServerName() *wrapperspb.StringValue {
 	return nil
 }
 
-var File_protobufx_wrappers_proto protoreflect.FileDescriptor
+var File_protobufx_tls_proto protoreflect.FileDescriptor
 
-const file_protobufx_wrappers_proto_rawDesc = "" +
+const file_protobufx_tls_proto_rawDesc = "" +
 	"\n" +
-	"\x18protobufx/wrappers.proto\x12\tprotobufx\x1a\x1egoogle/protobuf/wrappers.proto\"\xf6\x01\n" +
+	"\x13protobufx/tls.proto\x12\tprotobufx\x1a\x1egoogle/protobuf/wrappers.proto\"\xf6\x01\n" +
 	"\n" +
 	"TLSOptions\x129\n" +
 	"\tcert_file\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\bcertFile\x127\n" +
@@ -104,23 +104,23 @@ const file_protobufx_wrappers_proto_rawDesc = "" +
 	"serverNameB/Z-github.com/soyacen/grocer/protobufx;protobufxb\x06proto3"
 
 var (
-	file_protobufx_wrappers_proto_rawDescOnce sync.Once
-	file_protobufx_wrappers_proto_rawDescData []byte
+	file_protobufx_tls_proto_rawDescOnce sync.Once
+	file_protobufx_tls_proto_rawDescData []byte
 )
 
-func file_protobufx_wrappers_proto_rawDescGZIP() []byte {
-	file_protobufx_wrappers_proto_rawDescOnce.Do(func() {
-		file_protobufx_wrappers_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_protobufx_wrappers_proto_rawDesc), len(file_protobufx_wrappers_proto_rawDesc)))
+func file_protobufx_tls_proto_rawDescGZIP() []byte {
+	file_protobufx_tls_proto_rawDescOnce.Do(func() {
+		file_protobufx_tls_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_protobufx_tls_proto_rawDesc), len(file_protobufx_tls_proto_rawDesc)))
 	})
-	return file_protobufx_wrappers_proto_rawDescData
+	return file_protobufx_tls_proto_rawDescData
 }
 
-var file_protobufx_wrappers_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_protobufx_wrappers_proto_goTypes = []any{
+var file_protobufx_tls_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_protobufx_tls_proto_goTypes = []any{
 	(*TLSOptions)(nil),             // 0: protobufx.TLSOptions
 	(*wrapperspb.StringValue)(nil), // 1: google.protobuf.StringValue
 }
-var file_protobufx_wrappers_proto_depIdxs = []int32{
+var file_protobufx_tls_proto_depIdxs = []int32{
 	1, // 0: protobufx.TLSOptions.cert_file:type_name -> google.protobuf.StringValue
 	1, // 1: protobufx.TLSOptions.key_file:type_name -> google.protobuf.StringValue
 	1, // 2: protobufx.TLSOptions.ca_file:type_name -> google.protobuf.StringValue
@@ -132,26 +132,26 @@ var file_protobufx_wrappers_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_protobufx_wrappers_proto_init() }
-func file_protobufx_wrappers_proto_init() {
-	if File_protobufx_wrappers_proto != nil {
+func init() { file_protobufx_tls_proto_init() }
+func file_protobufx_tls_proto_init() {
+	if File_protobufx_tls_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_protobufx_wrappers_proto_rawDesc), len(file_protobufx_wrappers_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_protobufx_tls_proto_rawDesc), len(file_protobufx_tls_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_protobufx_wrappers_proto_goTypes,
-		DependencyIndexes: file_protobufx_wrappers_proto_depIdxs,
-		MessageInfos:      file_protobufx_wrappers_proto_msgTypes,
+		GoTypes:           file_protobufx_tls_proto_goTypes,
+		DependencyIndexes: file_protobufx_tls_proto_depIdxs,
+		MessageInfos:      file_protobufx_tls_proto_msgTypes,
 	}.Build()
-	File_protobufx_wrappers_proto = out.File
-	file_protobufx_wrappers_proto_goTypes = nil
-	file_protobufx_wrappers_proto_depIdxs = nil
+	File_protobufx_tls_proto = out.File
+	file_protobufx_tls_proto_goTypes = nil
+	file_protobufx_tls_proto_depIdxs = nil
 }

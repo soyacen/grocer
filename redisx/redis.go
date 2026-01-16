@@ -2,10 +2,7 @@ package redisx
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
-	"os"
 
 	"github.com/redis/go-redis/extra/redisotel/v9"
 	"github.com/redis/go-redis/v9"
@@ -14,32 +11,6 @@ import (
 
 // ConvertToOptions 将PB定义的Options转换为Redis UniversalOptions
 func (options *Options) ToUniversalOptions() *redis.UniversalOptions {
-	var tlsConfig *tls.Config
-	if info := options.GetTlsConfig(); info != nil {
-		cert, err := tls.LoadX509KeyPair(info.GetCertFile(), info.GetKeyFile())
-		if err != nil {
-			panic(err)
-		}
-
-		// 创建基础 TLS 配置
-		tlsConfig = &tls.Config{Certificates: []tls.Certificate{cert}}
-
-		// 处理 CA 证书
-		if info.GetCaFile() != "" {
-			caCert, err := os.ReadFile(info.GetCaFile())
-			if err != nil {
-				panic(err)
-			}
-			caCertPool := x509.NewCertPool()
-			caCertPool.AppendCertsFromPEM(caCert)
-			tlsConfig.RootCAs = caCertPool
-		}
-
-		// 设置服务器名称
-		if info.GetServerName() != "" {
-			tlsConfig.ServerName = info.GetServerName()
-		}
-	}
 	opts := &redis.UniversalOptions{
 		Addrs:                        options.Addrs,
 		ClientName:                   options.GetClientName().GetValue(),
@@ -71,7 +42,7 @@ func (options *Options) ToUniversalOptions() *redis.UniversalOptions {
 		MaxActiveConns:               int(options.GetMaxActiveConns().GetValue()),
 		ConnMaxIdleTime:              options.GetConnMaxIdleTime().AsDuration(),
 		ConnMaxLifetime:              options.GetConnMaxLifetime().AsDuration(),
-		TLSConfig:                    tlsConfig,
+		TLSConfig:                    options.GetTlsConfig().AsConfig(),
 		MaxRedirects:                 int(options.GetClusterOptions().GetMaxRedirects().GetValue()),
 		ReadOnly:                     options.GetClusterOptions().GetReadOnly().GetValue(),
 		RouteByLatency:               options.GetClusterOptions().GetRouteByLatency().GetValue(),

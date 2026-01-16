@@ -64,7 +64,7 @@ func SetHttpTracerProvider(ctx context.Context, config *Config) {
 		opts = append(opts, otlptracehttp.WithURLPath(httpOptions.GetUrlPath().GetValue()))
 	}
 	if httpOptions.GetTlsConfig() != nil {
-		opts = append(opts, otlptracehttp.WithTLSClientConfig(httpOptions.GetTlsConfig().ToTlsConfig()))
+		opts = append(opts, otlptracehttp.WithTLSClientConfig(httpOptions.GetTlsConfig().AsConfig()))
 	}
 	if httpOptions.GetInsecure() != nil {
 		opts = append(opts, otlptracehttp.WithInsecure())
@@ -110,7 +110,7 @@ func SetGrpcTraceExporter(ctx context.Context, config *Config) {
 		grpcOpts = append(grpcOpts, otlptracegrpc.WithHeaders(grpcOptions.GetHeaders()))
 	}
 	if grpcOptions.GetTlsConfig() != nil {
-		grpcOpts = append(grpcOpts, otlptracegrpc.WithTLSCredentials(credentials.NewTLS(grpcOptions.GetTlsConfig().ToTlsConfig())))
+		grpcOpts = append(grpcOpts, otlptracegrpc.WithTLSCredentials(credentials.NewTLS(grpcOptions.GetTlsConfig().AsConfig())))
 	}
 	if grpcOptions.GetServiceConfig() != nil {
 		grpcOpts = append(grpcOpts, otlptracegrpc.WithServiceConfig(grpcOptions.GetServiceConfig().GetValue()))
