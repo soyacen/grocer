@@ -22,7 +22,7 @@ fi
 # 使用find命令查找项目中所有的 .proto 文件，排除pkg/layout/third_party和internal/layout/third_party目录
 PROTO_FILES=()
 while IFS= read -r -d '' file; do
-    if [[ "$file" != *"internal/layout"* && "$file" != *"internal/layout/third_party"* ]]; then
+    if [[ "$file" != *"pkg/layout/third_party"* && "$file" != *"internal/layout/third_party"* ]]; then
         PROTO_FILES+=("$file")
     fi
 done < <(find . -name "*.proto" -type f -print0)
@@ -34,11 +34,10 @@ fi
 
 echo "发现 ${#PROTO_FILES[@]} 个 proto 文件..."
 
-# 编译所有proto文件，使用项目根目录和third_party作为proto_path，这样导入路径可以正确解析
+# 编译所有proto文件，使用项目根目录作为proto_path，这样导入路径可以正确解析
 echo "正在编译 proto 文件..."
 protoc \
   --proto_path=. \
-  --proto_path=./internal/layout/third_party \
   --go_out=. \
   --go_opt=paths=source_relative \
   "${PROTO_FILES[@]}"

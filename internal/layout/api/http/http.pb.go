@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: api/http/http.proto
+// source: http.proto
 
-package user
+package http
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -22,6 +22,96 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// The request message containing the user's name.
+type HelloRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HelloRequest) Reset() {
+	*x = HelloRequest{}
+	mi := &file_http_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HelloRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloRequest) ProtoMessage() {}
+
+func (x *HelloRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloRequest.ProtoReflect.Descriptor instead.
+func (*HelloRequest) Descriptor() ([]byte, []int) {
+	return file_http_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *HelloRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+// The response message containing the greetings
+type HelloReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HelloReply) Reset() {
+	*x = HelloReply{}
+	mi := &file_http_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HelloReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloReply) ProtoMessage() {}
+
+func (x *HelloReply) ProtoReflect() protoreflect.Message {
+	mi := &file_http_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloReply.ProtoReflect.Descriptor instead.
+func (*HelloReply) Descriptor() ([]byte, []int) {
+	return file_http_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *HelloReply) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 type UserItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -32,7 +122,7 @@ type UserItem struct {
 
 func (x *UserItem) Reset() {
 	*x = UserItem{}
-	mi := &file_api_http_http_proto_msgTypes[0]
+	mi := &file_http_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +134,7 @@ func (x *UserItem) String() string {
 func (*UserItem) ProtoMessage() {}
 
 func (x *UserItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[0]
+	mi := &file_http_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +147,7 @@ func (x *UserItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserItem.ProtoReflect.Descriptor instead.
 func (*UserItem) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{0}
+	return file_http_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *UserItem) GetId() int64 {
@@ -83,7 +173,7 @@ type CreateUserRequest struct {
 
 func (x *CreateUserRequest) Reset() {
 	*x = CreateUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[1]
+	mi := &file_http_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +185,7 @@ func (x *CreateUserRequest) String() string {
 func (*CreateUserRequest) ProtoMessage() {}
 
 func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[1]
+	mi := &file_http_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +198,7 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{1}
+	return file_http_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateUserRequest) GetName() string {
@@ -127,7 +217,7 @@ type CreateUserResponse struct {
 
 func (x *CreateUserResponse) Reset() {
 	*x = CreateUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[2]
+	mi := &file_http_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +229,7 @@ func (x *CreateUserResponse) String() string {
 func (*CreateUserResponse) ProtoMessage() {}
 
 func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[2]
+	mi := &file_http_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +242,7 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{2}
+	return file_http_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateUserResponse) GetItem() *UserItem {
@@ -171,7 +261,7 @@ type DeleteUserRequest struct {
 
 func (x *DeleteUserRequest) Reset() {
 	*x = DeleteUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[3]
+	mi := &file_http_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +273,7 @@ func (x *DeleteUserRequest) String() string {
 func (*DeleteUserRequest) ProtoMessage() {}
 
 func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[3]
+	mi := &file_http_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +286,7 @@ func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
 func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{3}
+	return file_http_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteUserRequest) GetId() int64 {
@@ -215,7 +305,7 @@ type DeleteUserResponse struct {
 
 func (x *DeleteUserResponse) Reset() {
 	*x = DeleteUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[4]
+	mi := &file_http_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -227,7 +317,7 @@ func (x *DeleteUserResponse) String() string {
 func (*DeleteUserResponse) ProtoMessage() {}
 
 func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[4]
+	mi := &file_http_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -240,7 +330,7 @@ func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserResponse.ProtoReflect.Descriptor instead.
 func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{4}
+	return file_http_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteUserResponse) GetId() int64 {
@@ -260,7 +350,7 @@ type ModifyUserRequest struct {
 
 func (x *ModifyUserRequest) Reset() {
 	*x = ModifyUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[5]
+	mi := &file_http_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +362,7 @@ func (x *ModifyUserRequest) String() string {
 func (*ModifyUserRequest) ProtoMessage() {}
 
 func (x *ModifyUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[5]
+	mi := &file_http_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -285,7 +375,7 @@ func (x *ModifyUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModifyUserRequest.ProtoReflect.Descriptor instead.
 func (*ModifyUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{5}
+	return file_http_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ModifyUserRequest) GetId() int64 {
@@ -312,7 +402,7 @@ type ModifyUserResponse struct {
 
 func (x *ModifyUserResponse) Reset() {
 	*x = ModifyUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[6]
+	mi := &file_http_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -324,7 +414,7 @@ func (x *ModifyUserResponse) String() string {
 func (*ModifyUserResponse) ProtoMessage() {}
 
 func (x *ModifyUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[6]
+	mi := &file_http_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -337,7 +427,7 @@ func (x *ModifyUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ModifyUserResponse.ProtoReflect.Descriptor instead.
 func (*ModifyUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{6}
+	return file_http_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ModifyUserResponse) GetId() int64 {
@@ -364,7 +454,7 @@ type UpdateUserRequest struct {
 
 func (x *UpdateUserRequest) Reset() {
 	*x = UpdateUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[7]
+	mi := &file_http_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -376,7 +466,7 @@ func (x *UpdateUserRequest) String() string {
 func (*UpdateUserRequest) ProtoMessage() {}
 
 func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[7]
+	mi := &file_http_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -389,7 +479,7 @@ func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{7}
+	return file_http_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateUserRequest) GetId() int64 {
@@ -416,7 +506,7 @@ type UpdateUserResponse struct {
 
 func (x *UpdateUserResponse) Reset() {
 	*x = UpdateUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[8]
+	mi := &file_http_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -428,7 +518,7 @@ func (x *UpdateUserResponse) String() string {
 func (*UpdateUserResponse) ProtoMessage() {}
 
 func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[8]
+	mi := &file_http_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -441,7 +531,7 @@ func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserResponse.ProtoReflect.Descriptor instead.
 func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{8}
+	return file_http_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateUserResponse) GetId() int64 {
@@ -467,7 +557,7 @@ type GetUserRequest struct {
 
 func (x *GetUserRequest) Reset() {
 	*x = GetUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[9]
+	mi := &file_http_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -479,7 +569,7 @@ func (x *GetUserRequest) String() string {
 func (*GetUserRequest) ProtoMessage() {}
 
 func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[9]
+	mi := &file_http_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +582,7 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
 func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{9}
+	return file_http_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetUserRequest) GetId() int64 {
@@ -511,7 +601,7 @@ type GetUserResponse struct {
 
 func (x *GetUserResponse) Reset() {
 	*x = GetUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[10]
+	mi := &file_http_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -523,7 +613,7 @@ func (x *GetUserResponse) String() string {
 func (*GetUserResponse) ProtoMessage() {}
 
 func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[10]
+	mi := &file_http_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -536,7 +626,7 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{10}
+	return file_http_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetUserResponse) GetItem() *UserItem {
@@ -556,7 +646,7 @@ type ListUserRequest struct {
 
 func (x *ListUserRequest) Reset() {
 	*x = ListUserRequest{}
-	mi := &file_api_http_http_proto_msgTypes[11]
+	mi := &file_http_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -568,7 +658,7 @@ func (x *ListUserRequest) String() string {
 func (*ListUserRequest) ProtoMessage() {}
 
 func (x *ListUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[11]
+	mi := &file_http_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -581,7 +671,7 @@ func (x *ListUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserRequest.ProtoReflect.Descriptor instead.
 func (*ListUserRequest) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{11}
+	return file_http_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListUserRequest) GetPageNum() int64 {
@@ -609,7 +699,7 @@ type ListUserResponse struct {
 
 func (x *ListUserResponse) Reset() {
 	*x = ListUserResponse{}
-	mi := &file_api_http_http_proto_msgTypes[12]
+	mi := &file_http_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -621,7 +711,7 @@ func (x *ListUserResponse) String() string {
 func (*ListUserResponse) ProtoMessage() {}
 
 func (x *ListUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_http_proto_msgTypes[12]
+	mi := &file_http_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -634,7 +724,7 @@ func (x *ListUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserResponse.ProtoReflect.Descriptor instead.
 func (*ListUserResponse) Descriptor() ([]byte, []int) {
-	return file_api_http_http_proto_rawDescGZIP(), []int{12}
+	return file_http_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListUserResponse) GetPageNum() int64 {
@@ -658,18 +748,24 @@ func (x *ListUserResponse) GetList() []*UserItem {
 	return nil
 }
 
-var File_api_http_http_proto protoreflect.FileDescriptor
+var File_http_proto protoreflect.FileDescriptor
 
-const file_api_http_http_proto_rawDesc = "" +
+const file_http_proto_rawDesc = "" +
 	"\n" +
-	"\x13api/http/http.proto\x12\x19leo.goose.example.user.v1\x1a\x1cgoogle/api/annotations.proto\".\n" +
+	"\n" +
+	"http.proto\x12\x0egrocer.http.v1\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
+	"\fHelloRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"&\n" +
+	"\n" +
+	"HelloReply\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\".\n" +
 	"\bUserItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"'\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"M\n" +
-	"\x12CreateUserResponse\x127\n" +
-	"\x04item\x18\x01 \x01(\v2#.leo.goose.example.user.v1.UserItemR\x04item\"#\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"B\n" +
+	"\x12CreateUserResponse\x12,\n" +
+	"\x04item\x18\x01 \x01(\v2\x18.grocer.http.v1.UserItemR\x04item\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"$\n" +
 	"\x12DeleteUserResponse\x12\x0e\n" +
@@ -679,109 +775,115 @@ const file_api_http_http_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"8\n" +
 	"\x12ModifyUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\\\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"Q\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x127\n" +
-	"\x04item\x18\x02 \x01(\v2#.leo.goose.example.user.v1.UserItemR\x04item\"]\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12,\n" +
+	"\x04item\x18\x02 \x01(\v2\x18.grocer.http.v1.UserItemR\x04item\"R\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x127\n" +
-	"\x04item\x18\x02 \x01(\v2#.leo.goose.example.user.v1.UserItemR\x04item\" \n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12,\n" +
+	"\x04item\x18\x02 \x01(\v2\x18.grocer.http.v1.UserItemR\x04item\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"J\n" +
-	"\x0fGetUserResponse\x127\n" +
-	"\x04item\x18\x01 \x01(\v2#.leo.goose.example.user.v1.UserItemR\x04item\"I\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"?\n" +
+	"\x0fGetUserResponse\x12,\n" +
+	"\x04item\x18\x01 \x01(\v2\x18.grocer.http.v1.UserItemR\x04item\"I\n" +
 	"\x0fListUserRequest\x12\x19\n" +
 	"\bpage_num\x18\x01 \x01(\x03R\apageNum\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x03R\bpageSize\"\x83\x01\n" +
+	"\tpage_size\x18\x02 \x01(\x03R\bpageSize\"x\n" +
 	"\x10ListUserResponse\x12\x19\n" +
 	"\bpage_num\x18\x01 \x01(\x03R\apageNum\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x03R\bpageSize\x127\n" +
-	"\x04list\x18\x03 \x03(\v2#.leo.goose.example.user.v1.UserItemR\x04list2\x89\x06\n" +
-	"\x04User\x12~\n" +
+	"\tpage_size\x18\x02 \x01(\x03R\bpageSize\x12,\n" +
+	"\x04list\x18\x03 \x03(\v2\x18.grocer.http.v1.UserItemR\x04list2i\n" +
+	"\aGreeter\x12^\n" +
+	"\bSayHello\x12\x1c.grocer.http.v1.HelloRequest\x1a\x1a.grocer.http.v1.HelloReply\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/say_hello2\x82\x05\n" +
+	"\x04User\x12h\n" +
 	"\n" +
-	"CreateUser\x12,.leo.goose.example.user.v1.CreateUserRequest\x1a-.leo.goose.example.user.v1.CreateUserResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v1/user\x12\x80\x01\n" +
+	"CreateUser\x12!.grocer.http.v1.CreateUserRequest\x1a\".grocer.http.v1.CreateUserResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v1/user\x12j\n" +
 	"\n" +
-	"DeleteUser\x12,.leo.goose.example.user.v1.DeleteUserRequest\x1a-.leo.goose.example.user.v1.DeleteUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f*\r/v1/user/{id}\x12\x83\x01\n" +
+	"DeleteUser\x12!.grocer.http.v1.DeleteUserRequest\x1a\".grocer.http.v1.DeleteUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f*\r/v1/user/{id}\x12m\n" +
 	"\n" +
-	"ModifyUser\x12,.leo.goose.example.user.v1.ModifyUserRequest\x1a-.leo.goose.example.user.v1.ModifyUserResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\x1a\r/v1/user/{id}\x12\x86\x01\n" +
+	"ModifyUser\x12!.grocer.http.v1.ModifyUserRequest\x1a\".grocer.http.v1.ModifyUserResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\x1a\r/v1/user/{id}\x12p\n" +
 	"\n" +
-	"UpdateUser\x12,.leo.goose.example.user.v1.UpdateUserRequest\x1a-.leo.goose.example.user.v1.UpdateUserResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x04item2\r/v1/user/{id}\x12w\n" +
-	"\aGetUser\x12).leo.goose.example.user.v1.GetUserRequest\x1a*.leo.goose.example.user.v1.GetUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/user/{id}\x12v\n" +
-	"\bListUser\x12*.leo.goose.example.user.v1.ListUserRequest\x1a+.leo.goose.example.user.v1.ListUserResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/usersB/Z-github.com/soyacen/goose/example/user/v1;userb\x06proto3"
+	"UpdateUser\x12!.grocer.http.v1.UpdateUserRequest\x1a\".grocer.http.v1.UpdateUserResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x04item2\r/v1/user/{id}\x12a\n" +
+	"\aGetUser\x12\x1e.grocer.http.v1.GetUserRequest\x1a\x1f.grocer.http.v1.GetUserResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/user/{id}\x12`\n" +
+	"\bListUser\x12\x1f.grocer.http.v1.ListUserRequest\x1a .grocer.http.v1.ListUserResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/usersB<Z:github.com/soyacen/grocer/internal/layout/api/http/v1;httpb\x06proto3"
 
 var (
-	file_api_http_http_proto_rawDescOnce sync.Once
-	file_api_http_http_proto_rawDescData []byte
+	file_http_proto_rawDescOnce sync.Once
+	file_http_proto_rawDescData []byte
 )
 
-func file_api_http_http_proto_rawDescGZIP() []byte {
-	file_api_http_http_proto_rawDescOnce.Do(func() {
-		file_api_http_http_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_http_http_proto_rawDesc), len(file_api_http_http_proto_rawDesc)))
+func file_http_proto_rawDescGZIP() []byte {
+	file_http_proto_rawDescOnce.Do(func() {
+		file_http_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_http_proto_rawDesc), len(file_http_proto_rawDesc)))
 	})
-	return file_api_http_http_proto_rawDescData
+	return file_http_proto_rawDescData
 }
 
-var file_api_http_http_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_api_http_http_proto_goTypes = []any{
-	(*UserItem)(nil),           // 0: leo.goose.example.user.v1.UserItem
-	(*CreateUserRequest)(nil),  // 1: leo.goose.example.user.v1.CreateUserRequest
-	(*CreateUserResponse)(nil), // 2: leo.goose.example.user.v1.CreateUserResponse
-	(*DeleteUserRequest)(nil),  // 3: leo.goose.example.user.v1.DeleteUserRequest
-	(*DeleteUserResponse)(nil), // 4: leo.goose.example.user.v1.DeleteUserResponse
-	(*ModifyUserRequest)(nil),  // 5: leo.goose.example.user.v1.ModifyUserRequest
-	(*ModifyUserResponse)(nil), // 6: leo.goose.example.user.v1.ModifyUserResponse
-	(*UpdateUserRequest)(nil),  // 7: leo.goose.example.user.v1.UpdateUserRequest
-	(*UpdateUserResponse)(nil), // 8: leo.goose.example.user.v1.UpdateUserResponse
-	(*GetUserRequest)(nil),     // 9: leo.goose.example.user.v1.GetUserRequest
-	(*GetUserResponse)(nil),    // 10: leo.goose.example.user.v1.GetUserResponse
-	(*ListUserRequest)(nil),    // 11: leo.goose.example.user.v1.ListUserRequest
-	(*ListUserResponse)(nil),   // 12: leo.goose.example.user.v1.ListUserResponse
+var file_http_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_http_proto_goTypes = []any{
+	(*HelloRequest)(nil),       // 0: grocer.http.v1.HelloRequest
+	(*HelloReply)(nil),         // 1: grocer.http.v1.HelloReply
+	(*UserItem)(nil),           // 2: grocer.http.v1.UserItem
+	(*CreateUserRequest)(nil),  // 3: grocer.http.v1.CreateUserRequest
+	(*CreateUserResponse)(nil), // 4: grocer.http.v1.CreateUserResponse
+	(*DeleteUserRequest)(nil),  // 5: grocer.http.v1.DeleteUserRequest
+	(*DeleteUserResponse)(nil), // 6: grocer.http.v1.DeleteUserResponse
+	(*ModifyUserRequest)(nil),  // 7: grocer.http.v1.ModifyUserRequest
+	(*ModifyUserResponse)(nil), // 8: grocer.http.v1.ModifyUserResponse
+	(*UpdateUserRequest)(nil),  // 9: grocer.http.v1.UpdateUserRequest
+	(*UpdateUserResponse)(nil), // 10: grocer.http.v1.UpdateUserResponse
+	(*GetUserRequest)(nil),     // 11: grocer.http.v1.GetUserRequest
+	(*GetUserResponse)(nil),    // 12: grocer.http.v1.GetUserResponse
+	(*ListUserRequest)(nil),    // 13: grocer.http.v1.ListUserRequest
+	(*ListUserResponse)(nil),   // 14: grocer.http.v1.ListUserResponse
 }
-var file_api_http_http_proto_depIdxs = []int32{
-	0,  // 0: leo.goose.example.user.v1.CreateUserResponse.item:type_name -> leo.goose.example.user.v1.UserItem
-	0,  // 1: leo.goose.example.user.v1.UpdateUserRequest.item:type_name -> leo.goose.example.user.v1.UserItem
-	0,  // 2: leo.goose.example.user.v1.UpdateUserResponse.item:type_name -> leo.goose.example.user.v1.UserItem
-	0,  // 3: leo.goose.example.user.v1.GetUserResponse.item:type_name -> leo.goose.example.user.v1.UserItem
-	0,  // 4: leo.goose.example.user.v1.ListUserResponse.list:type_name -> leo.goose.example.user.v1.UserItem
-	1,  // 5: leo.goose.example.user.v1.User.CreateUser:input_type -> leo.goose.example.user.v1.CreateUserRequest
-	3,  // 6: leo.goose.example.user.v1.User.DeleteUser:input_type -> leo.goose.example.user.v1.DeleteUserRequest
-	5,  // 7: leo.goose.example.user.v1.User.ModifyUser:input_type -> leo.goose.example.user.v1.ModifyUserRequest
-	7,  // 8: leo.goose.example.user.v1.User.UpdateUser:input_type -> leo.goose.example.user.v1.UpdateUserRequest
-	9,  // 9: leo.goose.example.user.v1.User.GetUser:input_type -> leo.goose.example.user.v1.GetUserRequest
-	11, // 10: leo.goose.example.user.v1.User.ListUser:input_type -> leo.goose.example.user.v1.ListUserRequest
-	2,  // 11: leo.goose.example.user.v1.User.CreateUser:output_type -> leo.goose.example.user.v1.CreateUserResponse
-	4,  // 12: leo.goose.example.user.v1.User.DeleteUser:output_type -> leo.goose.example.user.v1.DeleteUserResponse
-	6,  // 13: leo.goose.example.user.v1.User.ModifyUser:output_type -> leo.goose.example.user.v1.ModifyUserResponse
-	8,  // 14: leo.goose.example.user.v1.User.UpdateUser:output_type -> leo.goose.example.user.v1.UpdateUserResponse
-	10, // 15: leo.goose.example.user.v1.User.GetUser:output_type -> leo.goose.example.user.v1.GetUserResponse
-	12, // 16: leo.goose.example.user.v1.User.ListUser:output_type -> leo.goose.example.user.v1.ListUserResponse
-	11, // [11:17] is the sub-list for method output_type
-	5,  // [5:11] is the sub-list for method input_type
+var file_http_proto_depIdxs = []int32{
+	2,  // 0: grocer.http.v1.CreateUserResponse.item:type_name -> grocer.http.v1.UserItem
+	2,  // 1: grocer.http.v1.UpdateUserRequest.item:type_name -> grocer.http.v1.UserItem
+	2,  // 2: grocer.http.v1.UpdateUserResponse.item:type_name -> grocer.http.v1.UserItem
+	2,  // 3: grocer.http.v1.GetUserResponse.item:type_name -> grocer.http.v1.UserItem
+	2,  // 4: grocer.http.v1.ListUserResponse.list:type_name -> grocer.http.v1.UserItem
+	0,  // 5: grocer.http.v1.Greeter.SayHello:input_type -> grocer.http.v1.HelloRequest
+	3,  // 6: grocer.http.v1.User.CreateUser:input_type -> grocer.http.v1.CreateUserRequest
+	5,  // 7: grocer.http.v1.User.DeleteUser:input_type -> grocer.http.v1.DeleteUserRequest
+	7,  // 8: grocer.http.v1.User.ModifyUser:input_type -> grocer.http.v1.ModifyUserRequest
+	9,  // 9: grocer.http.v1.User.UpdateUser:input_type -> grocer.http.v1.UpdateUserRequest
+	11, // 10: grocer.http.v1.User.GetUser:input_type -> grocer.http.v1.GetUserRequest
+	13, // 11: grocer.http.v1.User.ListUser:input_type -> grocer.http.v1.ListUserRequest
+	1,  // 12: grocer.http.v1.Greeter.SayHello:output_type -> grocer.http.v1.HelloReply
+	4,  // 13: grocer.http.v1.User.CreateUser:output_type -> grocer.http.v1.CreateUserResponse
+	6,  // 14: grocer.http.v1.User.DeleteUser:output_type -> grocer.http.v1.DeleteUserResponse
+	8,  // 15: grocer.http.v1.User.ModifyUser:output_type -> grocer.http.v1.ModifyUserResponse
+	10, // 16: grocer.http.v1.User.UpdateUser:output_type -> grocer.http.v1.UpdateUserResponse
+	12, // 17: grocer.http.v1.User.GetUser:output_type -> grocer.http.v1.GetUserResponse
+	14, // 18: grocer.http.v1.User.ListUser:output_type -> grocer.http.v1.ListUserResponse
+	12, // [12:19] is the sub-list for method output_type
+	5,  // [5:12] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
 	5,  // [5:5] is the sub-list for extension extendee
 	0,  // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_api_http_http_proto_init() }
-func file_api_http_http_proto_init() {
-	if File_api_http_http_proto != nil {
+func init() { file_http_proto_init() }
+func file_http_proto_init() {
+	if File_http_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_http_http_proto_rawDesc), len(file_api_http_http_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_proto_rawDesc), len(file_http_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
-		GoTypes:           file_api_http_http_proto_goTypes,
-		DependencyIndexes: file_api_http_http_proto_depIdxs,
-		MessageInfos:      file_api_http_http_proto_msgTypes,
+		GoTypes:           file_http_proto_goTypes,
+		DependencyIndexes: file_http_proto_depIdxs,
+		MessageInfos:      file_http_proto_msgTypes,
 	}.Build()
-	File_api_http_http_proto = out.File
-	file_api_http_http_proto_goTypes = nil
-	file_api_http_http_proto_depIdxs = nil
+	File_http_proto = out.File
+	file_http_proto_goTypes = nil
+	file_http_proto_depIdxs = nil
 }

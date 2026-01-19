@@ -4,12 +4,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-#!/bin/sh
-
-set -o errexit
-set -o nounset
-set -o pipefail
-
 if [ ! $(command -v protoc-gen-go) ]
 then
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
