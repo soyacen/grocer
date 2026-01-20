@@ -1,4 +1,4 @@
-package otelx
+package prometheusx
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 )
 
-func SetPrometheusMeterProvider(ctx context.Context) {
+func SetMeterProvider(ctx context.Context) {
 	var opts []prometheus.Option
 	exporter, err := prometheus.New(opts...)
 	if err != nil {

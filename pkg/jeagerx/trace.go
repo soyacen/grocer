@@ -141,10 +141,10 @@ func newSampler(samplingRate float64) sdktrace.Sampler {
 	switch {
 	case samplingRate >= 1:
 		sampler = sdktrace.AlwaysSample()
-	case samplingRate < 0:
+	case samplingRate <= 0:
 		sampler = sdktrace.NeverSample()
 	default:
 		sampler = sdktrace.TraceIDRatioBased(samplingRate)
 	}
-	return sampler
+	return sdktrace.ParentBased(sampler)
 }
