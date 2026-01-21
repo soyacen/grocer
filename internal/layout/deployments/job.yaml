@@ -1,31 +1,60 @@
-# K8s Job配置文件，用于一次性执行job
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: grocer-job
+  name: layout-job # Job 资源本身的名称
   namespace: default
   labels:
-    app: grocer
+    app: layout-job # Job 资源的标签
 spec:
+  # 避免重复创建过多的 Pod
+  backoffLimit: 3
+  # 设置 Job 的生存时间（成功/失败后自动删除）
+  ttlSecondsAfterFinished: 3600
   template:
+    metadata:
+      labels:
+        app: layout-job # Pod 的标签
     spec:
+      # 重启策略：对于 Job，应为 Never 或 OnFailure
+      restartPolicy: OnFailure
+      # 安全上下文
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+      imagePullSecrets:
+      - name: regcred  # 先创建这个 secret
       containers:
-      - name: grocer-job
-        image: soyacen/layout:latest  # 替换为实际的镜像名称
-        command:
-        - /bin/sh
-        - -c
-        - ./project job  # 执行job命令
-        env:
-        # 添加必要的环境变量
-        - name: ENV
-          value: "production"
-        imagePullPolicy: Always
+      - name: layout-job # 容器名称
+        image: soyacen/layout:v0.0.1
+        # 显式指定镜像拉取策略
+        imagePullPolicy: IfNotPresent
+        # 明确覆盖 ENTRYPOINT
+        command: ["/app/app"]
+        args: ["job"]
+        # 资源限制
         resources:
           requests:
-            memory: "128Mi"
+            memory: "64Mi"
             cpu: "100m"
           limits:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
-      restartPolicy: OnFailure
+        # 安全上下文（容器级别）
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+        # 环境变量
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace

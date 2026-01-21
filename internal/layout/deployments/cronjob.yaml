@@ -18,9 +18,8 @@ spec:
           - name: grocer-cronjob
             image: soyacen/layout:latest  # 替换为实际的镜像名称
             command:
-            - /bin/sh
-            - -c
-            - ./project job  # 执行job命令
+            - /app
+            - cronjob  # 执行job命令
             env:
             # 添加必要的环境变量
             - name: ENV

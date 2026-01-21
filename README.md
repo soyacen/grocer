@@ -1,70 +1,74 @@
 # grocer
 
-`grocer` 是一个Go微服务基础设施库，提供了一系列常用的中间件和服务集成组件，帮助快速构建分布式应用。该库集成了数据库、缓存、消息队列、搜索引擎等多种服务的支持。
+`grocer`是一个Go语言微服务基础设施库，旨在为分布式应用提供统一的中间件和服务集成能力，提升开发效率和系统可维护性。
 
 ## 特性
 
-- 统一的配置管理
-- 依赖注入支持 (使用 Google Wire)
-- 标准化的中间件集成
-- OpenTelemetry 集成支持
-- Protobuf 配置定义
-
-## 组件
-
-### dbx
-数据库访问层，提供 MySQL 和 PostgreSQL 的统一接口。
-
-### esx
-Elasticsearch 集成，用于搜索和分析功能。
-
-### goosex
-提供 Goose 数据库迁移工具的集成。
-
-### grpcx
-gRPC 服务框架支持，包括客户端和服务端的便捷封装。
-
-### idx
-唯一 ID 生成器，基于 ULID 实现。
-
-### jeagerx
-Jaeger 分布式追踪系统集成，便于链路监控和调试。
-
-### kafkax
-Apache Kafka 消息队列集成，提供生产者和消费者支持。
-
-### mongox
-MongoDB 数据库集成，支持连接管理和查询封装。
-
-### nacosx
-Nacos 服务发现和配置中心集成。
-
-### otelx
-OpenTelemetry 集成，提供分布式追踪和指标收集功能。
-
-### promx
-Prometheus 指标收集集成。
-
-### protobufx
-Protobuf 工具类，提供 TLS 配置等通用消息定义。
-
-### redisx
-Redis 缓存集成，支持单机、集群和哨兵模式。
-
-### registryx
-服务注册与发现组件。
+- **dbx**: 统一MySQL/PostgreSQL数据库访问层
+- **esx**: Elasticsearch集成
+- **goseex**: Goose数据库迁移工具集成
+- **grpcx**: gRPC客户端与服务端封装
+- **idx**: ULID唯一ID生成器
+- **jeagerx**: Jaeger分布式追踪集成
+- **kafkax**: Kafka生产者/消费者支持
+- **mongox**: MongoDB连接与查询封装
+- **nacosx**: Nacos配置中心与服务发现
+- **otelx**: OpenTelemetry资源初始化
+- **promx**: Prometheus指标收集
+- **protobufx**: TLS等通用Protobuf消息定义
+- **redisx**: Redis多模式（单机/集群/哨兵）支持
+- **registryx**: 服务注册与定义抽象
 
 ## 快速开始
 
-### 安装
+### 使用Helm部署
+
+我们提供了Helm charts来方便地部署grocer相关的服务。
+
+#### 安装前提
+
+- Kubernetes 1.19+
+- Helm 3.0+
+
+#### 安装Chart
+
+要安装名为`my-grocer`的chart，请执行以下命令：
 
 ```bash
+# 进入charts目录
+cd charts/grocer
+
+# 安装chart
+helm install my-grocer .
+```
+
+#### 自定义配置
+
+如果需要自定义配置，请创建一个values.yaml文件，然后使用以下命令安装：
+
+```bash
+helm install my-grocer . -f my-values.yaml
+```
+
+#### 卸载Chart
+
+要卸载名为`my-grocer`的部署，请执行以下命令：
+
+```bash
+helm delete my-grocer
+```
+
+更多关于Helm chart的配置选项，请参阅 [charts/grocer/README.md](charts/grocer/README.md)。
+
+### 安装
+
+``bash
 go get github.com/soyacen/grocer
 ```
 
 ### 使用示例
 
-```go
+``go
 package main
 
 import (

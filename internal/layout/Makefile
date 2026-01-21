@@ -1,14 +1,14 @@
 # Makefile for grocer project
 
 # Project name variable - customize as needed
-PROJECT_NAME ?= project
+PROJECT_NAME ?= $(shell echo $${PROJECT_NAME:-layout})
 
 # Image registry username variable - customize as needed
 IMAGE_REGISTRY_USERNAME ?= $(shell echo $${IMAGE_REGISTRY_USERNAME:-username})
 
 # Get the latest git tag as version, fallback to 'latest' if not tagged
 GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || echo "latest")
-VERSION ?= $(GIT_TAG)
+VERSION ?= $(shell echo $${VERSION:-$(GIT_TAG)})
 
 # Generate protobuf files for all API subdirectories
 protoc:
