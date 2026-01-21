@@ -19,10 +19,10 @@ if ! command -v protoc-gen-go &> /dev/null; then
     protoc-gen-go --version
 fi
 
-# 使用find命令查找项目中所有的 .proto 文件，排除pkg/layout/third_party和internal/layout/third_party目录
+# 使用find命令查找项目中所有的 .proto 文件，排除internal/layout和third_party目录
 PROTO_FILES=()
 while IFS= read -r -d '' file; do
-    if [[ "$file" != *"pkg/layout/third_party"* && "$file" != *"internal/layout/third_party"* ]]; then
+    if [[ "$file" != *"internal/layout"* && "$file" != *"third_party"* ]]; then
         PROTO_FILES+=("$file")
     fi
 done < <(find . -name "*.proto" -type f -print0)
