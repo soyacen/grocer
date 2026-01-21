@@ -6,10 +6,12 @@ import (
 	"time"
 
 	"github.com/elastic/go-elasticsearch/v8"
-	"github.com/soyacen/goconc/lazyload"
+	"github.com/soyacen/gox/conc/lazyload"
 	"github.com/spf13/cast"
 )
 
+// ConvertToUniversalOptions converts the protobuf Options to Elasticsearch client configuration
+// It maps all the options from the protobuf definition to the corresponding elasticsearch.Config fields
 func ConvertToUniversalOptions(options *Options) elasticsearch.Config {
 	if options == nil {
 		return elasticsearch.Config{}
@@ -88,6 +90,8 @@ func ConvertToUniversalOptions(options *Options) elasticsearch.Config {
 	return opts
 }
 
+// NewClients creates a lazy loading group for Elasticsearch clients
+// It allows creating multiple clients based on the provided configuration map
 func NewClients(config *Config) *lazyload.Group[*elasticsearch.Client] {
 	return &lazyload.Group[*elasticsearch.Client]{
 		New: func(key string) (*elasticsearch.Client, error) {
@@ -101,6 +105,8 @@ func NewClients(config *Config) *lazyload.Group[*elasticsearch.Client] {
 	}
 }
 
+// NewClient creates a new Elasticsearch client with the given options
+// It converts the protobuf options to the elasticsearch.Config and initializes the client
 func NewClient(options *Options) (*elasticsearch.Client, error) {
 	return elasticsearch.NewClient(ConvertToUniversalOptions(options))
 }

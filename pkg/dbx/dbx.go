@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
-	"github.com/soyacen/goconc/lazyload"
+	"github.com/soyacen/gox/conc/lazyload"
 )
 
 func NewDBs(ctx context.Context, config *Config) *lazyload.Group[*sql.DB] {

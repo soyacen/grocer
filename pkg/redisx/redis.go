@@ -6,23 +6,23 @@ import (
 
 	"github.com/redis/go-redis/extra/redisotel/v9"
 	"github.com/redis/go-redis/v9"
-	"github.com/soyacen/goconc/lazyload"
+	"github.com/soyacen/gox/conc/lazyload"
 )
 
-// ConvertToOptions 将PB定义的Options转换为Redis UniversalOptions
+// ToUniversalOptions converts PB-defined Options to Redis UniversalOptions
 func (options *Options) ToUniversalOptions() *redis.UniversalOptions {
 	opts := &redis.UniversalOptions{
 		Addrs:                        options.Addrs,
 		ClientName:                   options.GetClientName().GetValue(),
 		DB:                           int(options.GetDb().GetValue()),
-		Dialer:                       nil, // Dialer 是函数类型，无法从proto转换
-		OnConnect:                    nil, // OnConnect 是函数类型，无法从proto转换
+		Dialer:                       nil, // Dialer is a function type that cannot be converted from proto
+		OnConnect:                    nil, // OnConnect is a function type that cannot be converted from proto
 		Protocol:                     int(options.GetProtocol().GetValue()),
 		Username:                     options.GetUsername().GetValue(),
 		Password:                     options.GetPassword().GetValue(),
-		CredentialsProvider:          nil, // CredentialsProvider 是函数类型，无法从proto转换
-		CredentialsProviderContext:   nil, // CredentialsProviderContext 是函数类型，无法从proto转换
-		StreamingCredentialsProvider: nil, // StreamingCredentialsProvider 是接口类型，无法从proto转换
+		CredentialsProvider:          nil, // CredentialsProvider is a function type that cannot be converted from proto
+		CredentialsProviderContext:   nil, // CredentialsProviderContext is a function type that cannot be converted from proto
+		StreamingCredentialsProvider: nil, // StreamingCredentialsProvider is an interface type that cannot be converted from proto
 		SentinelUsername:             options.GetSentinelUsername().GetValue(),
 		SentinelPassword:             options.GetSentinelPassword().GetValue(),
 		MaxRetries:                   int(options.GetMaxRetries().GetValue()),
@@ -48,18 +48,18 @@ func (options *Options) ToUniversalOptions() *redis.UniversalOptions {
 		RouteByLatency:               options.GetClusterOptions().GetRouteByLatency().GetValue(),
 		RouteRandomly:                options.GetClusterOptions().GetRouteRandomly().GetValue(),
 		MasterName:                   options.GetFailoverOptions().GetMasterName().GetValue(),
-		DisableIndentity:             options.GetDisableIdentity().GetValue(), // 注意：这是旧字段名，保留向后兼容性
+		DisableIndentity:             options.GetDisableIdentity().GetValue(), // Note: This is the old field name for backward compatibility
 		DisableIdentity:              options.GetDisableIdentity().GetValue(),
 		IdentitySuffix:               options.GetIdentitySuffix().GetValue(),
 		FailingTimeoutSeconds:        int(options.GetFailingTimeoutSeconds().GetValue()),
 		UnstableResp3:                options.GetUnstableResp3().GetValue(),
 		IsClusterMode:                options.GetIsClusterMode().GetValue(),
-		MaintNotificationsConfig:     nil, // MaintNotificationsConfig 是复杂结构，暂时设为nil
+		MaintNotificationsConfig:     nil, // MaintNotificationsConfig is a complex structure, temporarily set to nil
 	}
 	return opts
 }
 
-// New 创建redis客户端集合
+// New creates a redis client collection using lazy loading
 func NewClients(ctx context.Context, config *Config) *lazyload.Group[redis.UniversalClient] {
 	return &lazyload.Group[redis.UniversalClient]{
 		New: func(key string) (redis.UniversalClient, error) {
@@ -72,22 +72,33 @@ func NewClients(ctx context.Context, config *Config) *lazyload.Group[redis.Unive
 	}
 }
 
+// NewClient creates a new Redis client with the given options
+// It performs a ping test to ensure the connection works
+// If tracing or metrics are enabled, it instruments the client accordingly
 func NewClient(ctx context.Context, options *Options) (redis.UniversalClient, error) {
+	// Create a new universal Redis client using the provided options
 	client := redis.NewUniversalClient(options.ToUniversalOptions())
-	_, err := client.Ping(context.Background()).Result()
+
+	// Test the connection by pinging the server
+	_, err := client.Ping(ctx).Result()
 	if err != nil {
 		return nil, err
 	}
 
+	// Enable tracing if configured
 	if options.GetEnableTracing().GetValue() {
 		if err := redisotel.InstrumentTracing(client); err != nil {
 			return nil, err
 		}
 	}
+
+	// Enable metrics if configured
 	if options.GetEnableMetrics().GetValue() {
 		if err := redisotel.InstrumentMetrics(client); err != nil {
 			return nil, err
 		}
 	}
+
+	// Return the configured client
 	return client, nil
 }

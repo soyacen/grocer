@@ -8,7 +8,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
-	"github.com/soyacen/goconc/lazyload"
+	"github.com/soyacen/gox/conc/lazyload"
 )
 
 func NewConfigClients(config *Config) *lazyload.Group[config_client.IConfigClient] {

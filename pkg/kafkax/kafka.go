@@ -5,7 +5,7 @@ import (
 
 	"github.com/IBM/sarama"
 	"github.com/cloudevents/sdk-go/protocol/kafka_sarama/v2"
-	"github.com/soyacen/goconc/lazyload"
+	"github.com/soyacen/gox/conc/lazyload"
 )
 
 func (options *Options) ToConfig() *sarama.Config {

@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/google/uuid v1.6.0
 	github.com/google/wire v0.7.0
+	github.com/grafana/pyroscope-go v1.2.7
 	github.com/jackc/pgx/v5 v5.8.0
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/nacos-group/nacos-sdk-go/v2 v2.3.5
@@ -17,7 +18,7 @@ require (
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/sony/gobreaker v1.0.0
 	github.com/soyacen/genera v0.0.0-20260116142633-467c68e91603
-	github.com/soyacen/goconc v0.0.0-20260116032512-9f5c99eea91f
+	github.com/soyacen/gox v0.3.3
 	github.com/spf13/cast v1.10.0
 	github.com/spf13/cobra v1.10.2
 	go.mongodb.org/mongo-driver/v2 v2.4.1
@@ -74,7 +75,6 @@ require (
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
-	github.com/grafana/pyroscope-go v1.2.7 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.9 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.4 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
@@ -97,7 +97,6 @@ require (
 	github.com/orcaman/concurrent-map v1.0.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.23 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/client_golang v1.23.2 // indirect
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.67.5 // indirect
