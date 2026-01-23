@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use: "genera",
+	Use: "grocer",
 }
 
 func Execute() {
