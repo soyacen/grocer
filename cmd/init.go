@@ -137,16 +137,19 @@ func run() error {
 		if err != nil {
 			return errors.WithStack(err)
 		}
-		if rel == "cmd/root.go" {
-			data = fixRootGo(data, *dir)
-		}
 
-		isRoot := !strings.Contains(rel, string(filepath.Separator))
-		if strings.HasSuffix(rel, ".go") {
-			data = fixGo(data, rel, srcMod, *dstMod, isRoot)
-		}
-		if rel == "go.mod" {
+		switch rel {
+		case "cmd/root.go":
+			data = fixRootGo(data, *dir)
+		case "go.mod":
 			data = fixGoMod(data, *dstMod)
+		case "Makefile":
+			data = fixMakefile(data, *dir)
+		default:
+			isRoot := !strings.Contains(rel, string(filepath.Separator))
+			if strings.HasSuffix(rel, ".go") {
+				data = fixGo(data, rel, srcMod, *dstMod, isRoot)
+			}
 		}
 
 		if err := os.WriteFile(dst, data, 0o666); err != nil {
@@ -159,6 +162,10 @@ func run() error {
 
 	log.Printf("initialized %s in %s", *dstMod, *dir)
 	return nil
+}
+
+func fixMakefile(data []byte, dir string) []byte {
+	return bytes.ReplaceAll(data, []byte("grocer"), []byte(path.Base(dir)))
 }
 
 func fixRootGo(data []byte, dir string) []byte {
