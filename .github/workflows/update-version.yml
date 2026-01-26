@@ -8,14 +8,14 @@ jobs:
   update-version:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write  # 需要写入权限来直接提交更改
       
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: main  # 总是检出 main 分支而不是 tag
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -35,12 +35,10 @@ jobs:
           sed -i "s/var Version = \".*\"/var Version = \"$VERSION\"/" cmd/version.go
           echo "Updated version in cmd/version.go to $VERSION"
           
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: update version to ${{ env.VERSION }}"
-          title: "Update version to ${{ env.VERSION }}"
-          body: "Automatically update the version constant to ${{ env.VERSION }}"
-          branch: "update-version-${{ env.VERSION }}"
-          delete-branch: true
+      - name: Commit and push changes directly
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add cmd/version.go
+          git commit -m "chore: update version to $VERSION"
+          git push

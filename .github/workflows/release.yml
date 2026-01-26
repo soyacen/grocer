@@ -65,7 +65,7 @@ jobs:
             
             ### Using go install
             ```bash
-            go install github.com/soyacen/grocer@v${{ env.VERSION }}
+            go install github.com/soyacen/grocer@${{ env.VERSION }}
             ```
             
             ### Download Pre-built Binary
