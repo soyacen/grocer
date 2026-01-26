@@ -99,7 +99,7 @@ var File_pkg_protobufx_tls_proto protoreflect.FileDescriptor
 
 const file_pkg_protobufx_tls_proto_rawDesc = "" +
 	"\n" +
-	"\x17pkg/protobufx/tls.proto\x12\tprotobufx\x1a\x1egoogle/protobuf/wrappers.proto\"\xf6\x01\n" +
+	"\x17pkg/protobufx/tls.proto\x12\x14grocer.pkg.protobufx\x1a\x1egoogle/protobuf/wrappers.proto\"\xf6\x01\n" +
 	"\n" +
 	"TLSOptions\x129\n" +
 	"\tcert_file\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\bcertFile\x127\n" +
@@ -122,14 +122,14 @@ func file_pkg_protobufx_tls_proto_rawDescGZIP() []byte {
 
 var file_pkg_protobufx_tls_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pkg_protobufx_tls_proto_goTypes = []any{
-	(*TLSOptions)(nil),             // 0: protobufx.TLSOptions
+	(*TLSOptions)(nil),             // 0: grocer.pkg.protobufx.TLSOptions
 	(*wrapperspb.StringValue)(nil), // 1: google.protobuf.StringValue
 }
 var file_pkg_protobufx_tls_proto_depIdxs = []int32{
-	1, // 0: protobufx.TLSOptions.cert_file:type_name -> google.protobuf.StringValue
-	1, // 1: protobufx.TLSOptions.key_file:type_name -> google.protobuf.StringValue
-	1, // 2: protobufx.TLSOptions.ca_file:type_name -> google.protobuf.StringValue
-	1, // 3: protobufx.TLSOptions.server_name:type_name -> google.protobuf.StringValue
+	1, // 0: grocer.pkg.protobufx.TLSOptions.cert_file:type_name -> google.protobuf.StringValue
+	1, // 1: grocer.pkg.protobufx.TLSOptions.key_file:type_name -> google.protobuf.StringValue
+	1, // 2: grocer.pkg.protobufx.TLSOptions.ca_file:type_name -> google.protobuf.StringValue
+	1, // 3: grocer.pkg.protobufx.TLSOptions.server_name:type_name -> google.protobuf.StringValue
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

@@ -1,5 +1,5 @@
 syntax = "proto3";
-package mongox;
+package grocer.pkg.mongox;
 option go_package = "github.com/soyacen/grocer/pkg/mongox;mongox";
 
 import "google/protobuf/wrappers.proto";

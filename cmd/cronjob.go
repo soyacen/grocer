@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -11,6 +12,9 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+
+	batchv1 "k8s.io/api/batch/v1"
+	"sigs.k8s.io/yaml"
 
 	"github.com/cockroachdb/errors"
 	"github.com/soyacen/grocer/internal/edit"
@@ -102,6 +106,14 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		switch rel {
 		case "cmd/cronjob.go":
 			data, err = fixCmdCronjobGo(data, dir)
+		case "deploy/cronjob.yaml":
+			data, err = fixDeployCronjobYaml(data, dir, dstMod)
+		case "internal/cronjob/wire.go":
+		case "internal/cronjob/service.go":
+		case "internal/cronjob/repo.go":
+		case "internal/cronjob/repo.go":
+
+			data, err = fixRepo(data, dir, dstMod)
 		}
 		if err != nil {
 			return err
@@ -123,6 +135,62 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 
 	log.Printf("add cron job %s in %s", cronjobFlag.Name, dir)
 	return nil
+}
+
+func fixDeployCronjobYaml(data []byte, dir string, mod string) ([]byte, error) {
+	// 解析YAML内容到CronJob结构体
+	var cronJob batchv1.CronJob
+	if err := yaml.Unmarshal(data, &cronJob); err != nil {
+		return nil, errors.Wrap(err, "failed to unmarshal cronjob yaml")
+	}
+
+	// 从mod参数中提取项目名称作为应用名称
+	appName := path.Base(mod)
+
+	// 更新metadata中的name
+	cronJob.Name = strings.Replace(cronJob.Name, "grocer", appName, -1)
+
+	// 如果Labels存在，更新app标签
+	if cronJob.Labels != nil {
+		cronJob.Labels["app"] = appName
+	} else {
+		cronJob.Labels = map[string]string{
+			"app": appName,
+		}
+	}
+
+	// 如果Annotations存在，更新描述
+	if cronJob.Annotations != nil {
+		// 使用新的描述格式，包含schedule信息
+		schedule := cronJob.Spec.Schedule
+		cronJob.Annotations["description"] = fmt.Sprintf("定时任务%s，%s", cronJob.Name, schedule)
+	} else {
+		// 使用新的描述格式
+		schedule := cronJob.Spec.Schedule
+		cronJob.Annotations = map[string]string{
+			"description": fmt.Sprintf("定时任务%s，%s", cronJob.Name, schedule),
+		}
+	}
+
+	// 更新spec部分中的container名称和镜像
+	jobTemplate := &cronJob.Spec.JobTemplate
+	container := &jobTemplate.Spec.Template.Spec.Containers[0]
+
+	// 更新容器名称
+	container.Name = strings.Replace(container.Name, "grocer", appName, -1)
+
+	// 从mod中提取镜像名称，基于项目名称
+	imageName := strings.Replace(mod, "/", "-", -1)    // 将路径分隔符替换为短横线
+	image := fmt.Sprintf("%s:%s", imageName, "latest") // 使用latest作为默认版本
+	container.Image = image
+
+	// 生成修改后的YAML
+	result, err := yaml.Marshal(&cronJob)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to marshal cronjob yaml")
+	}
+
+	return result, nil
 }
 
 func fixCmdCronjobGo(data []byte, dir string) ([]byte, error) {

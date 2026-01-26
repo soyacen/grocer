@@ -1,31 +1,30 @@
-# K8s CronJob配置文件，用于定期执行job
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: layout-cronjob
+  name: grocer-cronjob
   namespace: default
   labels:
-    app: layout-cronjob
+    app: grocer-cronjob
   annotations:
-    description: "定时任务CronJob，每30分钟执行一次"
+    description: "定时任务grocer-cronjob，*/1 * * * *"
 spec:
-  schedule: "*/1 * * * *"  # 每1分钟执行一次
-  concurrencyPolicy: Forbid  # 禁止并发执行
-  startingDeadlineSeconds: 300  # 如果错过了执行时间300秒以上，则放弃执行
-  successfulJobsHistoryLimit: 3  # 保留3个成功执行的作业记录
-  failedJobsHistoryLimit: 1  # 保留1个失败执行的作业记录
+  schedule: "*/1 * * * *"  
+  concurrencyPolicy: Forbid  
+  startingDeadlineSeconds: 300 
+  successfulJobsHistoryLimit: 3 
+  failedJobsHistoryLimit: 1 
   jobTemplate:
     spec:
-      backoffLimit: 4  # 失败重试次数
-      ttlSecondsAfterFinished: 3600  # 作业完成一小时后自动清理
+      backoffLimit: 4 
+      ttlSecondsAfterFinished: 3600 
       template:
         metadata:
           labels:
-            app: layout-cronjob
+            app: grocer-cronjob
         spec:
-          automountServiceAccountToken: false  # 不自动挂载服务账户token
-          enableServiceLinks: false  # 不自动添加服务链接
-          restartPolicy: OnFailure  # 只有在失败时才重启
+          automountServiceAccountToken: false  
+          enableServiceLinks: false 
+          restartPolicy: OnFailure  
           securityContext:
             runAsNonRoot: true
             runAsUser: 65532
@@ -34,16 +33,14 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           imagePullSecrets:
-          - name: regcred  # 引用镜像仓库密钥
+          - name: regcred  
           containers:
-          - name: layout-cronjob
-            image: soyacen/layout:v0.0.1  # 使用固定版本镜像
-            imagePullPolicy: IfNotPresent  # 使用IfNotPresent策略，优先使用本地镜像
-            # 明确覆盖 ENTRYPOINT
+          - name: grocer-cronjob
+            image: soyacen/grocer:v0.0.1  
+            imagePullPolicy: IfNotPresent  
             command: ["/app/app"]
             args: ["cronjob"]
             env:
-            # 添加必要的环境变量
             - name: ENV
               value: "production"
             - name: POD_NAME

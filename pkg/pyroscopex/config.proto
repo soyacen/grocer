@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package pyroscopex;
+package grocer.pkg.pyroscopex;
 option go_package = "github.com/soyacen/grocer/pkg/pyroscopex;pyroscopex";
 
 import "google/protobuf/duration.proto";

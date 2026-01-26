@@ -127,12 +127,12 @@ var File_pkg_mongox_config_proto protoreflect.FileDescriptor
 
 const file_pkg_mongox_config_proto_rawDesc = "" +
 	"\n" +
-	"\x17pkg/mongox/config.proto\x12\x06mongox\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
-	"\x06Config\x125\n" +
-	"\aconfigs\x18\x01 \x03(\v2\x1b.mongox.Config.ConfigsEntryR\aconfigs\x1aK\n" +
+	"\x17pkg/mongox/config.proto\x12\x11grocer.pkg.mongox\x1a\x1egoogle/protobuf/wrappers.proto\"\xa2\x01\n" +
+	"\x06Config\x12@\n" +
+	"\aconfigs\x18\x01 \x03(\v2&.grocer.pkg.mongox.Config.ConfigsEntryR\aconfigs\x1aV\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12%\n" +
-	"\x05value\x18\x02 \x01(\v2\x0f.mongox.OptionsR\x05value:\x028\x01\"v\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
+	"\x05value\x18\x02 \x01(\v2\x1a.grocer.pkg.mongox.OptionsR\x05value:\x028\x01\"v\n" +
 	"\aOptions\x12.\n" +
 	"\x03uri\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\x03uri\x12;\n" +
 	"\venable_otel\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\n" +
@@ -152,17 +152,17 @@ func file_pkg_mongox_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_mongox_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_pkg_mongox_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: mongox.Config
-	(*Options)(nil),                // 1: mongox.Options
-	nil,                            // 2: mongox.Config.ConfigsEntry
+	(*Config)(nil),                 // 0: grocer.pkg.mongox.Config
+	(*Options)(nil),                // 1: grocer.pkg.mongox.Options
+	nil,                            // 2: grocer.pkg.mongox.Config.ConfigsEntry
 	(*wrapperspb.StringValue)(nil), // 3: google.protobuf.StringValue
 	(*wrapperspb.BoolValue)(nil),   // 4: google.protobuf.BoolValue
 }
 var file_pkg_mongox_config_proto_depIdxs = []int32{
-	2, // 0: mongox.Config.configs:type_name -> mongox.Config.ConfigsEntry
-	3, // 1: mongox.Options.uri:type_name -> google.protobuf.StringValue
-	4, // 2: mongox.Options.enable_otel:type_name -> google.protobuf.BoolValue
-	1, // 3: mongox.Config.ConfigsEntry.value:type_name -> mongox.Options
+	2, // 0: grocer.pkg.mongox.Config.configs:type_name -> grocer.pkg.mongox.Config.ConfigsEntry
+	3, // 1: grocer.pkg.mongox.Options.uri:type_name -> google.protobuf.StringValue
+	4, // 2: grocer.pkg.mongox.Options.enable_otel:type_name -> google.protobuf.BoolValue
+	1, // 3: grocer.pkg.mongox.Config.ConfigsEntry.value:type_name -> grocer.pkg.mongox.Options
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

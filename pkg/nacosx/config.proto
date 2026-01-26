@@ -1,5 +1,5 @@
 syntax = "proto3";
-package nacosx;
+package grocer.pkg.nacosx;
 option go_package = "github.com/soyacen/grocer/pkg/nacosx;nacosx";
 
 import "google/protobuf/wrappers.proto";

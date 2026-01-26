@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package s3x;
+package grocer.pkg.s3x;
 option go_package = "github.com/soyacen/grocer/pkg/s3x;s3x";
 
 import "google/protobuf/wrappers.proto";

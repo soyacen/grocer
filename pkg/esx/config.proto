@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package esx;
+package grocer.pkg.esx;
 option go_package = "github.com/soyacen/grocer/pkg/esx;esx";
 
 import "google/protobuf/wrappers.proto";

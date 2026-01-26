@@ -1,5 +1,5 @@
 syntax = "proto3";
-package dbx;
+package grocer.pkg.dbx;
 option go_package = "github.com/soyacen/grocer/pkg/dbx;dbx";
 
 import "google/protobuf/duration.proto";

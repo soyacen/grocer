@@ -1,11 +1,15 @@
 package cronjob
 
-type Service struct{}
+import "context"
 
-func (s *Service) Run() error {
+type Service struct {
+	repo *Repository
+}
+
+func (s *Service) Run(ctx context.Context) error {
 	return nil
 }
 
-func NewService() *Service {
-	return &Service{}
+func NewService(repo *Repository) *Service {
+	return &Service{repo: repo}
 }

@@ -172,13 +172,12 @@ var File_pkg_pyroscopex_config_proto protoreflect.FileDescriptor
 
 const file_pkg_pyroscopex_config_proto_rawDesc = "" +
 	"\n" +
-	"\x1bpkg/pyroscopex/config.proto\x12\n" +
-	"pyroscopex\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xfd\x06\n" +
+	"\x1bpkg/pyroscopex/config.proto\x12\x15grocer.pkg.pyroscopex\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x93\a\n" +
 	"\x06Config\x12I\n" +
 	"\x12mutex_profile_rate\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x10mutexProfileRate\x12I\n" +
 	"\x12block_profile_rate\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x10blockProfileRate\x127\n" +
-	"\bapp_name\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\aappName\x120\n" +
-	"\x04tags\x18\x04 \x03(\v2\x1c.pyroscopex.Config.TagsEntryR\x04tags\x12=\n" +
+	"\bapp_name\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\aappName\x12;\n" +
+	"\x04tags\x18\x04 \x03(\v2'.grocer.pkg.pyroscopex.Config.TagsEntryR\x04tags\x12=\n" +
 	"\vserver_addr\x18\x05 \x01(\v2\x1c.google.protobuf.StringValueR\n" +
 	"serverAddr\x12D\n" +
 	"\x0fbasic_auth_user\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueR\rbasicAuthUser\x12L\n" +
@@ -188,8 +187,8 @@ const file_pkg_pyroscopex_config_proto_rawDesc = "" +
 	"uploadRate\x12#\n" +
 	"\rprofile_types\x18\n" +
 	" \x03(\tR\fprofileTypes\x12B\n" +
-	"\x0fdisable_gc_runs\x18\v \x01(\v2\x1a.google.protobuf.BoolValueR\rdisableGcRuns\x12F\n" +
-	"\fhttp_headers\x18\f \x03(\v2#.pyroscopex.Config.HttpHeadersEntryR\vhttpHeaders\x1a7\n" +
+	"\x0fdisable_gc_runs\x18\v \x01(\v2\x1a.google.protobuf.BoolValueR\rdisableGcRuns\x12Q\n" +
+	"\fhttp_headers\x18\f \x03(\v2..grocer.pkg.pyroscopex.Config.HttpHeadersEntryR\vhttpHeaders\x1a7\n" +
 	"\tTagsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a>\n" +
@@ -211,26 +210,26 @@ func file_pkg_pyroscopex_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_pyroscopex_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_pkg_pyroscopex_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: pyroscopex.Config
-	nil,                            // 1: pyroscopex.Config.TagsEntry
-	nil,                            // 2: pyroscopex.Config.HttpHeadersEntry
+	(*Config)(nil),                 // 0: grocer.pkg.pyroscopex.Config
+	nil,                            // 1: grocer.pkg.pyroscopex.Config.TagsEntry
+	nil,                            // 2: grocer.pkg.pyroscopex.Config.HttpHeadersEntry
 	(*wrapperspb.Int32Value)(nil),  // 3: google.protobuf.Int32Value
 	(*wrapperspb.StringValue)(nil), // 4: google.protobuf.StringValue
 	(*durationpb.Duration)(nil),    // 5: google.protobuf.Duration
 	(*wrapperspb.BoolValue)(nil),   // 6: google.protobuf.BoolValue
 }
 var file_pkg_pyroscopex_config_proto_depIdxs = []int32{
-	3,  // 0: pyroscopex.Config.mutex_profile_rate:type_name -> google.protobuf.Int32Value
-	3,  // 1: pyroscopex.Config.block_profile_rate:type_name -> google.protobuf.Int32Value
-	4,  // 2: pyroscopex.Config.app_name:type_name -> google.protobuf.StringValue
-	1,  // 3: pyroscopex.Config.tags:type_name -> pyroscopex.Config.TagsEntry
-	4,  // 4: pyroscopex.Config.server_addr:type_name -> google.protobuf.StringValue
-	4,  // 5: pyroscopex.Config.basic_auth_user:type_name -> google.protobuf.StringValue
-	4,  // 6: pyroscopex.Config.basic_auth_password:type_name -> google.protobuf.StringValue
-	4,  // 7: pyroscopex.Config.tenant_id:type_name -> google.protobuf.StringValue
-	5,  // 8: pyroscopex.Config.upload_rate:type_name -> google.protobuf.Duration
-	6,  // 9: pyroscopex.Config.disable_gc_runs:type_name -> google.protobuf.BoolValue
-	2,  // 10: pyroscopex.Config.http_headers:type_name -> pyroscopex.Config.HttpHeadersEntry
+	3,  // 0: grocer.pkg.pyroscopex.Config.mutex_profile_rate:type_name -> google.protobuf.Int32Value
+	3,  // 1: grocer.pkg.pyroscopex.Config.block_profile_rate:type_name -> google.protobuf.Int32Value
+	4,  // 2: grocer.pkg.pyroscopex.Config.app_name:type_name -> google.protobuf.StringValue
+	1,  // 3: grocer.pkg.pyroscopex.Config.tags:type_name -> grocer.pkg.pyroscopex.Config.TagsEntry
+	4,  // 4: grocer.pkg.pyroscopex.Config.server_addr:type_name -> google.protobuf.StringValue
+	4,  // 5: grocer.pkg.pyroscopex.Config.basic_auth_user:type_name -> google.protobuf.StringValue
+	4,  // 6: grocer.pkg.pyroscopex.Config.basic_auth_password:type_name -> google.protobuf.StringValue
+	4,  // 7: grocer.pkg.pyroscopex.Config.tenant_id:type_name -> google.protobuf.StringValue
+	5,  // 8: grocer.pkg.pyroscopex.Config.upload_rate:type_name -> google.protobuf.Duration
+	6,  // 9: grocer.pkg.pyroscopex.Config.disable_gc_runs:type_name -> google.protobuf.BoolValue
+	2,  // 10: grocer.pkg.pyroscopex.Config.http_headers:type_name -> grocer.pkg.pyroscopex.Config.HttpHeadersEntry
 	11, // [11:11] is the sub-list for method output_type
 	11, // [11:11] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

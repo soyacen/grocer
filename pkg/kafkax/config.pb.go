@@ -563,33 +563,33 @@ var File_pkg_kafkax_config_proto protoreflect.FileDescriptor
 
 const file_pkg_kafkax_config_proto_rawDesc = "" +
 	"\n" +
-	"\x17pkg/kafkax/config.proto\x12\x06kafkax\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x8c\x01\n" +
-	"\x06Config\x125\n" +
-	"\aconfigs\x18\x01 \x03(\v2\x1b.kafkax.Config.ConfigsEntryR\aconfigs\x1aK\n" +
+	"\x17pkg/kafkax/config.proto\x12\x11grocer.pkg.kafkax\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xa2\x01\n" +
+	"\x06Config\x12@\n" +
+	"\aconfigs\x18\x01 \x03(\v2&.grocer.pkg.kafkax.Config.ConfigsEntryR\aconfigs\x1aV\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12%\n" +
-	"\x05value\x18\x02 \x01(\v2\x0f.kafkax.OptionsR\x05value:\x028\x01\"\x84\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
+	"\x05value\x18\x02 \x01(\v2\x1a.grocer.pkg.kafkax.OptionsR\x05value:\x028\x01\"\xd1\n" +
 	"\n" +
-	"\aOptions\x124\n" +
-	"\breceiver\x18\x01 \x01(\v2\x18.kafkax.Options.ReceiverR\breceiver\x12.\n" +
-	"\x06sender\x18\x02 \x01(\v2\x16.kafkax.Options.SenderR\x06sender\x12\x18\n" +
+	"\aOptions\x12?\n" +
+	"\breceiver\x18\x01 \x01(\v2#.grocer.pkg.kafkax.Options.ReceiverR\breceiver\x129\n" +
+	"\x06sender\x18\x02 \x01(\v2!.grocer.pkg.kafkax.Options.SenderR\x06sender\x12\x18\n" +
 	"\abrokers\x18\x03 \x03(\tR\abrokers\x122\n" +
 	"\x05topic\x18\x04 \x01(\v2\x1c.google.protobuf.StringValueR\x05topic\x126\n" +
-	"\aversion\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueR\aversion\x1a\x9b\x03\n" +
+	"\aversion\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueR\aversion\x1a\xbc\x03\n" +
 	"\bReceiver\x127\n" +
-	"\bgroup_id\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\agroupId\x124\n" +
-	"\x05group\x18\x02 \x01(\v2\x1e.kafkax.Options.Receiver.GroupR\x05group\x127\n" +
-	"\x06offset\x18\x03 \x01(\v2\x1f.kafkax.Options.Receiver.OffsetR\x06offset\x1a\xa5\x01\n" +
-	"\x05Group\x12F\n" +
-	"\trebalance\x18\x01 \x01(\v2(.kafkax.Options.Receiver.Group.RebalanceR\trebalance\x1aT\n" +
+	"\bgroup_id\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\agroupId\x12?\n" +
+	"\x05group\x18\x02 \x01(\v2).grocer.pkg.kafkax.Options.Receiver.GroupR\x05group\x12B\n" +
+	"\x06offset\x18\x03 \x01(\v2*.grocer.pkg.kafkax.Options.Receiver.OffsetR\x06offset\x1a\xb0\x01\n" +
+	"\x05Group\x12Q\n" +
+	"\trebalance\x18\x01 \x01(\v23.grocer.pkg.kafkax.Options.Receiver.Group.RebalanceR\trebalance\x1aT\n" +
 	"\tRebalance\x12G\n" +
 	"\x10group_strategies\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\x0fgroupStrategies\x1a?\n" +
 	"\x06Offset\x125\n" +
-	"\ainitial\x18\x01 \x01(\v2\x1b.google.protobuf.Int64ValueR\ainitial\x1a\xee\x04\n" +
+	"\ainitial\x18\x01 \x01(\v2\x1b.google.protobuf.Int64ValueR\ainitial\x1a\x84\x05\n" +
 	"\x06Sender\x12@\n" +
-	"\rrequired_acks\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\frequiredAcks\x122\n" +
-	"\x05retry\x18\x02 \x01(\v2\x1c.kafkax.Options.Sender.RetryR\x05retry\x125\n" +
-	"\x06return\x18\x03 \x01(\v2\x1d.kafkax.Options.Sender.ReturnR\x06return\x1aA\n" +
+	"\rrequired_acks\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\frequiredAcks\x12=\n" +
+	"\x05retry\x18\x02 \x01(\v2'.grocer.pkg.kafkax.Options.Sender.RetryR\x05retry\x12@\n" +
+	"\x06return\x18\x03 \x01(\v2(.grocer.pkg.kafkax.Options.Sender.ReturnR\x06return\x1aA\n" +
 	"\fRequiredAcks\x121\n" +
 	"\x05value\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05value\x1a\xfb\x01\n" +
 	"\x05Retry\x12-\n" +
@@ -615,17 +615,17 @@ func file_pkg_kafkax_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_kafkax_config_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_pkg_kafkax_config_proto_goTypes = []any{
-	(*Config)(nil),                           // 0: kafkax.Config
-	(*Options)(nil),                          // 1: kafkax.Options
-	nil,                                      // 2: kafkax.Config.ConfigsEntry
-	(*Options_Receiver)(nil),                 // 3: kafkax.Options.Receiver
-	(*Options_Sender)(nil),                   // 4: kafkax.Options.Sender
-	(*Options_Receiver_Group)(nil),           // 5: kafkax.Options.Receiver.Group
-	(*Options_Receiver_Offset)(nil),          // 6: kafkax.Options.Receiver.Offset
-	(*Options_Receiver_Group_Rebalance)(nil), // 7: kafkax.Options.Receiver.Group.Rebalance
-	(*Options_Sender_RequiredAcks)(nil),      // 8: kafkax.Options.Sender.RequiredAcks
-	(*Options_Sender_Retry)(nil),             // 9: kafkax.Options.Sender.Retry
-	(*Options_Sender_Return)(nil),            // 10: kafkax.Options.Sender.Return
+	(*Config)(nil),                           // 0: grocer.pkg.kafkax.Config
+	(*Options)(nil),                          // 1: grocer.pkg.kafkax.Options
+	nil,                                      // 2: grocer.pkg.kafkax.Config.ConfigsEntry
+	(*Options_Receiver)(nil),                 // 3: grocer.pkg.kafkax.Options.Receiver
+	(*Options_Sender)(nil),                   // 4: grocer.pkg.kafkax.Options.Sender
+	(*Options_Receiver_Group)(nil),           // 5: grocer.pkg.kafkax.Options.Receiver.Group
+	(*Options_Receiver_Offset)(nil),          // 6: grocer.pkg.kafkax.Options.Receiver.Offset
+	(*Options_Receiver_Group_Rebalance)(nil), // 7: grocer.pkg.kafkax.Options.Receiver.Group.Rebalance
+	(*Options_Sender_RequiredAcks)(nil),      // 8: grocer.pkg.kafkax.Options.Sender.RequiredAcks
+	(*Options_Sender_Retry)(nil),             // 9: grocer.pkg.kafkax.Options.Sender.Retry
+	(*Options_Sender_Return)(nil),            // 10: grocer.pkg.kafkax.Options.Sender.Return
 	(*wrapperspb.StringValue)(nil),           // 11: google.protobuf.StringValue
 	(*wrapperspb.Int32Value)(nil),            // 12: google.protobuf.Int32Value
 	(*wrapperspb.Int64Value)(nil),            // 13: google.protobuf.Int64Value
@@ -633,28 +633,28 @@ var file_pkg_kafkax_config_proto_goTypes = []any{
 	(*wrapperspb.BoolValue)(nil),             // 15: google.protobuf.BoolValue
 }
 var file_pkg_kafkax_config_proto_depIdxs = []int32{
-	2,  // 0: kafkax.Config.configs:type_name -> kafkax.Config.ConfigsEntry
-	3,  // 1: kafkax.Options.receiver:type_name -> kafkax.Options.Receiver
-	4,  // 2: kafkax.Options.sender:type_name -> kafkax.Options.Sender
-	11, // 3: kafkax.Options.topic:type_name -> google.protobuf.StringValue
-	11, // 4: kafkax.Options.version:type_name -> google.protobuf.StringValue
-	1,  // 5: kafkax.Config.ConfigsEntry.value:type_name -> kafkax.Options
-	11, // 6: kafkax.Options.Receiver.group_id:type_name -> google.protobuf.StringValue
-	5,  // 7: kafkax.Options.Receiver.group:type_name -> kafkax.Options.Receiver.Group
-	6,  // 8: kafkax.Options.Receiver.offset:type_name -> kafkax.Options.Receiver.Offset
-	12, // 9: kafkax.Options.Sender.required_acks:type_name -> google.protobuf.Int32Value
-	9,  // 10: kafkax.Options.Sender.retry:type_name -> kafkax.Options.Sender.Retry
-	10, // 11: kafkax.Options.Sender.return:type_name -> kafkax.Options.Sender.Return
-	7,  // 12: kafkax.Options.Receiver.Group.rebalance:type_name -> kafkax.Options.Receiver.Group.Rebalance
-	13, // 13: kafkax.Options.Receiver.Offset.initial:type_name -> google.protobuf.Int64Value
-	11, // 14: kafkax.Options.Receiver.Group.Rebalance.group_strategies:type_name -> google.protobuf.StringValue
-	12, // 15: kafkax.Options.Sender.RequiredAcks.value:type_name -> google.protobuf.Int32Value
-	13, // 16: kafkax.Options.Sender.Retry.max:type_name -> google.protobuf.Int64Value
-	14, // 17: kafkax.Options.Sender.Retry.backoff:type_name -> google.protobuf.Duration
-	13, // 18: kafkax.Options.Sender.Retry.max_buffer_length:type_name -> google.protobuf.Int64Value
-	13, // 19: kafkax.Options.Sender.Retry.max_buffer_bytes:type_name -> google.protobuf.Int64Value
-	15, // 20: kafkax.Options.Sender.Return.successes:type_name -> google.protobuf.BoolValue
-	15, // 21: kafkax.Options.Sender.Return.errors:type_name -> google.protobuf.BoolValue
+	2,  // 0: grocer.pkg.kafkax.Config.configs:type_name -> grocer.pkg.kafkax.Config.ConfigsEntry
+	3,  // 1: grocer.pkg.kafkax.Options.receiver:type_name -> grocer.pkg.kafkax.Options.Receiver
+	4,  // 2: grocer.pkg.kafkax.Options.sender:type_name -> grocer.pkg.kafkax.Options.Sender
+	11, // 3: grocer.pkg.kafkax.Options.topic:type_name -> google.protobuf.StringValue
+	11, // 4: grocer.pkg.kafkax.Options.version:type_name -> google.protobuf.StringValue
+	1,  // 5: grocer.pkg.kafkax.Config.ConfigsEntry.value:type_name -> grocer.pkg.kafkax.Options
+	11, // 6: grocer.pkg.kafkax.Options.Receiver.group_id:type_name -> google.protobuf.StringValue
+	5,  // 7: grocer.pkg.kafkax.Options.Receiver.group:type_name -> grocer.pkg.kafkax.Options.Receiver.Group
+	6,  // 8: grocer.pkg.kafkax.Options.Receiver.offset:type_name -> grocer.pkg.kafkax.Options.Receiver.Offset
+	12, // 9: grocer.pkg.kafkax.Options.Sender.required_acks:type_name -> google.protobuf.Int32Value
+	9,  // 10: grocer.pkg.kafkax.Options.Sender.retry:type_name -> grocer.pkg.kafkax.Options.Sender.Retry
+	10, // 11: grocer.pkg.kafkax.Options.Sender.return:type_name -> grocer.pkg.kafkax.Options.Sender.Return
+	7,  // 12: grocer.pkg.kafkax.Options.Receiver.Group.rebalance:type_name -> grocer.pkg.kafkax.Options.Receiver.Group.Rebalance
+	13, // 13: grocer.pkg.kafkax.Options.Receiver.Offset.initial:type_name -> google.protobuf.Int64Value
+	11, // 14: grocer.pkg.kafkax.Options.Receiver.Group.Rebalance.group_strategies:type_name -> google.protobuf.StringValue
+	12, // 15: grocer.pkg.kafkax.Options.Sender.RequiredAcks.value:type_name -> google.protobuf.Int32Value
+	13, // 16: grocer.pkg.kafkax.Options.Sender.Retry.max:type_name -> google.protobuf.Int64Value
+	14, // 17: grocer.pkg.kafkax.Options.Sender.Retry.backoff:type_name -> google.protobuf.Duration
+	13, // 18: grocer.pkg.kafkax.Options.Sender.Retry.max_buffer_length:type_name -> google.protobuf.Int64Value
+	13, // 19: grocer.pkg.kafkax.Options.Sender.Retry.max_buffer_bytes:type_name -> google.protobuf.Int64Value
+	15, // 20: grocer.pkg.kafkax.Options.Sender.Return.successes:type_name -> google.protobuf.BoolValue
+	15, // 21: grocer.pkg.kafkax.Options.Sender.Return.errors:type_name -> google.protobuf.BoolValue
 	22, // [22:22] is the sub-list for method output_type
 	22, // [22:22] is the sub-list for method input_type
 	22, // [22:22] is the sub-list for extension type_name

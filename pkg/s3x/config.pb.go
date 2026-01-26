@@ -162,12 +162,12 @@ var File_pkg_s3x_config_proto protoreflect.FileDescriptor
 
 const file_pkg_s3x_config_proto_rawDesc = "" +
 	"\n" +
-	"\x14pkg/s3x/config.proto\x12\x03s3x\x1a\x1egoogle/protobuf/wrappers.proto\"\x86\x01\n" +
-	"\x06Config\x122\n" +
-	"\aconfigs\x18\x01 \x03(\v2\x18.s3x.Config.ConfigsEntryR\aconfigs\x1aH\n" +
+	"\x14pkg/s3x/config.proto\x12\x0egrocer.pkg.s3x\x1a\x1egoogle/protobuf/wrappers.proto\"\x9c\x01\n" +
+	"\x06Config\x12=\n" +
+	"\aconfigs\x18\x01 \x03(\v2#.grocer.pkg.s3x.Config.ConfigsEntryR\aconfigs\x1aS\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\"\n" +
-	"\x05value\x18\x02 \x01(\v2\f.s3x.OptionsR\x05value:\x028\x01\"\xd0\x03\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.grocer.pkg.s3x.OptionsR\x05value:\x028\x01\"\xd0\x03\n" +
 	"\aOptions\x12@\n" +
 	"\raccess_key_id\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\vaccessKeyId\x12H\n" +
 	"\x11secret_access_key\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\x0fsecretAccessKey\x124\n" +
@@ -191,23 +191,23 @@ func file_pkg_s3x_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_s3x_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_pkg_s3x_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: s3x.Config
-	(*Options)(nil),                // 1: s3x.Options
-	nil,                            // 2: s3x.Config.ConfigsEntry
+	(*Config)(nil),                 // 0: grocer.pkg.s3x.Config
+	(*Options)(nil),                // 1: grocer.pkg.s3x.Options
+	nil,                            // 2: grocer.pkg.s3x.Config.ConfigsEntry
 	(*wrapperspb.StringValue)(nil), // 3: google.protobuf.StringValue
 	(*wrapperspb.BoolValue)(nil),   // 4: google.protobuf.BoolValue
 	(*wrapperspb.Int32Value)(nil),  // 5: google.protobuf.Int32Value
 }
 var file_pkg_s3x_config_proto_depIdxs = []int32{
-	2, // 0: s3x.Config.configs:type_name -> s3x.Config.ConfigsEntry
-	3, // 1: s3x.Options.access_key_id:type_name -> google.protobuf.StringValue
-	3, // 2: s3x.Options.secret_access_key:type_name -> google.protobuf.StringValue
-	3, // 3: s3x.Options.bucket:type_name -> google.protobuf.StringValue
-	3, // 4: s3x.Options.base_endpoint:type_name -> google.protobuf.StringValue
-	4, // 5: s3x.Options.use_path_style:type_name -> google.protobuf.BoolValue
-	3, // 6: s3x.Options.app_id:type_name -> google.protobuf.StringValue
-	5, // 7: s3x.Options.retry_max_attempts:type_name -> google.protobuf.Int32Value
-	1, // 8: s3x.Config.ConfigsEntry.value:type_name -> s3x.Options
+	2, // 0: grocer.pkg.s3x.Config.configs:type_name -> grocer.pkg.s3x.Config.ConfigsEntry
+	3, // 1: grocer.pkg.s3x.Options.access_key_id:type_name -> google.protobuf.StringValue
+	3, // 2: grocer.pkg.s3x.Options.secret_access_key:type_name -> google.protobuf.StringValue
+	3, // 3: grocer.pkg.s3x.Options.bucket:type_name -> google.protobuf.StringValue
+	3, // 4: grocer.pkg.s3x.Options.base_endpoint:type_name -> google.protobuf.StringValue
+	4, // 5: grocer.pkg.s3x.Options.use_path_style:type_name -> google.protobuf.BoolValue
+	3, // 6: grocer.pkg.s3x.Options.app_id:type_name -> google.protobuf.StringValue
+	5, // 7: grocer.pkg.s3x.Options.retry_max_attempts:type_name -> google.protobuf.Int32Value
+	1, // 8: grocer.pkg.s3x.Config.ConfigsEntry.value:type_name -> grocer.pkg.s3x.Options
 	9, // [9:9] is the sub-list for method output_type
 	9, // [9:9] is the sub-list for method input_type
 	9, // [9:9] is the sub-list for extension type_name

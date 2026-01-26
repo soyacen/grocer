@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package jeagerx;
+package grocer.pkg.jeagerx;
 option go_package = "github.com/soyacen/grocer/pkg/jeagerx;jeagerx";
 
 import "google/protobuf/duration.proto";
