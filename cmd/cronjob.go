@@ -61,6 +61,9 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 	}
 
 	dstMod, err := readMod(dir)
+	if err != nil {
+		return err
+	}
 
 	// Copy from module cache into new directory, making edits as needed.
 	if err := filepath.WalkDir(info.Dir, func(src string, d fs.DirEntry, err error) error {
@@ -103,9 +106,12 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		if err != nil {
 			return err
 		}
-		isRoot := !strings.Contains(rel, string(filepath.Separator))
 		if strings.HasSuffix(rel, ".go") {
-			data = fixGo(data, rel, srcMod, dstMod, isRoot)
+			isRoot := !strings.Contains(rel, string(filepath.Separator))
+			data, err = fixGo(data, rel, srcMod, dstMod, isRoot)
+			if err != nil {
+				return err
+			}
 		}
 		if err := os.WriteFile(dst, data, 0o666); err != nil {
 			return errors.WithStack(err)
@@ -115,7 +121,7 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	log.Printf("add cron job %s in %s", dstMod, dir)
+	log.Printf("add cron job %s in %s", cronjobFlag.Name, dir)
 	return nil
 }
 

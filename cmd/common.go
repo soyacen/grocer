@@ -3,12 +3,14 @@ package cmd
 import (
 	"bytes"
 	"encoding/json"
+	"os"
 	"os/exec"
 	"path"
 	"path/filepath"
 	"strings"
 
 	"github.com/cockroachdb/errors"
+	"golang.org/x/mod/modfile"
 	"golang.org/x/mod/module"
 )
 
@@ -56,4 +58,14 @@ func getProjectDir(dir, dstMod string) (string, error) {
 }
 
 func readMod(dir string) (string, error) {
+	filename := path.Join(dir, "go.mod")
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return "", errors.Wrapf(err, "failed to read %s", filename)
+	}
+	f, err := modfile.ParseLax(filename, data, nil)
+	if err != nil {
+		return "", errors.Wrapf(err, "failed to parse %s", filename)
+	}
+	return f.Module.Mod.Path, nil
 }

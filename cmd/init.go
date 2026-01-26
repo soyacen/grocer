@@ -110,16 +110,19 @@ func initRun(_ *cobra.Command, _ []string) error {
 		case "cmd/root.go":
 			data, err = fixCmdRootGo(data, dir)
 		case "go.mod":
-			data = fixGoMod(data, initFlag.Mod)
+			data, err = fixGoMod(data, initFlag.Mod)
 		case "Makefile":
 			data = fixMakefile(data, dir)
 		}
 		if err != nil {
 			return err
 		}
-		isRoot := !strings.Contains(rel, string(filepath.Separator))
 		if strings.HasSuffix(rel, ".go") {
-			data = fixGo(data, rel, srcMod, initFlag.Mod, isRoot)
+			isRoot := !strings.Contains(rel, string(filepath.Separator))
+			data, err = fixGo(data, rel, srcMod, initFlag.Mod, isRoot)
+			if err != nil {
+				return err
+			}
 		}
 		if err := os.WriteFile(dst, data, 0o666); err != nil {
 			return errors.WithStack(err)
@@ -193,11 +196,11 @@ func fixCmdRootGo(data []byte, dir string) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) []byte {
+func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) ([]byte, error) {
 	fset := token.NewFileSet()
 	f, err := parser.ParseFile(fset, file, data, parser.ImportsOnly)
 	if err != nil {
-		log.Fatalf("parsing source module:\n%s", err)
+		return nil, errors.Wrapf(err, "failed to parse %s", file)
 	}
 
 	buf := edit.NewBuffer(data)
@@ -207,38 +210,44 @@ func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) []byte 
 
 	srcName := path.Base(srcMod)
 	dstName := path.Base(dstMod)
+
 	if isRoot {
 		if name := f.Name.Name; name == srcName || name == srcName+"_test" {
 			dname := dstName + strings.TrimPrefix(name, srcName)
 			if !token.IsIdentifier(dname) {
-				log.Fatalf("%s: cannot rename package %s to package %s: invalid package name", file, name, dname)
+				return nil, errors.Errorf("%s: cannot rename package %s to package %s: invalid package name", file, name, dname)
 			}
 			buf.Replace(at(f.Name.Pos()), at(f.Name.End()), dname)
 		}
 	}
 
 	for _, spec := range f.Imports {
-		path, err := strconv.Unquote(spec.Path.Value)
+		pathStr, err := strconv.Unquote(spec.Path.Value)
 		if err != nil {
 			continue
 		}
-		if path == srcMod {
+
+		if pathStr != srcMod && !strings.HasPrefix(pathStr, srcMod+"/") {
+			continue
+		}
+
+		if pathStr == srcMod {
 			if srcName != dstName && spec.Name == nil {
 				buf.Insert(at(spec.Path.Pos()), srcName+" ")
 			}
 			buf.Replace(at(spec.Path.Pos()), at(spec.Path.End()), strconv.Quote(dstMod))
-		}
-		if strings.HasPrefix(path, srcMod+"/") {
-			buf.Replace(at(spec.Path.Pos()), at(spec.Path.End()), strconv.Quote(strings.Replace(path, srcMod, dstMod, 1)))
+		} else if strings.HasPrefix(pathStr, srcMod+"/") {
+			buf.Replace(at(spec.Path.Pos()), at(spec.Path.End()), strconv.Quote(strings.Replace(pathStr, srcMod, dstMod, 1)))
 		}
 	}
-	return buf.Bytes()
+	return buf.Bytes(), nil
 }
 
 func fixGoMod(data []byte, dstMod string) ([]byte, error) {
-	f, err := modfile.ParseLax("go.mod", data, nil)
+	filename := "go.mod"
+	f, err := modfile.ParseLax(filename, data, nil)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to parse source module")
+		return nil, errors.Wrapf(err, "failed to parse %s", filename)
 	}
 	_ = f.AddModuleStmt(dstMod)
 	newData, err := f.Format()
