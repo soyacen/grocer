@@ -1,5 +1,9 @@
 # Makefile for grocer project
 
+# Variables
+VERSION := $(shell git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+COMMIT := $(shell git rev-parse HEAD 2>/dev/null || echo "unknown")
+
 # Generate protobuf files
 protoc:
 	@echo "Generating protobuf files..."
@@ -8,12 +12,12 @@ protoc:
 # Build the project
 build:
 	@echo "Building the project..."
-	go build -o grocer .
+	go build -ldflags="-X github.com/soyacen/grocer/cmd.Version=$(VERSION) -X github.com/soyacen/grocer/cmd.Commit=$(COMMIT)" -o bin/grocer .
 
 # Install the project
 install:
 	@echo "Installing the project..."
-	go install .
+	go install -ldflags="-X github.com/soyacen/grocer/cmd.Version=$(VERSION) -X github.com/soyacen/grocer/cmd.Commit=$(COMMIT)" .
 
 help:
 	@echo "Available targets:"
