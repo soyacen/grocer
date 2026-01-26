@@ -1,7 +1,7 @@
-# Makefile for grocer project
+# Makefile for s project
 
 # Project name variable - customize as needed
-PROJECT_NAME ?= $(shell echo $${PROJECT_NAME:-grocer})
+PROJECT_NAME ?= $(shell echo $${PROJECT_NAME:-s})
 
 # Image registry username variable - customize as needed
 IMAGE_REGISTRY_USERNAME ?= $(shell echo $${IMAGE_REGISTRY_USERNAME:-username})
@@ -10,15 +10,15 @@ IMAGE_REGISTRY_USERNAME ?= $(shell echo $${IMAGE_REGISTRY_USERNAME:-username})
 GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || echo "latest")
 VERSION ?= $(shell echo $${VERSION:-$(GIT_TAG)})
 
-# Generate protobuf files for all API subdirectories
-protoc:
-	@echo "Generating protobuf files for all API subdirectories..."
-	@for dir in api/*; do \
-		if [ -d "$$dir" ] && [ -f "$$dir/protoc.sh" ]; then \
-			echo "Running $$dir/protoc.sh"; \
-			bash "$$dir/protoc.sh"; \
-		fi \
-	done
+# Run grpc script to compile all proto files in api directory and subdirectories
+grpc:
+	@echo "Compiling proto files using grpc.sh..."
+	@bash scripts/grpc.sh
+
+# Run goose script to compile all proto files in api directory and subdirectories
+goose:
+	@echo "Compiling proto files using goose.sh..."
+	@bash scripts/goose.sh
 
 # Build docker image, optionally takes TAG argument (defaults to latest)
 docker-build:
@@ -42,7 +42,8 @@ docker-push:
 
 help:
 	@echo "Available targets:"
-	@echo "  protoc                    - Generate protobuf files for all API subdirectories"
+	@echo "  grpc                      - Compile proto files using grpc.sh script"
+	@echo "  goose                     - Compile proto files using goose.sh script"
 	@echo "  docker-build              - Build docker image with VERSION (default: latest git tag)"
 	@echo "  docker-push               - Push docker image with VERSION (default: latest git tag)"
 	@echo "  docker-release            - Build and push docker image (convenience target)"
@@ -51,4 +52,4 @@ help:
 # Define a target that builds and pushes the image
 docker-release: docker-build docker-push
 
-.PHONY: protoc help docker-build docker-push docker-release
+.PHONY: protoc help docker-build docker-push docker-release grpc goose
