@@ -108,11 +108,14 @@ func initRun(_ *cobra.Command, _ []string) error {
 
 		switch rel {
 		case "cmd/root.go":
-			data = fixCmdRootGo(data, dir)
+			data, err = fixCmdRootGo(data, dir)
 		case "go.mod":
 			data = fixGoMod(data, initFlag.Mod)
 		case "Makefile":
 			data = fixMakefile(data, dir)
+		}
+		if err != nil {
+			return err
 		}
 		isRoot := !strings.Contains(rel, string(filepath.Separator))
 		if strings.HasSuffix(rel, ".go") {
@@ -134,11 +137,11 @@ func fixMakefile(data []byte, dir string) []byte {
 	return bytes.ReplaceAll(data, []byte("grocer"), []byte(path.Base(dir)))
 }
 
-func fixCmdRootGo(data []byte, dir string) []byte {
+func fixCmdRootGo(data []byte, dir string) ([]byte, error) {
 	fset := token.NewFileSet()
 	f, err := parser.ParseFile(fset, "cmd/root.go", data, parser.ParseComments)
 	if err != nil {
-		log.Fatalf("parsing source module:\n%s", err)
+		return nil, errors.Wrap(err, "failed to parse source module")
 	}
 
 	buf := edit.NewBuffer(data)
@@ -187,12 +190,9 @@ func fixCmdRootGo(data []byte, dir string) []byte {
 		return true
 	})
 
-	return buf.Bytes()
+	return buf.Bytes(), nil
 }
 
-// fixGo rewrites the Go source in data to replace srcMod with dstMod.
-// isRoot indicates whether the file is in the root directory of the module,
-// in which case we also update the package name.
 func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) []byte {
 	fset := token.NewFileSet()
 	f, err := parser.ParseFile(fset, file, data, parser.ImportsOnly)
@@ -235,17 +235,15 @@ func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) []byte 
 	return buf.Bytes()
 }
 
-// fixGoMod rewrites the go.mod content in data to add a module
-// statement for dstMod.
-func fixGoMod(data []byte, dstMod string) []byte {
+func fixGoMod(data []byte, dstMod string) ([]byte, error) {
 	f, err := modfile.ParseLax("go.mod", data, nil)
 	if err != nil {
-		log.Fatalf("parsing source module:\n%s", err)
+		return nil, errors.Wrap(err, "failed to parse source module")
 	}
 	_ = f.AddModuleStmt(dstMod)
-	new, err := f.Format()
+	newData, err := f.Format()
 	if err != nil {
-		return data
+		return data, nil
 	}
-	return new
+	return newData, nil
 }

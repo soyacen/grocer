@@ -98,9 +98,10 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 
 		switch rel {
 		case "cmd/cronjob.go":
-			data = fixCmdCronjobGo(data, dir)
-		default:
-
+			data, err = fixCmdCronjobGo(data, dir)
+		}
+		if err != nil {
+			return err
 		}
 		isRoot := !strings.Contains(rel, string(filepath.Separator))
 		if strings.HasSuffix(rel, ".go") {
@@ -118,11 +119,12 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 	return nil
 }
 
-func fixCmdCronjobGo(data []byte, dir string) []byte {
+func fixCmdCronjobGo(data []byte, dir string) ([]byte, error) {
+	filename := "cmd/cronjob.go"
 	fset := token.NewFileSet()
-	f, err := parser.ParseFile(fset, "cmd/cronjob.go", data, parser.ParseComments)
+	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
 	if err != nil {
-		log.Fatalf("parsing source module:\n%s", err)
+		return nil, errors.Wrapf(err, "failed to parse %s", filename)
 	}
 
 	buf := edit.NewBuffer(data)
@@ -164,12 +166,15 @@ func fixCmdCronjobGo(data []byte, dir string) []byte {
 			oldVal, _ := strconv.Unquote(val.Value)
 			newVal := strings.Replace(oldVal, "cronjob", path.Base(dir), -1)
 			if newVal != oldVal {
-				buf.Replace(fset.Position(kv.Value.Pos()).Offset, fset.Position(kv.Value.End()).Offset,
-					strconv.Quote(newVal))
+				buf.Replace(
+					fset.Position(kv.Value.Pos()).Offset,
+					fset.Position(kv.Value.End()).Offset,
+					strconv.Quote(newVal),
+				)
 			}
 		}
 		return true
 	})
 
-	return buf.Bytes()
+	return buf.Bytes(), nil
 }
