@@ -2,15 +2,12 @@ package cmd
 
 import (
 	"bytes"
-	"encoding/json"
-	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
 	"io/fs"
 	"log"
 	"os"
-	"os/exec"
 	"path"
 	"path/filepath"
 	"strconv"
@@ -29,72 +26,48 @@ var initCmd = &cobra.Command{
 	RunE:  initRun,
 }
 
-var dstMod *string
+type initFlags struct {
+	Mod string
+	Dir string
+}
 
-var initProjectDir *string
+var initFlag initFlags
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-	dstMod = initCmd.Flags().StringP("mod", "m", "", "go module name")
+	initCmd.Flags().StringVarP(&initFlag.Mod, "mod", "m", "", "go module name")
 	_ = initCmd.MarkFlagRequired("mod")
-	initProjectDir = initCmd.Flags().StringP("dir", "d", "", "project directory, default is current directory")
+	initCmd.Flags().StringVarP(&initFlag.Dir, "dir", "d", "", "project directory, default is current directory")
 }
 
 func initRun(_ *cobra.Command, _ []string) error {
-	srcMod := "github.com/soyacen/grocer/internal/layout"
-	srcModVers := srcMod + "@latest"
-	srcMod, _, _ = strings.Cut(srcMod, "@")
-	if err := module.CheckPath(srcMod); err != nil {
-		return errors.Wrap(err, "invalid source module name")
+	srcMod, srcModVers, err := getSrcModInfo()
+	if err != nil {
+		return err
+	}
+	info, err := getGoModInfo(srcMod, srcModVers)
+	if err != nil {
+		return err
 	}
 
-	if err := module.CheckPath(*dstMod); err != nil {
+	if err := module.CheckPath(initFlag.Mod); err != nil {
 		return errors.Wrap(err, "invalid destination module name")
 	}
 
-	if *initProjectDir == "" {
-		absDir, err := filepath.Abs("." + string(filepath.Separator) + path.Base(*dstMod))
-		if err != nil {
-			return errors.Wrap(err, "failed to get absolute path for target directory")
-		}
-		*initProjectDir = absDir
-	} else {
-		absDir, err := filepath.Abs(*initProjectDir)
-		if err != nil {
-			return errors.Wrap(err, "failed to get absolute path for target directory")
-		}
-		*initProjectDir = absDir
+	dir, err := getProjectDir(initFlag.Dir, initFlag.Mod)
+	if err != nil {
+		return err
 	}
 
-	fmt.Println("dstMod: ", *dstMod)
-
-	fmt.Println("dir: ", *initProjectDir)
-
 	// Dir must not exist or must be an empty directory.
-	de, err := os.ReadDir(*initProjectDir)
+	de, err := os.ReadDir(dir)
 	if err == nil && len(de) > 0 {
 		return errors.Wrap(err, "target directory exists and is non-empty")
 	}
-	needMkdir := err != nil
-
-	var stdout, stderr bytes.Buffer
-	cmd := exec.Command("go", "mod", "download", "-json", srcModVers)
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-	if err := cmd.Run(); err != nil {
-		return errors.Errorf("go mod download -json %s: %v\n%s%s", srcModVers, err, stderr.Bytes(), stdout.Bytes())
-	}
-
-	var info struct {
-		Dir string
-	}
-	if err := json.Unmarshal(stdout.Bytes(), &info); err != nil {
-		return errors.Errorf("go mod download -json %s: invalid JSON output: %v\n%s%s", srcMod, err, stderr.Bytes(), stdout.Bytes())
-	}
-
-	if needMkdir {
-		if err := os.MkdirAll(*initProjectDir, 0o777); err != nil {
-			return errors.Wrap(err, "failed to mkdir "+*initProjectDir)
+	if err != nil {
+		// need make directory
+		if err := os.MkdirAll(dir, 0o777); err != nil {
+			return errors.Wrap(err, "failed to mkdir "+dir)
 		}
 	}
 
@@ -107,7 +80,7 @@ func initRun(_ *cobra.Command, _ []string) error {
 		if err != nil {
 			return errors.WithStack(err)
 		}
-		fmt.Println("rel---->", rel)
+
 		prefixs := []string{
 			"api/grpc", "api/http",
 			"cmd/grpc", "cmd/http", "cmd/job", "cmd/cronjob",
@@ -120,7 +93,7 @@ func initRun(_ *cobra.Command, _ []string) error {
 			}
 		}
 
-		dst := filepath.Join(*initProjectDir, rel)
+		dst := filepath.Join(dir, rel)
 		if d.IsDir() {
 			if err := os.MkdirAll(dst, 0o777); err != nil {
 				return errors.WithStack(err)
@@ -135,15 +108,15 @@ func initRun(_ *cobra.Command, _ []string) error {
 
 		switch rel {
 		case "cmd/root.go":
-			data = fixCmdRootGo(data, *initProjectDir)
+			data = fixCmdRootGo(data, dir)
 		case "go.mod":
-			data = fixGoMod(data, *dstMod)
+			data = fixGoMod(data, initFlag.Mod)
 		case "Makefile":
-			data = fixMakefile(data, *initProjectDir)
+			data = fixMakefile(data, dir)
 		}
 		isRoot := !strings.Contains(rel, string(filepath.Separator))
 		if strings.HasSuffix(rel, ".go") {
-			data = fixGo(data, rel, srcMod, *dstMod, isRoot)
+			data = fixGo(data, rel, srcMod, initFlag.Mod, isRoot)
 		}
 		if err := os.WriteFile(dst, data, 0o666); err != nil {
 			return errors.WithStack(err)
@@ -153,7 +126,7 @@ func initRun(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	log.Printf("initialized %s in %s", *dstMod, *initProjectDir)
+	log.Printf("initialized %s in %s", initFlag.Mod, dir)
 	return nil
 }
 
@@ -251,21 +224,11 @@ func fixGo(data []byte, file string, srcMod, dstMod string, isRoot bool) []byte 
 		}
 		if path == srcMod {
 			if srcName != dstName && spec.Name == nil {
-				// Add package rename because source code uses original name.
-				// The renaming looks strange, but template authors are unlikely to
-				// create a template where the root package is imported by packages
-				// in subdirectories, and the renaming at least keeps the code working.
-				// A more sophisticated approach would be to rename the uses of
-				// the package identifier in the file too, but then you have to worry about
-				// name collisions, and given how unlikely this is, it doesn't seem worth
-				// trying to clean up the file that way.
 				buf.Insert(at(spec.Path.Pos()), srcName+" ")
 			}
-			// Change import path to dstMod
 			buf.Replace(at(spec.Path.Pos()), at(spec.Path.End()), strconv.Quote(dstMod))
 		}
 		if strings.HasPrefix(path, srcMod+"/") {
-			// Change import path to begin with dstMod
 			buf.Replace(at(spec.Path.Pos()), at(spec.Path.End()), strconv.Quote(strings.Replace(path, srcMod, dstMod, 1)))
 		}
 	}
