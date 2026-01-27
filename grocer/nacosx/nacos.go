@@ -1,6 +1,8 @@
 package nacosx
 
 import (
+	"time"
+
 	"github.com/cockroachdb/errors"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
@@ -29,7 +31,7 @@ func (options *Options) AsNacosClientParam() vo.NacosClientParam {
 	clientConfig := constant.NewClientConfig()
 	// 设置客户端配置
 	if options.GetTimeoutMs() != nil {
-		clientConfig.TimeoutMs = options.GetTimeoutMs().GetValue()
+		clientConfig.TimeoutMs = uint64(options.GetTimeoutMs().AsDuration() / time.Millisecond)
 	}
 	if options.GetBeatInterval() != nil {
 		clientConfig.BeatInterval = options.GetBeatInterval().GetValue()
