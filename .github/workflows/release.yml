@@ -1,4 +1,4 @@
-name: Before Tag Version Update
+name: Release
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25.5'
+          go-version: '1.25.6'
           
       - name: Validate and use input version
         id: get_version
@@ -61,3 +61,20 @@ jobs:
           echo "git push origin $VERSION"
           echo ""
           echo "After pushing the tag, the release workflow will automatically run."
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          
+      - name: Output completion message
+        run: |
+          echo "Version updated to ${{ env.VERSION }}"
+          echo "Tag ${{ env.VERSION }} has been created and pushed automatically"
+          echo "Release workflow will run automatically after pushing the tag."
