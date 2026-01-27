@@ -384,40 +384,40 @@ var File_pkg_jeagerx_config_proto protoreflect.FileDescriptor
 
 const file_pkg_jeagerx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x18pkg/jeagerx/config.proto\x12\x12grocer.pkg.jeagerx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\xd3\x01\n" +
+	"\x18pkg/jeagerx/config.proto\x12\x0egrocer.jeagerx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\xcb\x01\n" +
 	"\x06Config\x12A\n" +
-	"\rsampling_rate\x18\x01 \x01(\v2\x1c.google.protobuf.DoubleValueR\fsamplingRate\x12B\n" +
-	"\fgrpc_options\x18\x02 \x01(\v2\x1f.grocer.pkg.jeagerx.GRPCOptionsR\vgrpcOptions\x12B\n" +
-	"\fhttp_options\x18\x03 \x01(\v2\x1f.grocer.pkg.jeagerx.HTTPOptionsR\vhttpOptions\"\xc0\x05\n" +
+	"\rsampling_rate\x18\x01 \x01(\v2\x1c.google.protobuf.DoubleValueR\fsamplingRate\x12>\n" +
+	"\fgrpc_options\x18\x02 \x01(\v2\x1b.grocer.jeagerx.GRPCOptionsR\vgrpcOptions\x12>\n" +
+	"\fhttp_options\x18\x03 \x01(\v2\x1b.grocer.jeagerx.HTTPOptionsR\vhttpOptions\"\xb4\x05\n" +
 	"\vGRPCOptions\x128\n" +
 	"\bendpoint\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\bendpoint\x12?\n" +
 	"\fendpoint_url\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\vendpointUrl\x126\n" +
-	"\binsecure\x18\x03 \x01(\v2\x1a.google.protobuf.BoolValueR\binsecure\x12F\n" +
-	"\aheaders\x18\x04 \x03(\v2,.grocer.pkg.jeagerx.GRPCOptions.HeadersEntryR\aheaders\x12<\n" +
+	"\binsecure\x18\x03 \x01(\v2\x1a.google.protobuf.BoolValueR\binsecure\x12B\n" +
+	"\aheaders\x18\x04 \x03(\v2(.grocer.jeagerx.GRPCOptions.HeadersEntryR\aheaders\x12<\n" +
 	"\n" +
 	"compressor\x18\x05 \x01(\v2\x1c.google.protobuf.StringValueR\n" +
 	"compressor\x12J\n" +
 	"\x13reconnection_period\x18\x06 \x01(\v2\x19.google.protobuf.DurationR\x12reconnectionPeriod\x123\n" +
 	"\atimeout\x18\a \x01(\v2\x19.google.protobuf.DurationR\atimeout\x12C\n" +
-	"\x0eservice_config\x18\b \x01(\v2\x1c.google.protobuf.StringValueR\rserviceConfig\x12?\n" +
+	"\x0eservice_config\x18\b \x01(\v2\x1c.google.protobuf.StringValueR\rserviceConfig\x12;\n" +
 	"\n" +
-	"tls_config\x18\t \x01(\v2 .grocer.pkg.protobufx.TLSOptionsR\ttlsConfig\x125\n" +
+	"tls_config\x18\t \x01(\v2\x1c.grocer.protobufx.TLSOptionsR\ttlsConfig\x121\n" +
 	"\x05retry\x18\n" +
-	" \x01(\v2\x1f.grocer.pkg.jeagerx.RetryConfigR\x05retry\x1a:\n" +
+	" \x01(\v2\x1b.grocer.jeagerx.RetryConfigR\x05retry\x1a:\n" +
 	"\fHeadersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xe9\x04\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xdd\x04\n" +
 	"\vHTTPOptions\x128\n" +
 	"\bendpoint\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\bendpoint\x12?\n" +
 	"\fendpoint_url\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\vendpointUrl\x12=\n" +
 	"\vcompression\x18\x03 \x01(\v2\x1b.google.protobuf.Int32ValueR\vcompression\x127\n" +
-	"\burl_path\x18\x04 \x01(\v2\x1c.google.protobuf.StringValueR\aurlPath\x12?\n" +
+	"\burl_path\x18\x04 \x01(\v2\x1c.google.protobuf.StringValueR\aurlPath\x12;\n" +
 	"\n" +
-	"tls_config\x18\x05 \x01(\v2 .grocer.pkg.protobufx.TLSOptionsR\ttlsConfig\x126\n" +
-	"\binsecure\x18\x06 \x01(\v2\x1a.google.protobuf.BoolValueR\binsecure\x12F\n" +
-	"\aheaders\x18\a \x03(\v2,.grocer.pkg.jeagerx.HTTPOptions.HeadersEntryR\aheaders\x123\n" +
-	"\atimeout\x18\b \x01(\v2\x19.google.protobuf.DurationR\atimeout\x125\n" +
-	"\x05retry\x18\t \x01(\v2\x1f.grocer.pkg.jeagerx.RetryConfigR\x05retry\x1a:\n" +
+	"tls_config\x18\x05 \x01(\v2\x1c.grocer.protobufx.TLSOptionsR\ttlsConfig\x126\n" +
+	"\binsecure\x18\x06 \x01(\v2\x1a.google.protobuf.BoolValueR\binsecure\x12B\n" +
+	"\aheaders\x18\a \x03(\v2(.grocer.jeagerx.HTTPOptions.HeadersEntryR\aheaders\x123\n" +
+	"\atimeout\x18\b \x01(\v2\x19.google.protobuf.DurationR\atimeout\x121\n" +
+	"\x05retry\x18\t \x01(\v2\x1b.grocer.jeagerx.RetryConfigR\x05retry\x1a:\n" +
 	"\fHeadersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x8c\x02\n" +
@@ -441,46 +441,46 @@ func file_pkg_jeagerx_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_jeagerx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_pkg_jeagerx_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: grocer.pkg.jeagerx.Config
-	(*GRPCOptions)(nil),            // 1: grocer.pkg.jeagerx.GRPCOptions
-	(*HTTPOptions)(nil),            // 2: grocer.pkg.jeagerx.HTTPOptions
-	(*RetryConfig)(nil),            // 3: grocer.pkg.jeagerx.RetryConfig
-	nil,                            // 4: grocer.pkg.jeagerx.GRPCOptions.HeadersEntry
-	nil,                            // 5: grocer.pkg.jeagerx.HTTPOptions.HeadersEntry
+	(*Config)(nil),                 // 0: grocer.jeagerx.Config
+	(*GRPCOptions)(nil),            // 1: grocer.jeagerx.GRPCOptions
+	(*HTTPOptions)(nil),            // 2: grocer.jeagerx.HTTPOptions
+	(*RetryConfig)(nil),            // 3: grocer.jeagerx.RetryConfig
+	nil,                            // 4: grocer.jeagerx.GRPCOptions.HeadersEntry
+	nil,                            // 5: grocer.jeagerx.HTTPOptions.HeadersEntry
 	(*wrapperspb.DoubleValue)(nil), // 6: google.protobuf.DoubleValue
 	(*wrapperspb.StringValue)(nil), // 7: google.protobuf.StringValue
 	(*wrapperspb.BoolValue)(nil),   // 8: google.protobuf.BoolValue
 	(*durationpb.Duration)(nil),    // 9: google.protobuf.Duration
-	(*protobufx.TLSOptions)(nil),   // 10: grocer.pkg.protobufx.TLSOptions
+	(*protobufx.TLSOptions)(nil),   // 10: grocer.protobufx.TLSOptions
 	(*wrapperspb.Int32Value)(nil),  // 11: google.protobuf.Int32Value
 }
 var file_pkg_jeagerx_config_proto_depIdxs = []int32{
-	6,  // 0: grocer.pkg.jeagerx.Config.sampling_rate:type_name -> google.protobuf.DoubleValue
-	1,  // 1: grocer.pkg.jeagerx.Config.grpc_options:type_name -> grocer.pkg.jeagerx.GRPCOptions
-	2,  // 2: grocer.pkg.jeagerx.Config.http_options:type_name -> grocer.pkg.jeagerx.HTTPOptions
-	7,  // 3: grocer.pkg.jeagerx.GRPCOptions.endpoint:type_name -> google.protobuf.StringValue
-	7,  // 4: grocer.pkg.jeagerx.GRPCOptions.endpoint_url:type_name -> google.protobuf.StringValue
-	8,  // 5: grocer.pkg.jeagerx.GRPCOptions.insecure:type_name -> google.protobuf.BoolValue
-	4,  // 6: grocer.pkg.jeagerx.GRPCOptions.headers:type_name -> grocer.pkg.jeagerx.GRPCOptions.HeadersEntry
-	7,  // 7: grocer.pkg.jeagerx.GRPCOptions.compressor:type_name -> google.protobuf.StringValue
-	9,  // 8: grocer.pkg.jeagerx.GRPCOptions.reconnection_period:type_name -> google.protobuf.Duration
-	9,  // 9: grocer.pkg.jeagerx.GRPCOptions.timeout:type_name -> google.protobuf.Duration
-	7,  // 10: grocer.pkg.jeagerx.GRPCOptions.service_config:type_name -> google.protobuf.StringValue
-	10, // 11: grocer.pkg.jeagerx.GRPCOptions.tls_config:type_name -> grocer.pkg.protobufx.TLSOptions
-	3,  // 12: grocer.pkg.jeagerx.GRPCOptions.retry:type_name -> grocer.pkg.jeagerx.RetryConfig
-	7,  // 13: grocer.pkg.jeagerx.HTTPOptions.endpoint:type_name -> google.protobuf.StringValue
-	7,  // 14: grocer.pkg.jeagerx.HTTPOptions.endpoint_url:type_name -> google.protobuf.StringValue
-	11, // 15: grocer.pkg.jeagerx.HTTPOptions.compression:type_name -> google.protobuf.Int32Value
-	7,  // 16: grocer.pkg.jeagerx.HTTPOptions.url_path:type_name -> google.protobuf.StringValue
-	10, // 17: grocer.pkg.jeagerx.HTTPOptions.tls_config:type_name -> grocer.pkg.protobufx.TLSOptions
-	8,  // 18: grocer.pkg.jeagerx.HTTPOptions.insecure:type_name -> google.protobuf.BoolValue
-	5,  // 19: grocer.pkg.jeagerx.HTTPOptions.headers:type_name -> grocer.pkg.jeagerx.HTTPOptions.HeadersEntry
-	9,  // 20: grocer.pkg.jeagerx.HTTPOptions.timeout:type_name -> google.protobuf.Duration
-	3,  // 21: grocer.pkg.jeagerx.HTTPOptions.retry:type_name -> grocer.pkg.jeagerx.RetryConfig
-	8,  // 22: grocer.pkg.jeagerx.RetryConfig.enabled:type_name -> google.protobuf.BoolValue
-	9,  // 23: grocer.pkg.jeagerx.RetryConfig.initial_interval:type_name -> google.protobuf.Duration
-	9,  // 24: grocer.pkg.jeagerx.RetryConfig.max_interval:type_name -> google.protobuf.Duration
-	9,  // 25: grocer.pkg.jeagerx.RetryConfig.max_elapsed_time:type_name -> google.protobuf.Duration
+	6,  // 0: grocer.jeagerx.Config.sampling_rate:type_name -> google.protobuf.DoubleValue
+	1,  // 1: grocer.jeagerx.Config.grpc_options:type_name -> grocer.jeagerx.GRPCOptions
+	2,  // 2: grocer.jeagerx.Config.http_options:type_name -> grocer.jeagerx.HTTPOptions
+	7,  // 3: grocer.jeagerx.GRPCOptions.endpoint:type_name -> google.protobuf.StringValue
+	7,  // 4: grocer.jeagerx.GRPCOptions.endpoint_url:type_name -> google.protobuf.StringValue
+	8,  // 5: grocer.jeagerx.GRPCOptions.insecure:type_name -> google.protobuf.BoolValue
+	4,  // 6: grocer.jeagerx.GRPCOptions.headers:type_name -> grocer.jeagerx.GRPCOptions.HeadersEntry
+	7,  // 7: grocer.jeagerx.GRPCOptions.compressor:type_name -> google.protobuf.StringValue
+	9,  // 8: grocer.jeagerx.GRPCOptions.reconnection_period:type_name -> google.protobuf.Duration
+	9,  // 9: grocer.jeagerx.GRPCOptions.timeout:type_name -> google.protobuf.Duration
+	7,  // 10: grocer.jeagerx.GRPCOptions.service_config:type_name -> google.protobuf.StringValue
+	10, // 11: grocer.jeagerx.GRPCOptions.tls_config:type_name -> grocer.protobufx.TLSOptions
+	3,  // 12: grocer.jeagerx.GRPCOptions.retry:type_name -> grocer.jeagerx.RetryConfig
+	7,  // 13: grocer.jeagerx.HTTPOptions.endpoint:type_name -> google.protobuf.StringValue
+	7,  // 14: grocer.jeagerx.HTTPOptions.endpoint_url:type_name -> google.protobuf.StringValue
+	11, // 15: grocer.jeagerx.HTTPOptions.compression:type_name -> google.protobuf.Int32Value
+	7,  // 16: grocer.jeagerx.HTTPOptions.url_path:type_name -> google.protobuf.StringValue
+	10, // 17: grocer.jeagerx.HTTPOptions.tls_config:type_name -> grocer.protobufx.TLSOptions
+	8,  // 18: grocer.jeagerx.HTTPOptions.insecure:type_name -> google.protobuf.BoolValue
+	5,  // 19: grocer.jeagerx.HTTPOptions.headers:type_name -> grocer.jeagerx.HTTPOptions.HeadersEntry
+	9,  // 20: grocer.jeagerx.HTTPOptions.timeout:type_name -> google.protobuf.Duration
+	3,  // 21: grocer.jeagerx.HTTPOptions.retry:type_name -> grocer.jeagerx.RetryConfig
+	8,  // 22: grocer.jeagerx.RetryConfig.enabled:type_name -> google.protobuf.BoolValue
+	9,  // 23: grocer.jeagerx.RetryConfig.initial_interval:type_name -> google.protobuf.Duration
+	9,  // 24: grocer.jeagerx.RetryConfig.max_interval:type_name -> google.protobuf.Duration
+	9,  // 25: grocer.jeagerx.RetryConfig.max_elapsed_time:type_name -> google.protobuf.Duration
 	26, // [26:26] is the sub-list for method output_type
 	26, // [26:26] is the sub-list for method input_type
 	26, // [26:26] is the sub-list for extension type_name

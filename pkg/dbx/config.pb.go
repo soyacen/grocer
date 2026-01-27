@@ -163,12 +163,13 @@ var File_pkg_dbx_config_proto protoreflect.FileDescriptor
 
 const file_pkg_dbx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x14pkg/dbx/config.proto\x12\x0egrocer.pkg.dbx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x9c\x01\n" +
-	"\x06Config\x12=\n" +
-	"\aconfigs\x18\x01 \x03(\v2#.grocer.pkg.dbx.Config.ConfigsEntryR\aconfigs\x1aS\n" +
+	"\x14pkg/dbx/config.proto\x12\n" +
+	"grocer.dbx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x94\x01\n" +
+	"\x06Config\x129\n" +
+	"\aconfigs\x18\x01 \x03(\v2\x1f.grocer.dbx.Config.ConfigsEntryR\aconfigs\x1aO\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.grocer.pkg.dbx.OptionsR\x05value:\x028\x01\"\xcb\x03\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12)\n" +
+	"\x05value\x18\x02 \x01(\v2\x13.grocer.dbx.OptionsR\x05value:\x028\x01\"\xcb\x03\n" +
 	"\aOptions\x12=\n" +
 	"\vdriver_name\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\n" +
 	"driverName\x12.\n" +
@@ -193,23 +194,23 @@ func file_pkg_dbx_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_dbx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_pkg_dbx_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: grocer.pkg.dbx.Config
-	(*Options)(nil),                // 1: grocer.pkg.dbx.Options
-	nil,                            // 2: grocer.pkg.dbx.Config.ConfigsEntry
+	(*Config)(nil),                 // 0: grocer.dbx.Config
+	(*Options)(nil),                // 1: grocer.dbx.Options
+	nil,                            // 2: grocer.dbx.Config.ConfigsEntry
 	(*wrapperspb.StringValue)(nil), // 3: google.protobuf.StringValue
 	(*durationpb.Duration)(nil),    // 4: google.protobuf.Duration
 	(*wrapperspb.Int32Value)(nil),  // 5: google.protobuf.Int32Value
 }
 var file_pkg_dbx_config_proto_depIdxs = []int32{
-	2, // 0: grocer.pkg.dbx.Config.configs:type_name -> grocer.pkg.dbx.Config.ConfigsEntry
-	3, // 1: grocer.pkg.dbx.Options.driver_name:type_name -> google.protobuf.StringValue
-	3, // 2: grocer.pkg.dbx.Options.dsn:type_name -> google.protobuf.StringValue
-	4, // 3: grocer.pkg.dbx.Options.ping_timeout:type_name -> google.protobuf.Duration
-	5, // 4: grocer.pkg.dbx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
-	5, // 5: grocer.pkg.dbx.Options.max_open_conns:type_name -> google.protobuf.Int32Value
-	4, // 6: grocer.pkg.dbx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
-	4, // 7: grocer.pkg.dbx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
-	1, // 8: grocer.pkg.dbx.Config.ConfigsEntry.value:type_name -> grocer.pkg.dbx.Options
+	2, // 0: grocer.dbx.Config.configs:type_name -> grocer.dbx.Config.ConfigsEntry
+	3, // 1: grocer.dbx.Options.driver_name:type_name -> google.protobuf.StringValue
+	3, // 2: grocer.dbx.Options.dsn:type_name -> google.protobuf.StringValue
+	4, // 3: grocer.dbx.Options.ping_timeout:type_name -> google.protobuf.Duration
+	5, // 4: grocer.dbx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
+	5, // 5: grocer.dbx.Options.max_open_conns:type_name -> google.protobuf.Int32Value
+	4, // 6: grocer.dbx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
+	4, // 7: grocer.dbx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
+	1, // 8: grocer.dbx.Config.ConfigsEntry.value:type_name -> grocer.dbx.Options
 	9, // [9:9] is the sub-list for method output_type
 	9, // [9:9] is the sub-list for method input_type
 	9, // [9:9] is the sub-list for extension type_name

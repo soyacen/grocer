@@ -12,7 +12,7 @@ PROJECT_ROOT_DIR="$(dirname "${SCRIPT_DIR}")"
 
 # 定义源目录和目标目录
 SRC_DIR="${PROJECT_ROOT_DIR}/pkg"
-DST_DIR="${PROJECT_ROOT_DIR}/internal/layout/third_party/pkg"
+DST_DIR="${PROJECT_ROOT_DIR}/internal/layout/third_party/grocer"
 
 # 创建目标目录
 mkdir -p "${DST_DIR}"

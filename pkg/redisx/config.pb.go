@@ -616,12 +616,12 @@ var File_pkg_redisx_config_proto protoreflect.FileDescriptor
 
 const file_pkg_redisx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x17pkg/redisx/config.proto\x12\x11grocer.pkg.redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\xa2\x01\n" +
-	"\x06Config\x12@\n" +
-	"\aconfigs\x18\x01 \x03(\v2&.grocer.pkg.redisx.Config.ConfigsEntryR\aconfigs\x1aV\n" +
+	"\x17pkg/redisx/config.proto\x12\rgrocer.redisx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\x9a\x01\n" +
+	"\x06Config\x12<\n" +
+	"\aconfigs\x18\x01 \x03(\v2\".grocer.redisx.Config.ConfigsEntryR\aconfigs\x1aR\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
-	"\x05value\x18\x02 \x01(\v2\x1a.grocer.pkg.redisx.OptionsR\x05value:\x028\x01\"\x8a\x17\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12,\n" +
+	"\x05value\x18\x02 \x01(\v2\x16.grocer.redisx.OptionsR\x05value:\x028\x01\"\xfa\x16\n" +
 	"\aOptions\x12\x14\n" +
 	"\x05addrs\x18\x01 \x03(\tR\x05addrs\x12=\n" +
 	"\vclient_name\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\n" +
@@ -650,17 +650,17 @@ const file_pkg_redisx_config_proto_rawDesc = "" +
 	"\x12conn_max_idle_time\x18\x16 \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxIdleTime\x12E\n" +
 	"\x11conn_max_lifetime\x18\x17 \x01(\v2\x19.google.protobuf.DurationR\x0fconnMaxLifetime\x12E\n" +
 	"\x10read_buffer_size\x18\x18 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0ereadBufferSize\x12G\n" +
-	"\x11write_buffer_size\x18\x19 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fwriteBufferSize\x12?\n" +
+	"\x11write_buffer_size\x18\x19 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fwriteBufferSize\x12;\n" +
 	"\n" +
-	"tls_config\x18\x1a \x01(\v2 .grocer.pkg.protobufx.TLSOptionsR\ttlsConfig\x12R\n" +
-	"\x0fcluster_options\x18\x1b \x01(\v2).grocer.pkg.redisx.Options.ClusterOptionsR\x0eclusterOptions\x12U\n" +
-	"\x10failover_options\x18\x1c \x01(\v2*.grocer.pkg.redisx.Options.FailOverOptionsR\x0ffailoverOptions\x12E\n" +
+	"tls_config\x18\x1a \x01(\v2\x1c.grocer.protobufx.TLSOptionsR\ttlsConfig\x12N\n" +
+	"\x0fcluster_options\x18\x1b \x01(\v2%.grocer.redisx.Options.ClusterOptionsR\x0eclusterOptions\x12Q\n" +
+	"\x10failover_options\x18\x1c \x01(\v2&.grocer.redisx.Options.FailOverOptionsR\x0ffailoverOptions\x12E\n" +
 	"\x10disable_identity\x18\x1d \x01(\v2\x1a.google.protobuf.BoolValueR\x0fdisableIdentity\x12E\n" +
 	"\x0fidentity_suffix\x18\x1e \x01(\v2\x1c.google.protobuf.StringValueR\x0eidentitySuffix\x12S\n" +
 	"\x17failing_timeout_seconds\x18\x1f \x01(\v2\x1b.google.protobuf.Int32ValueR\x15failingTimeoutSeconds\x12A\n" +
 	"\x0eunstable_resp3\x18  \x01(\v2\x1a.google.protobuf.BoolValueR\runstableResp3\x12B\n" +
-	"\x0fis_cluster_mode\x18! \x01(\v2\x1a.google.protobuf.BoolValueR\risClusterMode\x12q\n" +
-	"\x1amaint_notifications_config\x18\" \x01(\v23.grocer.pkg.redisx.Options.MaintNotificationsConfigR\x18maintNotificationsConfig\x12A\n" +
+	"\x0fis_cluster_mode\x18! \x01(\v2\x1a.google.protobuf.BoolValueR\risClusterMode\x12m\n" +
+	"\x1amaint_notifications_config\x18\" \x01(\v2/.grocer.redisx.Options.MaintNotificationsConfigR\x18maintNotificationsConfig\x12A\n" +
 	"\x0eenable_tracing\x18# \x01(\v2\x1a.google.protobuf.BoolValueR\renableTracing\x12A\n" +
 	"\x0eenable_metrics\x18$ \x01(\v2\x1a.google.protobuf.BoolValueR\renableMetrics\x1a\x94\x02\n" +
 	"\x0eClusterOptions\x12@\n" +
@@ -689,63 +689,63 @@ func file_pkg_redisx_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_redisx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_pkg_redisx_config_proto_goTypes = []any{
-	(*Config)(nil),                           // 0: grocer.pkg.redisx.Config
-	(*Options)(nil),                          // 1: grocer.pkg.redisx.Options
-	nil,                                      // 2: grocer.pkg.redisx.Config.ConfigsEntry
-	(*Options_ClusterOptions)(nil),           // 3: grocer.pkg.redisx.Options.ClusterOptions
-	(*Options_FailOverOptions)(nil),          // 4: grocer.pkg.redisx.Options.FailOverOptions
-	(*Options_MaintNotificationsConfig)(nil), // 5: grocer.pkg.redisx.Options.MaintNotificationsConfig
+	(*Config)(nil),                           // 0: grocer.redisx.Config
+	(*Options)(nil),                          // 1: grocer.redisx.Options
+	nil,                                      // 2: grocer.redisx.Config.ConfigsEntry
+	(*Options_ClusterOptions)(nil),           // 3: grocer.redisx.Options.ClusterOptions
+	(*Options_FailOverOptions)(nil),          // 4: grocer.redisx.Options.FailOverOptions
+	(*Options_MaintNotificationsConfig)(nil), // 5: grocer.redisx.Options.MaintNotificationsConfig
 	(*wrapperspb.StringValue)(nil),           // 6: google.protobuf.StringValue
 	(*wrapperspb.Int32Value)(nil),            // 7: google.protobuf.Int32Value
 	(*durationpb.Duration)(nil),              // 8: google.protobuf.Duration
 	(*wrapperspb.BoolValue)(nil),             // 9: google.protobuf.BoolValue
-	(*protobufx.TLSOptions)(nil),             // 10: grocer.pkg.protobufx.TLSOptions
+	(*protobufx.TLSOptions)(nil),             // 10: grocer.protobufx.TLSOptions
 }
 var file_pkg_redisx_config_proto_depIdxs = []int32{
-	2,  // 0: grocer.pkg.redisx.Config.configs:type_name -> grocer.pkg.redisx.Config.ConfigsEntry
-	6,  // 1: grocer.pkg.redisx.Options.client_name:type_name -> google.protobuf.StringValue
-	7,  // 2: grocer.pkg.redisx.Options.db:type_name -> google.protobuf.Int32Value
-	7,  // 3: grocer.pkg.redisx.Options.protocol:type_name -> google.protobuf.Int32Value
-	6,  // 4: grocer.pkg.redisx.Options.username:type_name -> google.protobuf.StringValue
-	6,  // 5: grocer.pkg.redisx.Options.password:type_name -> google.protobuf.StringValue
-	6,  // 6: grocer.pkg.redisx.Options.sentinel_username:type_name -> google.protobuf.StringValue
-	6,  // 7: grocer.pkg.redisx.Options.sentinel_password:type_name -> google.protobuf.StringValue
-	7,  // 8: grocer.pkg.redisx.Options.max_retries:type_name -> google.protobuf.Int32Value
-	8,  // 9: grocer.pkg.redisx.Options.min_retry_backoff:type_name -> google.protobuf.Duration
-	8,  // 10: grocer.pkg.redisx.Options.max_retry_backoff:type_name -> google.protobuf.Duration
-	8,  // 11: grocer.pkg.redisx.Options.dial_timeout:type_name -> google.protobuf.Duration
-	8,  // 12: grocer.pkg.redisx.Options.read_timeout:type_name -> google.protobuf.Duration
-	8,  // 13: grocer.pkg.redisx.Options.write_timeout:type_name -> google.protobuf.Duration
-	9,  // 14: grocer.pkg.redisx.Options.context_timeout_enabled:type_name -> google.protobuf.BoolValue
-	9,  // 15: grocer.pkg.redisx.Options.pool_fifo:type_name -> google.protobuf.BoolValue
-	7,  // 16: grocer.pkg.redisx.Options.pool_size:type_name -> google.protobuf.Int32Value
-	8,  // 17: grocer.pkg.redisx.Options.pool_timeout:type_name -> google.protobuf.Duration
-	7,  // 18: grocer.pkg.redisx.Options.min_idle_conns:type_name -> google.protobuf.Int32Value
-	7,  // 19: grocer.pkg.redisx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
-	7,  // 20: grocer.pkg.redisx.Options.max_active_conns:type_name -> google.protobuf.Int32Value
-	8,  // 21: grocer.pkg.redisx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
-	8,  // 22: grocer.pkg.redisx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
-	7,  // 23: grocer.pkg.redisx.Options.read_buffer_size:type_name -> google.protobuf.Int32Value
-	7,  // 24: grocer.pkg.redisx.Options.write_buffer_size:type_name -> google.protobuf.Int32Value
-	10, // 25: grocer.pkg.redisx.Options.tls_config:type_name -> grocer.pkg.protobufx.TLSOptions
-	3,  // 26: grocer.pkg.redisx.Options.cluster_options:type_name -> grocer.pkg.redisx.Options.ClusterOptions
-	4,  // 27: grocer.pkg.redisx.Options.failover_options:type_name -> grocer.pkg.redisx.Options.FailOverOptions
-	9,  // 28: grocer.pkg.redisx.Options.disable_identity:type_name -> google.protobuf.BoolValue
-	6,  // 29: grocer.pkg.redisx.Options.identity_suffix:type_name -> google.protobuf.StringValue
-	7,  // 30: grocer.pkg.redisx.Options.failing_timeout_seconds:type_name -> google.protobuf.Int32Value
-	9,  // 31: grocer.pkg.redisx.Options.unstable_resp3:type_name -> google.protobuf.BoolValue
-	9,  // 32: grocer.pkg.redisx.Options.is_cluster_mode:type_name -> google.protobuf.BoolValue
-	5,  // 33: grocer.pkg.redisx.Options.maint_notifications_config:type_name -> grocer.pkg.redisx.Options.MaintNotificationsConfig
-	9,  // 34: grocer.pkg.redisx.Options.enable_tracing:type_name -> google.protobuf.BoolValue
-	9,  // 35: grocer.pkg.redisx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
-	1,  // 36: grocer.pkg.redisx.Config.ConfigsEntry.value:type_name -> grocer.pkg.redisx.Options
-	7,  // 37: grocer.pkg.redisx.Options.ClusterOptions.max_redirects:type_name -> google.protobuf.Int32Value
-	9,  // 38: grocer.pkg.redisx.Options.ClusterOptions.read_only:type_name -> google.protobuf.BoolValue
-	9,  // 39: grocer.pkg.redisx.Options.ClusterOptions.route_by_latency:type_name -> google.protobuf.BoolValue
-	9,  // 40: grocer.pkg.redisx.Options.ClusterOptions.route_randomly:type_name -> google.protobuf.BoolValue
-	6,  // 41: grocer.pkg.redisx.Options.FailOverOptions.master_name:type_name -> google.protobuf.StringValue
-	9,  // 42: grocer.pkg.redisx.Options.MaintNotificationsConfig.enabled:type_name -> google.protobuf.BoolValue
-	6,  // 43: grocer.pkg.redisx.Options.MaintNotificationsConfig.channel:type_name -> google.protobuf.StringValue
+	2,  // 0: grocer.redisx.Config.configs:type_name -> grocer.redisx.Config.ConfigsEntry
+	6,  // 1: grocer.redisx.Options.client_name:type_name -> google.protobuf.StringValue
+	7,  // 2: grocer.redisx.Options.db:type_name -> google.protobuf.Int32Value
+	7,  // 3: grocer.redisx.Options.protocol:type_name -> google.protobuf.Int32Value
+	6,  // 4: grocer.redisx.Options.username:type_name -> google.protobuf.StringValue
+	6,  // 5: grocer.redisx.Options.password:type_name -> google.protobuf.StringValue
+	6,  // 6: grocer.redisx.Options.sentinel_username:type_name -> google.protobuf.StringValue
+	6,  // 7: grocer.redisx.Options.sentinel_password:type_name -> google.protobuf.StringValue
+	7,  // 8: grocer.redisx.Options.max_retries:type_name -> google.protobuf.Int32Value
+	8,  // 9: grocer.redisx.Options.min_retry_backoff:type_name -> google.protobuf.Duration
+	8,  // 10: grocer.redisx.Options.max_retry_backoff:type_name -> google.protobuf.Duration
+	8,  // 11: grocer.redisx.Options.dial_timeout:type_name -> google.protobuf.Duration
+	8,  // 12: grocer.redisx.Options.read_timeout:type_name -> google.protobuf.Duration
+	8,  // 13: grocer.redisx.Options.write_timeout:type_name -> google.protobuf.Duration
+	9,  // 14: grocer.redisx.Options.context_timeout_enabled:type_name -> google.protobuf.BoolValue
+	9,  // 15: grocer.redisx.Options.pool_fifo:type_name -> google.protobuf.BoolValue
+	7,  // 16: grocer.redisx.Options.pool_size:type_name -> google.protobuf.Int32Value
+	8,  // 17: grocer.redisx.Options.pool_timeout:type_name -> google.protobuf.Duration
+	7,  // 18: grocer.redisx.Options.min_idle_conns:type_name -> google.protobuf.Int32Value
+	7,  // 19: grocer.redisx.Options.max_idle_conns:type_name -> google.protobuf.Int32Value
+	7,  // 20: grocer.redisx.Options.max_active_conns:type_name -> google.protobuf.Int32Value
+	8,  // 21: grocer.redisx.Options.conn_max_idle_time:type_name -> google.protobuf.Duration
+	8,  // 22: grocer.redisx.Options.conn_max_lifetime:type_name -> google.protobuf.Duration
+	7,  // 23: grocer.redisx.Options.read_buffer_size:type_name -> google.protobuf.Int32Value
+	7,  // 24: grocer.redisx.Options.write_buffer_size:type_name -> google.protobuf.Int32Value
+	10, // 25: grocer.redisx.Options.tls_config:type_name -> grocer.protobufx.TLSOptions
+	3,  // 26: grocer.redisx.Options.cluster_options:type_name -> grocer.redisx.Options.ClusterOptions
+	4,  // 27: grocer.redisx.Options.failover_options:type_name -> grocer.redisx.Options.FailOverOptions
+	9,  // 28: grocer.redisx.Options.disable_identity:type_name -> google.protobuf.BoolValue
+	6,  // 29: grocer.redisx.Options.identity_suffix:type_name -> google.protobuf.StringValue
+	7,  // 30: grocer.redisx.Options.failing_timeout_seconds:type_name -> google.protobuf.Int32Value
+	9,  // 31: grocer.redisx.Options.unstable_resp3:type_name -> google.protobuf.BoolValue
+	9,  // 32: grocer.redisx.Options.is_cluster_mode:type_name -> google.protobuf.BoolValue
+	5,  // 33: grocer.redisx.Options.maint_notifications_config:type_name -> grocer.redisx.Options.MaintNotificationsConfig
+	9,  // 34: grocer.redisx.Options.enable_tracing:type_name -> google.protobuf.BoolValue
+	9,  // 35: grocer.redisx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
+	1,  // 36: grocer.redisx.Config.ConfigsEntry.value:type_name -> grocer.redisx.Options
+	7,  // 37: grocer.redisx.Options.ClusterOptions.max_redirects:type_name -> google.protobuf.Int32Value
+	9,  // 38: grocer.redisx.Options.ClusterOptions.read_only:type_name -> google.protobuf.BoolValue
+	9,  // 39: grocer.redisx.Options.ClusterOptions.route_by_latency:type_name -> google.protobuf.BoolValue
+	9,  // 40: grocer.redisx.Options.ClusterOptions.route_randomly:type_name -> google.protobuf.BoolValue
+	6,  // 41: grocer.redisx.Options.FailOverOptions.master_name:type_name -> google.protobuf.StringValue
+	9,  // 42: grocer.redisx.Options.MaintNotificationsConfig.enabled:type_name -> google.protobuf.BoolValue
+	6,  // 43: grocer.redisx.Options.MaintNotificationsConfig.channel:type_name -> google.protobuf.StringValue
 	44, // [44:44] is the sub-list for method output_type
 	44, // [44:44] is the sub-list for method input_type
 	44, // [44:44] is the sub-list for extension type_name

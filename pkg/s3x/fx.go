@@ -1,10 +1,10 @@
-package redisx
+package s3x
 
 import (
 	"go.uber.org/fx"
 )
 
 var Module = fx.Module(
-	"mongox",
+	"s3x",
 	fx.Provide(NewClients),
 )

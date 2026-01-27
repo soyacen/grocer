@@ -1,4 +1,4 @@
-package redisx
+package nacosx
 
 import (
 	"go.uber.org/fx"
@@ -6,5 +6,5 @@ import (
 
 var Module = fx.Module(
 	"mongox",
-	fx.Provide(NewClients),
+	fx.Provide(NewConfigClients, NewNamingClients),
 )

@@ -298,12 +298,13 @@ var File_pkg_esx_config_proto protoreflect.FileDescriptor
 
 const file_pkg_esx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x14pkg/esx/config.proto\x12\x0egrocer.pkg.esx\x1a\x1egoogle/protobuf/wrappers.proto\"\x9c\x01\n" +
-	"\x06Config\x12=\n" +
-	"\aconfigs\x18\x01 \x03(\v2#.grocer.pkg.esx.Config.ConfigsEntryR\aconfigs\x1aS\n" +
+	"\x14pkg/esx/config.proto\x12\n" +
+	"grocer.esx\x1a\x1egoogle/protobuf/wrappers.proto\"\x94\x01\n" +
+	"\x06Config\x129\n" +
+	"\aconfigs\x18\x01 \x03(\v2\x1f.grocer.esx.Config.ConfigsEntryR\aconfigs\x1aO\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.grocer.pkg.esx.OptionsR\x05value:\x028\x01\"\x96\x0f\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12)\n" +
+	"\x05value\x18\x02 \x01(\v2\x13.grocer.esx.OptionsR\x05value:\x028\x01\"\x92\x0f\n" +
 	"\aOptions\x12\x1c\n" +
 	"\taddresses\x18\x01 \x03(\tR\taddresses\x12=\n" +
 	"\busername\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueH\x00R\busername\x88\x01\x01\x12=\n" +
@@ -311,8 +312,8 @@ const file_pkg_esx_config_proto_rawDesc = "" +
 	"\bcloud_id\x18\x04 \x01(\v2\x1c.google.protobuf.StringValueH\x02R\acloudId\x88\x01\x01\x12:\n" +
 	"\aapi_key\x18\x05 \x01(\v2\x1c.google.protobuf.StringValueH\x03R\x06apiKey\x88\x01\x01\x12F\n" +
 	"\rservice_token\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueH\x04R\fserviceToken\x88\x01\x01\x12Z\n" +
-	"\x17certificate_fingerprint\x18\a \x01(\v2\x1c.google.protobuf.StringValueH\x05R\x16certificateFingerprint\x88\x01\x01\x12;\n" +
-	"\x06header\x18\b \x03(\v2#.grocer.pkg.esx.Options.HeaderEntryR\x06header\x129\n" +
+	"\x17certificate_fingerprint\x18\a \x01(\v2\x1c.google.protobuf.StringValueH\x05R\x16certificateFingerprint\x88\x01\x01\x127\n" +
+	"\x06header\x18\b \x03(\v2\x1f.grocer.esx.Options.HeaderEntryR\x06header\x129\n" +
 	"\aca_cert\x18\t \x01(\v2\x1b.google.protobuf.BytesValueH\x06R\x06caCert\x88\x01\x01\x12&\n" +
 	"\x0fretry_on_status\x18\n" +
 	" \x03(\x05R\rretryOnStatus\x12D\n" +
@@ -367,10 +368,10 @@ func file_pkg_esx_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_esx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_pkg_esx_config_proto_goTypes = []any{
-	(*Config)(nil),                 // 0: grocer.pkg.esx.Config
-	(*Options)(nil),                // 1: grocer.pkg.esx.Options
-	nil,                            // 2: grocer.pkg.esx.Config.ConfigsEntry
-	nil,                            // 3: grocer.pkg.esx.Options.HeaderEntry
+	(*Config)(nil),                 // 0: grocer.esx.Config
+	(*Options)(nil),                // 1: grocer.esx.Options
+	nil,                            // 2: grocer.esx.Config.ConfigsEntry
+	nil,                            // 3: grocer.esx.Options.HeaderEntry
 	(*wrapperspb.StringValue)(nil), // 4: google.protobuf.StringValue
 	(*wrapperspb.BytesValue)(nil),  // 5: google.protobuf.BytesValue
 	(*wrapperspb.BoolValue)(nil),   // 6: google.protobuf.BoolValue
@@ -378,27 +379,27 @@ var file_pkg_esx_config_proto_goTypes = []any{
 	(*wrapperspb.Int64Value)(nil),  // 8: google.protobuf.Int64Value
 }
 var file_pkg_esx_config_proto_depIdxs = []int32{
-	2,  // 0: grocer.pkg.esx.Config.configs:type_name -> grocer.pkg.esx.Config.ConfigsEntry
-	4,  // 1: grocer.pkg.esx.Options.username:type_name -> google.protobuf.StringValue
-	4,  // 2: grocer.pkg.esx.Options.password:type_name -> google.protobuf.StringValue
-	4,  // 3: grocer.pkg.esx.Options.cloud_id:type_name -> google.protobuf.StringValue
-	4,  // 4: grocer.pkg.esx.Options.api_key:type_name -> google.protobuf.StringValue
-	4,  // 5: grocer.pkg.esx.Options.service_token:type_name -> google.protobuf.StringValue
-	4,  // 6: grocer.pkg.esx.Options.certificate_fingerprint:type_name -> google.protobuf.StringValue
-	3,  // 7: grocer.pkg.esx.Options.header:type_name -> grocer.pkg.esx.Options.HeaderEntry
-	5,  // 8: grocer.pkg.esx.Options.ca_cert:type_name -> google.protobuf.BytesValue
-	6,  // 9: grocer.pkg.esx.Options.disable_retry:type_name -> google.protobuf.BoolValue
-	7,  // 10: grocer.pkg.esx.Options.max_retries:type_name -> google.protobuf.Int32Value
-	6,  // 11: grocer.pkg.esx.Options.compress_request_body:type_name -> google.protobuf.BoolValue
-	7,  // 12: grocer.pkg.esx.Options.compress_request_body_level:type_name -> google.protobuf.Int32Value
-	6,  // 13: grocer.pkg.esx.Options.pool_compressor:type_name -> google.protobuf.BoolValue
-	6,  // 14: grocer.pkg.esx.Options.discover_nodes_on_start:type_name -> google.protobuf.BoolValue
-	8,  // 15: grocer.pkg.esx.Options.discover_nodes_interval:type_name -> google.protobuf.Int64Value
-	6,  // 16: grocer.pkg.esx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
-	6,  // 17: grocer.pkg.esx.Options.enable_debug_logger:type_name -> google.protobuf.BoolValue
-	6,  // 18: grocer.pkg.esx.Options.enable_compatibility_mode:type_name -> google.protobuf.BoolValue
-	6,  // 19: grocer.pkg.esx.Options.disable_meta_header:type_name -> google.protobuf.BoolValue
-	1,  // 20: grocer.pkg.esx.Config.ConfigsEntry.value:type_name -> grocer.pkg.esx.Options
+	2,  // 0: grocer.esx.Config.configs:type_name -> grocer.esx.Config.ConfigsEntry
+	4,  // 1: grocer.esx.Options.username:type_name -> google.protobuf.StringValue
+	4,  // 2: grocer.esx.Options.password:type_name -> google.protobuf.StringValue
+	4,  // 3: grocer.esx.Options.cloud_id:type_name -> google.protobuf.StringValue
+	4,  // 4: grocer.esx.Options.api_key:type_name -> google.protobuf.StringValue
+	4,  // 5: grocer.esx.Options.service_token:type_name -> google.protobuf.StringValue
+	4,  // 6: grocer.esx.Options.certificate_fingerprint:type_name -> google.protobuf.StringValue
+	3,  // 7: grocer.esx.Options.header:type_name -> grocer.esx.Options.HeaderEntry
+	5,  // 8: grocer.esx.Options.ca_cert:type_name -> google.protobuf.BytesValue
+	6,  // 9: grocer.esx.Options.disable_retry:type_name -> google.protobuf.BoolValue
+	7,  // 10: grocer.esx.Options.max_retries:type_name -> google.protobuf.Int32Value
+	6,  // 11: grocer.esx.Options.compress_request_body:type_name -> google.protobuf.BoolValue
+	7,  // 12: grocer.esx.Options.compress_request_body_level:type_name -> google.protobuf.Int32Value
+	6,  // 13: grocer.esx.Options.pool_compressor:type_name -> google.protobuf.BoolValue
+	6,  // 14: grocer.esx.Options.discover_nodes_on_start:type_name -> google.protobuf.BoolValue
+	8,  // 15: grocer.esx.Options.discover_nodes_interval:type_name -> google.protobuf.Int64Value
+	6,  // 16: grocer.esx.Options.enable_metrics:type_name -> google.protobuf.BoolValue
+	6,  // 17: grocer.esx.Options.enable_debug_logger:type_name -> google.protobuf.BoolValue
+	6,  // 18: grocer.esx.Options.enable_compatibility_mode:type_name -> google.protobuf.BoolValue
+	6,  // 19: grocer.esx.Options.disable_meta_header:type_name -> google.protobuf.BoolValue
+	1,  // 20: grocer.esx.Config.ConfigsEntry.value:type_name -> grocer.esx.Options
 	21, // [21:21] is the sub-list for method output_type
 	21, // [21:21] is the sub-list for method input_type
 	21, // [21:21] is the sub-list for extension type_name

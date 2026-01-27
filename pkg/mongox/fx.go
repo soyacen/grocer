@@ -1,4 +1,4 @@
-package redisx
+package mongox
 
 import (
 	"go.uber.org/fx"

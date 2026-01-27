@@ -108,11 +108,9 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 			data, err = fixCmdCronjobGo(data, dir)
 		case "deploy/cronjob.yaml":
 			data, err = fixDeployCronjobYaml(data, dir, dstMod)
-		case "internal/cronjob/wire.go":
+		case "internal/cronjob/fx.go":
 		case "internal/cronjob/service.go":
 		case "internal/cronjob/repo.go":
-		case "internal/cronjob/repo.go":
-
 			data, err = fixRepo(data, dir, dstMod)
 		}
 		if err != nil {

@@ -1,7 +1,7 @@
-# Makefile for s project
+# Makefile for grocer project
 
 # Project name variable - customize as needed
-PROJECT_NAME ?= $(shell echo $${PROJECT_NAME:-s})
+PROJECT_NAME ?= $(shell echo $${PROJECT_NAME:-grocer})
 
 # Image registry username variable - customize as needed
 IMAGE_REGISTRY_USERNAME ?= $(shell echo $${IMAGE_REGISTRY_USERNAME:-username})
@@ -10,10 +10,22 @@ IMAGE_REGISTRY_USERNAME ?= $(shell echo $${IMAGE_REGISTRY_USERNAME:-username})
 GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || echo "latest")
 VERSION ?= $(shell echo $${VERSION:-$(GIT_TAG)})
 
+# Build binary to bin directory
+build:
+	@echo "Building binary to bin directory..."
+	@mkdir -p bin
+	@go build -o bin/$(PROJECT_NAME) .
+
 # Run grpc script to compile all proto files in api directory and subdirectories
 grpc:
 	@echo "Compiling proto files using grpc.sh..."
 	@bash scripts/grpc.sh
+
+# Run grpc script to compile config proto files
+config:
+	@echo "Compiling config proto files..."
+	@bash scripts/config.sh
+
 
 # Run goose script to compile all proto files in api directory and subdirectories
 goose:
@@ -42,7 +54,9 @@ docker-push:
 
 help:
 	@echo "Available targets:"
+	@echo "  build                     - Build binary to bin directory"
 	@echo "  grpc                      - Compile proto files using grpc.sh script"
+	@echo "  config			           - Compile config proto files"
 	@echo "  goose                     - Compile proto files using goose.sh script"
 	@echo "  docker-build              - Build docker image with VERSION (default: latest git tag)"
 	@echo "  docker-push               - Push docker image with VERSION (default: latest git tag)"
@@ -52,4 +66,4 @@ help:
 # Define a target that builds and pushes the image
 docker-release: docker-build docker-push
 
-.PHONY: protoc help docker-build docker-push docker-release grpc goose
+.PHONY: build protoc help docker-build docker-push docker-release grpc config goose

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package grocer.config;
+option go_package = "github.com/soyacen/grocer/internal/layout/config;config";
+
+import "pkg/protobufx/dbx.proto";
+import "pkg/protobufx/redisx.proto";
+
+
+message Config {
+    grocer.pkg.redisx.Config redis = 1;
+    grocer.pkg.dbx.Config    db    = 2;
+}

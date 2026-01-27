@@ -499,12 +499,12 @@ var File_pkg_nacosx_config_proto protoreflect.FileDescriptor
 
 const file_pkg_nacosx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x17pkg/nacosx/config.proto\x12\x11grocer.pkg.nacosx\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\xa2\x01\n" +
-	"\x06Config\x12@\n" +
-	"\aconfigs\x18\x01 \x03(\v2&.grocer.pkg.nacosx.Config.ConfigsEntryR\aconfigs\x1aV\n" +
+	"\x17pkg/nacosx/config.proto\x12\rgrocer.nacosx\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17pkg/protobufx/tls.proto\"\x9a\x01\n" +
+	"\x06Config\x12<\n" +
+	"\aconfigs\x18\x01 \x03(\v2\".grocer.nacosx.Config.ConfigsEntryR\aconfigs\x1aR\n" +
 	"\fConfigsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
-	"\x05value\x18\x02 \x01(\v2\x1a.grocer.pkg.nacosx.OptionsR\x05value:\x028\x01\"\x90\x11\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12,\n" +
+	"\x05value\x18\x02 \x01(\v2\x16.grocer.nacosx.OptionsR\x05value:\x028\x01\"\x80\x11\n" +
 	"\aOptions\x124\n" +
 	"\x06scheme\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\x06scheme\x12?\n" +
 	"\fcontext_path\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\vcontextPath\x125\n" +
@@ -530,18 +530,18 @@ const file_pkg_nacosx_config_proto_rawDesc = "" +
 	"\x11update_thread_num\x18\x13 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fupdateThreadNum\x125\n" +
 	"\alog_dir\x18\x14 \x01(\v2\x1c.google.protobuf.StringValueR\x06logDir\x129\n" +
 	"\tlog_level\x18\x15 \x01(\v2\x1c.google.protobuf.StringValueR\blogLevel\x12D\n" +
-	"\x10append_to_stdout\x18\x16 \x01(\v2\x1a.google.protobuf.BoolValueR\x0eappendToStdout\x12M\n" +
-	"\flog_sampling\x18\x17 \x01(\v2*.grocer.pkg.nacosx.ClientLogSamplingConfigR\vlogSampling\x12W\n" +
-	"\x12log_rolling_config\x18\x18 \x01(\v2).grocer.pkg.nacosx.ClientLogRollingConfigR\x10logRollingConfig\x129\n" +
-	"\atls_cfg\x18\x19 \x01(\v2 .grocer.pkg.protobufx.TLSOptionsR\x06tlsCfg\x12L\n" +
+	"\x10append_to_stdout\x18\x16 \x01(\v2\x1a.google.protobuf.BoolValueR\x0eappendToStdout\x12I\n" +
+	"\flog_sampling\x18\x17 \x01(\v2&.grocer.nacosx.ClientLogSamplingConfigR\vlogSampling\x12S\n" +
+	"\x12log_rolling_config\x18\x18 \x01(\v2%.grocer.nacosx.ClientLogRollingConfigR\x10logRollingConfig\x125\n" +
+	"\atls_cfg\x18\x19 \x01(\v2\x1c.grocer.protobufx.TLSOptionsR\x06tlsCfg\x12L\n" +
 	"\x14async_update_service\x18\x1a \x01(\v2\x1a.google.protobuf.BoolValueR\x12asyncUpdateService\x12P\n" +
 	"\x15endpoint_context_path\x18\x1b \x01(\v2\x1c.google.protobuf.StringValueR\x13endpointContextPath\x12P\n" +
 	"\x15endpoint_query_params\x18\x1c \x01(\v2\x1c.google.protobuf.StringValueR\x13endpointQueryParams\x12?\n" +
 	"\fcluster_name\x18\x1d \x01(\v2\x1c.google.protobuf.StringValueR\vclusterName\x12;\n" +
 	"\n" +
 	"timeout_ms\x18\x1e \x01(\v2\x1c.google.protobuf.UInt64ValueR\ttimeoutMs\x12@\n" +
-	"\rbeat_interval\x18\x1f \x01(\v2\x1b.google.protobuf.Int64ValueR\fbeatInterval\x12U\n" +
-	"\x0fapp_conn_labels\x18  \x03(\v2-.grocer.pkg.nacosx.Options.AppConnLabelsEntryR\rappConnLabels\x1a@\n" +
+	"\rbeat_interval\x18\x1f \x01(\v2\x1b.google.protobuf.Int64ValueR\fbeatInterval\x12Q\n" +
+	"\x0fapp_conn_labels\x18  \x03(\v2).grocer.nacosx.Options.AppConnLabelsEntryR\rappConnLabels\x1a@\n" +
 	"\x12AppConnLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x8e\x01\n" +
@@ -573,62 +573,62 @@ func file_pkg_nacosx_config_proto_rawDescGZIP() []byte {
 
 var file_pkg_nacosx_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_pkg_nacosx_config_proto_goTypes = []any{
-	(*Config)(nil),                  // 0: grocer.pkg.nacosx.Config
-	(*Options)(nil),                 // 1: grocer.pkg.nacosx.Options
-	(*ClientLogSamplingConfig)(nil), // 2: grocer.pkg.nacosx.ClientLogSamplingConfig
-	(*ClientLogRollingConfig)(nil),  // 3: grocer.pkg.nacosx.ClientLogRollingConfig
-	nil,                             // 4: grocer.pkg.nacosx.Config.ConfigsEntry
-	nil,                             // 5: grocer.pkg.nacosx.Options.AppConnLabelsEntry
+	(*Config)(nil),                  // 0: grocer.nacosx.Config
+	(*Options)(nil),                 // 1: grocer.nacosx.Options
+	(*ClientLogSamplingConfig)(nil), // 2: grocer.nacosx.ClientLogSamplingConfig
+	(*ClientLogRollingConfig)(nil),  // 3: grocer.nacosx.ClientLogRollingConfig
+	nil,                             // 4: grocer.nacosx.Config.ConfigsEntry
+	nil,                             // 5: grocer.nacosx.Options.AppConnLabelsEntry
 	(*wrapperspb.StringValue)(nil),  // 6: google.protobuf.StringValue
 	(*wrapperspb.UInt64Value)(nil),  // 7: google.protobuf.UInt64Value
 	(*wrapperspb.BoolValue)(nil),    // 8: google.protobuf.BoolValue
 	(*wrapperspb.Int32Value)(nil),   // 9: google.protobuf.Int32Value
-	(*protobufx.TLSOptions)(nil),    // 10: grocer.pkg.protobufx.TLSOptions
+	(*protobufx.TLSOptions)(nil),    // 10: grocer.protobufx.TLSOptions
 	(*wrapperspb.Int64Value)(nil),   // 11: google.protobuf.Int64Value
 }
 var file_pkg_nacosx_config_proto_depIdxs = []int32{
-	4,  // 0: grocer.pkg.nacosx.Config.configs:type_name -> grocer.pkg.nacosx.Config.ConfigsEntry
-	6,  // 1: grocer.pkg.nacosx.Options.scheme:type_name -> google.protobuf.StringValue
-	6,  // 2: grocer.pkg.nacosx.Options.context_path:type_name -> google.protobuf.StringValue
-	6,  // 3: grocer.pkg.nacosx.Options.ip_addr:type_name -> google.protobuf.StringValue
-	7,  // 4: grocer.pkg.nacosx.Options.port:type_name -> google.protobuf.UInt64Value
-	7,  // 5: grocer.pkg.nacosx.Options.grpc_port:type_name -> google.protobuf.UInt64Value
-	6,  // 6: grocer.pkg.nacosx.Options.namespace:type_name -> google.protobuf.StringValue
-	6,  // 7: grocer.pkg.nacosx.Options.app_name:type_name -> google.protobuf.StringValue
-	6,  // 8: grocer.pkg.nacosx.Options.app_key:type_name -> google.protobuf.StringValue
-	6,  // 9: grocer.pkg.nacosx.Options.endpoint:type_name -> google.protobuf.StringValue
-	6,  // 10: grocer.pkg.nacosx.Options.region_id:type_name -> google.protobuf.StringValue
-	6,  // 11: grocer.pkg.nacosx.Options.access_key:type_name -> google.protobuf.StringValue
-	6,  // 12: grocer.pkg.nacosx.Options.secret_key:type_name -> google.protobuf.StringValue
-	6,  // 13: grocer.pkg.nacosx.Options.username:type_name -> google.protobuf.StringValue
-	6,  // 14: grocer.pkg.nacosx.Options.password:type_name -> google.protobuf.StringValue
-	6,  // 15: grocer.pkg.nacosx.Options.cache_dir:type_name -> google.protobuf.StringValue
-	8,  // 16: grocer.pkg.nacosx.Options.not_load_cache_at_start:type_name -> google.protobuf.BoolValue
-	8,  // 17: grocer.pkg.nacosx.Options.update_cache_when_empty:type_name -> google.protobuf.BoolValue
-	8,  // 18: grocer.pkg.nacosx.Options.disable_use_snapshot:type_name -> google.protobuf.BoolValue
-	9,  // 19: grocer.pkg.nacosx.Options.update_thread_num:type_name -> google.protobuf.Int32Value
-	6,  // 20: grocer.pkg.nacosx.Options.log_dir:type_name -> google.protobuf.StringValue
-	6,  // 21: grocer.pkg.nacosx.Options.log_level:type_name -> google.protobuf.StringValue
-	8,  // 22: grocer.pkg.nacosx.Options.append_to_stdout:type_name -> google.protobuf.BoolValue
-	2,  // 23: grocer.pkg.nacosx.Options.log_sampling:type_name -> grocer.pkg.nacosx.ClientLogSamplingConfig
-	3,  // 24: grocer.pkg.nacosx.Options.log_rolling_config:type_name -> grocer.pkg.nacosx.ClientLogRollingConfig
-	10, // 25: grocer.pkg.nacosx.Options.tls_cfg:type_name -> grocer.pkg.protobufx.TLSOptions
-	8,  // 26: grocer.pkg.nacosx.Options.async_update_service:type_name -> google.protobuf.BoolValue
-	6,  // 27: grocer.pkg.nacosx.Options.endpoint_context_path:type_name -> google.protobuf.StringValue
-	6,  // 28: grocer.pkg.nacosx.Options.endpoint_query_params:type_name -> google.protobuf.StringValue
-	6,  // 29: grocer.pkg.nacosx.Options.cluster_name:type_name -> google.protobuf.StringValue
-	7,  // 30: grocer.pkg.nacosx.Options.timeout_ms:type_name -> google.protobuf.UInt64Value
-	11, // 31: grocer.pkg.nacosx.Options.beat_interval:type_name -> google.protobuf.Int64Value
-	5,  // 32: grocer.pkg.nacosx.Options.app_conn_labels:type_name -> grocer.pkg.nacosx.Options.AppConnLabelsEntry
-	9,  // 33: grocer.pkg.nacosx.ClientLogSamplingConfig.initial:type_name -> google.protobuf.Int32Value
-	9,  // 34: grocer.pkg.nacosx.ClientLogSamplingConfig.there_after:type_name -> google.protobuf.Int32Value
-	6,  // 35: grocer.pkg.nacosx.ClientLogRollingConfig.filename:type_name -> google.protobuf.StringValue
-	9,  // 36: grocer.pkg.nacosx.ClientLogRollingConfig.max_size:type_name -> google.protobuf.Int32Value
-	9,  // 37: grocer.pkg.nacosx.ClientLogRollingConfig.max_age:type_name -> google.protobuf.Int32Value
-	9,  // 38: grocer.pkg.nacosx.ClientLogRollingConfig.max_backups:type_name -> google.protobuf.Int32Value
-	8,  // 39: grocer.pkg.nacosx.ClientLogRollingConfig.local_time:type_name -> google.protobuf.BoolValue
-	8,  // 40: grocer.pkg.nacosx.ClientLogRollingConfig.compress:type_name -> google.protobuf.BoolValue
-	1,  // 41: grocer.pkg.nacosx.Config.ConfigsEntry.value:type_name -> grocer.pkg.nacosx.Options
+	4,  // 0: grocer.nacosx.Config.configs:type_name -> grocer.nacosx.Config.ConfigsEntry
+	6,  // 1: grocer.nacosx.Options.scheme:type_name -> google.protobuf.StringValue
+	6,  // 2: grocer.nacosx.Options.context_path:type_name -> google.protobuf.StringValue
+	6,  // 3: grocer.nacosx.Options.ip_addr:type_name -> google.protobuf.StringValue
+	7,  // 4: grocer.nacosx.Options.port:type_name -> google.protobuf.UInt64Value
+	7,  // 5: grocer.nacosx.Options.grpc_port:type_name -> google.protobuf.UInt64Value
+	6,  // 6: grocer.nacosx.Options.namespace:type_name -> google.protobuf.StringValue
+	6,  // 7: grocer.nacosx.Options.app_name:type_name -> google.protobuf.StringValue
+	6,  // 8: grocer.nacosx.Options.app_key:type_name -> google.protobuf.StringValue
+	6,  // 9: grocer.nacosx.Options.endpoint:type_name -> google.protobuf.StringValue
+	6,  // 10: grocer.nacosx.Options.region_id:type_name -> google.protobuf.StringValue
+	6,  // 11: grocer.nacosx.Options.access_key:type_name -> google.protobuf.StringValue
+	6,  // 12: grocer.nacosx.Options.secret_key:type_name -> google.protobuf.StringValue
+	6,  // 13: grocer.nacosx.Options.username:type_name -> google.protobuf.StringValue
+	6,  // 14: grocer.nacosx.Options.password:type_name -> google.protobuf.StringValue
+	6,  // 15: grocer.nacosx.Options.cache_dir:type_name -> google.protobuf.StringValue
+	8,  // 16: grocer.nacosx.Options.not_load_cache_at_start:type_name -> google.protobuf.BoolValue
+	8,  // 17: grocer.nacosx.Options.update_cache_when_empty:type_name -> google.protobuf.BoolValue
+	8,  // 18: grocer.nacosx.Options.disable_use_snapshot:type_name -> google.protobuf.BoolValue
+	9,  // 19: grocer.nacosx.Options.update_thread_num:type_name -> google.protobuf.Int32Value
+	6,  // 20: grocer.nacosx.Options.log_dir:type_name -> google.protobuf.StringValue
+	6,  // 21: grocer.nacosx.Options.log_level:type_name -> google.protobuf.StringValue
+	8,  // 22: grocer.nacosx.Options.append_to_stdout:type_name -> google.protobuf.BoolValue
+	2,  // 23: grocer.nacosx.Options.log_sampling:type_name -> grocer.nacosx.ClientLogSamplingConfig
+	3,  // 24: grocer.nacosx.Options.log_rolling_config:type_name -> grocer.nacosx.ClientLogRollingConfig
+	10, // 25: grocer.nacosx.Options.tls_cfg:type_name -> grocer.protobufx.TLSOptions
+	8,  // 26: grocer.nacosx.Options.async_update_service:type_name -> google.protobuf.BoolValue
+	6,  // 27: grocer.nacosx.Options.endpoint_context_path:type_name -> google.protobuf.StringValue
+	6,  // 28: grocer.nacosx.Options.endpoint_query_params:type_name -> google.protobuf.StringValue
+	6,  // 29: grocer.nacosx.Options.cluster_name:type_name -> google.protobuf.StringValue
+	7,  // 30: grocer.nacosx.Options.timeout_ms:type_name -> google.protobuf.UInt64Value
+	11, // 31: grocer.nacosx.Options.beat_interval:type_name -> google.protobuf.Int64Value
+	5,  // 32: grocer.nacosx.Options.app_conn_labels:type_name -> grocer.nacosx.Options.AppConnLabelsEntry
+	9,  // 33: grocer.nacosx.ClientLogSamplingConfig.initial:type_name -> google.protobuf.Int32Value
+	9,  // 34: grocer.nacosx.ClientLogSamplingConfig.there_after:type_name -> google.protobuf.Int32Value
+	6,  // 35: grocer.nacosx.ClientLogRollingConfig.filename:type_name -> google.protobuf.StringValue
+	9,  // 36: grocer.nacosx.ClientLogRollingConfig.max_size:type_name -> google.protobuf.Int32Value
+	9,  // 37: grocer.nacosx.ClientLogRollingConfig.max_age:type_name -> google.protobuf.Int32Value
+	9,  // 38: grocer.nacosx.ClientLogRollingConfig.max_backups:type_name -> google.protobuf.Int32Value
+	8,  // 39: grocer.nacosx.ClientLogRollingConfig.local_time:type_name -> google.protobuf.BoolValue
+	8,  // 40: grocer.nacosx.ClientLogRollingConfig.compress:type_name -> google.protobuf.BoolValue
+	1,  // 41: grocer.nacosx.Config.ConfigsEntry.value:type_name -> grocer.nacosx.Options
 	42, // [42:42] is the sub-list for method output_type
 	42, // [42:42] is the sub-list for method input_type
 	42, // [42:42] is the sub-list for extension type_name
