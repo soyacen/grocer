@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT_DIR="$(dirname "${SCRIPT_DIR}")"
 
 # 定义源目录和目标目录
-SRC_DIR="${PROJECT_ROOT_DIR}/pkg"
+SRC_DIR="${PROJECT_ROOT_DIR}/grocer"
 DST_DIR="${PROJECT_ROOT_DIR}/internal/layout/third_party/grocer"
 
 # 创建目标目录
