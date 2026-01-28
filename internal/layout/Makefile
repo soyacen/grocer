@@ -57,30 +57,26 @@ docker-push:
 	docker push $(IMAGE_REGISTRY_USERNAME)/$(PROJECT_NAME):$(VERSION)
 	@echo "Successfully pushed image: $(IMAGE_REGISTRY_USERNAME)/$(PROJECT_NAME):$(VERSION)"
 
-# Run cronjob locally with required environment variables
-run-cronjob:
-	@echo "Running cronjob locally..."
+# Run services locally with required environment variables
+run-%:
+	@echo "Running $* service locally..."
 	NACOS_CONFIG_IP=$(NACOS_CONFIG_IP) \
 	NACOS_CONFIG_PORT=$(NACOS_CONFIG_PORT) \
 	NACOS_CONFIG_NAMESPACE=$(NACOS_CONFIG_NAMESPACE) \
 	NACOS_CONFIG_GROUP=$(NACOS_CONFIG_GROUP) \
 	NACOS_CONFIG_DATA_ID=$(NACOS_CONFIG_DATA_ID) \
-	go run main.go cronjob
+	go run main.go $*
 
-# Run job locally
-run-job:
-	@echo "Running job locally..."
-	go run main.go job
-
-# Run grpc service locally
-run-grpc:
-	@echo "Running grpc service locally..."
-	go run main.go grpc
-
-# Run http service locally
-run-http:
-	@echo "Running http service locally..."
-	go run main.go http
+# Run helm dry-run to test deployment
+helm-dry-run:
+	@echo "Running helm dry-run to test deployment..."
+	helm install grocer ./deploy \
+	  --values ./deploy/values/common.yaml \
+	  --values ./deploy/values/cronjob.yaml \
+	  --values ./deploy/values/job.yaml \
+	  --values ./deploy/values/grpc.yaml \
+	  --values ./deploy/values/http.yaml \
+	  --dry-run=client
 
 help:
 	@echo "Available targets:"
@@ -91,13 +87,14 @@ help:
 	@echo "  docker-build              - Build docker image with VERSION (default: latest git tag)"
 	@echo "  docker-push               - Push docker image with VERSION (default: latest git tag)"
 	@echo "  docker-release            - Build and push docker image (convenience target)"
-	@echo "  run-cronjob               - Run cronjob locally with env vars (set NACOS_CONFIG_*, NACOS_CONFIG_GROUP, NACOS_CONFIG_DATA_ID)"
-	@echo "  run-job                   - Run job locally"
-	@echo "  run-grpc                  - Run grpc service locally"
-	@echo "  run-http                  - Run http service locally"
+	@echo "  run-cronjob               - Run cronjob locally with env vars (set NACOS_CONFIG_*)"
+	@echo "  run-job                   - Run job locally with env vars (set NACOS_CONFIG_*)"
+	@echo "  run-grpc                  - Run grpc service locally with env vars (set NACOS_CONFIG_*)"
+	@echo "  run-http                  - Run http service locally with env vars (set NACOS_CONFIG_*)"
+	@echo "  helm-dry-run              - Run helm dry-run to test deployment"
 	@echo "  help                      - Show this help message"
 
 # Define a target that builds and pushes the image
 docker-release: docker-build docker-push
 
-.PHONY: build protoc help docker-build docker-push docker-release grpc config goose run-cronjob run-job run-grpc run-http
+.PHONY: build protoc help docker-build docker-push docker-release grpc config goose run-% helm-dry-run

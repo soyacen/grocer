@@ -1,0 +1,20 @@
+# CronJob configuration
+app:
+  cronjob: grocer-cronjob
+
+cronjob:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 300
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    backoffLimit: 4
+    ttlSecondsAfterFinished: 3600
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "50m"
+    limits:
+      memory: "128Mi"
+      cpu: "100m"

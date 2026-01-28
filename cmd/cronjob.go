@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"fmt"
+	"bytes"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -12,9 +12,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
-
-	batchv1 "k8s.io/api/batch/v1"
-	"sigs.k8s.io/yaml"
 
 	"github.com/cockroachdb/errors"
 	"github.com/soyacen/grocer/internal/edit"
@@ -81,7 +78,7 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 
 		prefixs := []string{
 			"cmd/cronjob",
-			"deploy/cronjob",
+			"deploy/values/cronjob",
 			"internal/cronjob",
 		}
 		for _, prefix := range prefixs {
@@ -106,12 +103,15 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		switch rel {
 		case "cmd/cronjob.go":
 			data, err = fixCmdCronjobGo(data, dir)
-		case "deploy/cronjob.yaml":
-			data, err = fixDeployCronjobYaml(data, dir, dstMod)
+		case "deploy/values/cronjob.yaml":
+			data = bytes.ReplaceAll(data, []byte("grocer-cronjob"), []byte(path.Base(dstMod)+"-"+cronjobFlag.Name))
 		case "internal/cronjob/fx.go":
-		case "internal/cronjob/service.go":
+			data, err = fixInternalCronjobFxGo(data, dir, dstMod)
 		case "internal/cronjob/repo.go":
-			data, err = fixRepo(data, dir, dstMod)
+			data, err = fixInternalCronjobRepoGo(data, dir, dstMod)
+		case "internal/cronjob/repository.go":
+			data, err = fixInternalCronjobRepositoryGo(data, dir, dstMod)
+		case "internal/cronjob/service.go":
 		}
 		if err != nil {
 			return err
@@ -135,63 +135,109 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 	return nil
 }
 
-func fixDeployCronjobYaml(data []byte, dir string, mod string) ([]byte, error) {
-	// 解析YAML内容到CronJob结构体
-	var cronJob batchv1.CronJob
-	if err := yaml.Unmarshal(data, &cronJob); err != nil {
-		return nil, errors.Wrap(err, "failed to unmarshal cronjob yaml")
-	}
-
-	// 从mod参数中提取项目名称作为应用名称
-	appName := path.Base(mod)
-
-	// 更新metadata中的name
-	cronJob.Name = strings.Replace(cronJob.Name, "grocer", appName, -1)
-
-	// 如果Labels存在，更新app标签
-	if cronJob.Labels != nil {
-		cronJob.Labels["app"] = appName
-	} else {
-		cronJob.Labels = map[string]string{
-			"app": appName,
-		}
-	}
-
-	// 如果Annotations存在，更新描述
-	if cronJob.Annotations != nil {
-		// 使用新的描述格式，包含schedule信息
-		schedule := cronJob.Spec.Schedule
-		cronJob.Annotations["description"] = fmt.Sprintf("定时任务%s，%s", cronJob.Name, schedule)
-	} else {
-		// 使用新的描述格式
-		schedule := cronJob.Spec.Schedule
-		cronJob.Annotations = map[string]string{
-			"description": fmt.Sprintf("定时任务%s，%s", cronJob.Name, schedule),
-		}
-	}
-
-	// 更新spec部分中的container名称和镜像
-	jobTemplate := &cronJob.Spec.JobTemplate
-	container := &jobTemplate.Spec.Template.Spec.Containers[0]
-
-	// 更新容器名称
-	container.Name = strings.Replace(container.Name, "grocer", appName, -1)
-
-	// 从mod中提取镜像名称，基于项目名称
-	imageName := strings.Replace(mod, "/", "-", -1)    // 将路径分隔符替换为短横线
-	image := fmt.Sprintf("%s:%s", imageName, "latest") // 使用latest作为默认版本
-	container.Image = image
-
-	// 生成修改后的YAML
-	result, err := yaml.Marshal(&cronJob)
+func fixInternalCronjobFxGo(data []byte, dir, mod string) ([]byte, error) {
+	filename := "internal/cronjob/fx.go"
+	fset := token.NewFileSet()
+	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to marshal cronjob yaml")
+		return nil, errors.Wrapf(err, "failed to parse %s", filename)
 	}
 
-	return result, nil
+	buf := edit.NewBuffer(data)
+	newName := cronjobFlag.Name
+
+	// 遍历 AST 查找并替换所有相关的 cronjob 标识符
+	ast.Inspect(f, func(n ast.Node) bool {
+		// 处理 fx.Module 的参数，如 fx.Module("cronjob", ...)
+		call, ok := n.(*ast.CallExpr)
+		if !ok {
+			return true
+		}
+		sel, ok := call.Fun.(*ast.SelectorExpr)
+		if !ok {
+			return true
+		}
+		ident, ok := sel.X.(*ast.Ident)
+		if !ok || ident.Name != "fx" || sel.Sel.Name != "Module" {
+			return true
+		}
+		if len(call.Args) == 0 {
+			return true
+		}
+		arg, ok := call.Args[0].(*ast.BasicLit)
+		if !ok || arg.Kind != token.STRING {
+			return true
+		}
+		oldVal, _ := strconv.Unquote(arg.Value)
+		if oldVal != "cronjob" {
+			return true
+		}
+		buf.Replace(
+			fset.Position(arg.Pos()).Offset,
+			fset.Position(arg.End()).Offset,
+			strconv.Quote(newName),
+		)
+		return true
+	})
+
+	return buf.Bytes(), nil
 }
 
-func fixCmdCronjobGo(data []byte, dir string) ([]byte, error) {
+func fixInternalCronjobRepositoryGo(data []byte, dir, mod string) ([]byte, error) {
+	filename := "internal/cronjob/repository.go"
+	fset := token.NewFileSet()
+	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to parse %s", filename)
+	}
+
+	buf := edit.NewBuffer(data)
+	newName := cronjobFlag.Name
+
+	// 遍历 AST 查找并替换所有相关的 cronjob 标识符
+	ast.Inspect(f, func(n ast.Node) bool {
+		// 处理 db, err, _ := dbs.Load("cronjob") 和 rd, err, _ := rds.Load("cronjob")
+		// 替换调用参数中的 "cronjob" 为新名称，但不替换包名
+		call, ok := n.(*ast.CallExpr)
+		if !ok {
+			return true
+		}
+		sel, ok := call.Fun.(*ast.SelectorExpr)
+		if !ok {
+			return true
+		}
+		ident, ok := sel.X.(*ast.Ident)
+		if !ok || (ident.Name != "dbs" && ident.Name != "rds") || sel.Sel.Name != "Load" {
+			return true
+		}
+		if len(call.Args) == 0 {
+			return true
+		}
+		arg, ok := call.Args[0].(*ast.BasicLit)
+		if !ok || arg.Kind != token.STRING {
+			return true
+		}
+		oldVal, _ := strconv.Unquote(arg.Value)
+		if oldVal != "cronjob" {
+			return true
+		}
+		buf.Replace(
+			fset.Position(arg.Pos()).Offset,
+			fset.Position(arg.End()).Offset,
+			strconv.Quote(newName),
+		)
+		return true
+	})
+
+	return buf.Bytes(), nil
+}
+
+func fixInternalCronjobRepoGo(data []byte, dir, mod string) ([]byte, error) {
+	// 目前 repo.go 与 repository.go 处理逻辑相同
+	return fixInternalCronjobRepositoryGo(data, dir, mod)
+}
+
+func fixCmdCronjobGo(data []byte, name string) ([]byte, error) {
 	filename := "cmd/cronjob.go"
 	fset := token.NewFileSet()
 	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
@@ -236,7 +282,7 @@ func fixCmdCronjobGo(data []byte, dir string) ([]byte, error) {
 			}
 
 			oldVal, _ := strconv.Unquote(val.Value)
-			newVal := strings.Replace(oldVal, "cronjob", path.Base(dir), -1)
+			newVal := strings.Replace(oldVal, "cronjob", name, -1)
 			if newVal != oldVal {
 				buf.Replace(
 					fset.Position(kv.Value.Pos()).Offset,

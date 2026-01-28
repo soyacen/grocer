@@ -10,7 +10,7 @@ type Service struct {
 }
 
 func (s *Service) Run(ctx context.Context) error {
-	fmt.Println("implement cronjob logic here")
+	fmt.Println("implement logic here")
 	return nil
 }
 

@@ -84,7 +84,7 @@ func initRun(_ *cobra.Command, _ []string) error {
 		prefixs := []string{
 			"api/grpc", "api/http",
 			"cmd/grpc", "cmd/http", "cmd/job", "cmd/cronjob",
-			"deploy/grpc", "deploy/http", "deploy/job", "deploy/cronjob",
+			"deploy/values/grpc", "deploy/values/http", "deploy/values/job", "deploy/values/cronjob",
 			"internal/grpc", "internal/http", "internal/job", "internal/cronjob",
 		}
 		for _, prefix := range prefixs {

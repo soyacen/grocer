@@ -6,21 +6,22 @@ require (
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/redis/go-redis/v9 v9.17.3
 	github.com/soyacen/gonfig v0.0.6
+	github.com/soyacen/gonfig/resource/nacos v0.0.0-20260127080521-a7a9f82aa9b6
 	github.com/soyacen/goose v1.7.1
-	github.com/soyacen/gox v0.3.4
-	github.com/soyacen/grocer v0.0.17
+	github.com/soyacen/gox v0.3.5
+	github.com/soyacen/grocer v0.0.18
 	github.com/spf13/cobra v1.10.2
 	github.com/ugorji/go/codec v1.3.1
 	go.uber.org/fx v1.24.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20260122232226-8e98ce8d340d
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260126211449-d11affda4bed
+	google.golang.org/genproto/googleapis/api v0.0.0-20260128011058-8636f8732409
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260128011058-8636f8732409
 	google.golang.org/grpc v1.78.0
 	google.golang.org/protobuf v1.36.11
 )
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
-	github.com/BurntSushi/toml v1.5.0 // indirect
+	github.com/BurntSushi/toml v1.6.0 // indirect
 	github.com/IBM/sarama v1.46.3 // indirect
 	github.com/alibabacloud-go/alibabacloud-gateway-pop v0.1.3 // indirect
 	github.com/alibabacloud-go/alibabacloud-gateway-spi v0.0.5 // indirect
@@ -81,7 +82,7 @@ require (
 	github.com/elastic/elastic-transport-go/v8 v8.8.0 // indirect
 	github.com/elastic/go-elasticsearch/v8 v8.19.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
-	github.com/getsentry/sentry-go v0.41.0 // indirect
+	github.com/getsentry/sentry-go v0.42.0 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.9.3 // indirect
@@ -126,7 +127,6 @@ require (
 	github.com/redis/go-redis/extra/rediscmd/v9 v9.17.3 // indirect
 	github.com/redis/go-redis/extra/redisotel/v9 v9.17.3 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
-	github.com/soyacen/gonfig/resource/nacos v0.0.0-20260127080521-a7a9f82aa9b6 // indirect
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/tjfoc/gmsm v1.4.1 // indirect
@@ -137,7 +137,7 @@ require (
 	github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.4.2 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
-	go.opentelemetry.io/contrib/instrumentation/go.mongodb.org/mongo-driver/v2/mongo/otelmongo v0.0.0-20260126081725-f361d96bffd4 // indirect
+	go.opentelemetry.io/contrib/instrumentation/go.mongodb.org/mongo-driver/v2/mongo/otelmongo v0.0.0-20260128084032-5cc305ad6efe // indirect
 	go.opentelemetry.io/otel v1.39.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.39.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.39.0 // indirect
