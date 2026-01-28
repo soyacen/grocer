@@ -108,11 +108,26 @@ func initRun(_ *cobra.Command, _ []string) error {
 
 		switch rel {
 		case "cmd/root.go":
-			data, err = fixCmdRootGo(data, dir)
+			data = bytes.ReplaceAll(data, []byte("grocer"), []byte(path.Base(dir)))
 		case "go.mod":
 			data, err = fixGoMod(data, initFlag.Mod)
 		case "Makefile":
-			data = fixMakefile(data, dir)
+			data = bytes.ReplaceAll(data, []byte("grocer"), []byte(path.Base(dir)))
+		case "deploy/values/common.yaml":
+			data = bytes.ReplaceAll(data, []byte("grocer"), []byte(path.Base(dir)))
+			dst = strings.TrimSuffix(dst, "common.yaml")
+			for _, env := range envs {
+				data = bytes.ReplaceAll(data, []byte("prod"), []byte(env))
+				dir := filepath.Join(dst, env)
+				if err := os.MkdirAll(dir, 0o777); err != nil {
+					return errors.WithStack(err)
+				}
+				file := filepath.Join(dir, "values.yaml")
+				if err := os.WriteFile(file, data, 0o666); err != nil {
+					return errors.WithStack(err)
+				}
+			}
+			return nil
 		}
 		if err != nil {
 			return err

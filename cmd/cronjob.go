@@ -2,44 +2,37 @@ package cmd
 
 import (
 	"bytes"
-	"go/ast"
-	"go/parser"
-	"go/token"
+	"fmt"
 	"io/fs"
 	"log"
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
 
 	"github.com/cockroachdb/errors"
-	"github.com/soyacen/grocer/internal/edit"
 	"github.com/spf13/cobra"
 )
 
-// cronjobCmd represents the cronjob command
 var cronjobCmd = &cobra.Command{
 	Use:   "cronjob",
 	Short: "add cronjob",
-	RunE:  cronjobRun,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := flag.IsValid(); err != nil {
+			return err
+		}
+		return cronjobRun(cmd, args, "cronjob")
+	},
 }
-
-type cronjobFlags struct {
-	Name string
-	Dir  string
-}
-
-var cronjobFlag cronjobFlags
 
 func init() {
 	rootCmd.AddCommand(cronjobCmd)
-	cronjobCmd.Flags().StringVarP(&cronjobFlag.Name, "name", "n", "", "cron job name")
+	cronjobCmd.Flags().StringVarP(&flag.Name, "name", "n", "", "cron job name, must consist of alphanumeric characters and underscores, and start with a letter, required")
 	_ = cronjobCmd.MarkFlagRequired("name")
-	cronjobCmd.Flags().StringVarP(&cronjobFlag.Dir, "dir", "d", "", "project directory, default is current directory")
+	cronjobCmd.Flags().StringVarP(&flag.Dir, "dir", "d", "", "project directory, default is current directory")
 }
 
-func cronjobRun(_ *cobra.Command, _ []string) error {
+func cronjobRun(_ *cobra.Command, _ []string, kind string) error {
 	srcMod, srcModVers, err := getSrcModInfo()
 	if err != nil {
 		return err
@@ -50,7 +43,7 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	dir, err := getProjectDir(cronjobFlag.Dir, "")
+	dir, err := getProjectDir(flag.Dir, "")
 	if err != nil {
 		return err
 	}
@@ -58,7 +51,24 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 	// Dir must exist and must be non-empty.
 	de, err := os.ReadDir(dir)
 	if err != nil || len(de) == 0 {
-		return errors.New("target directory does not exist or is empty")
+		return fmt.Errorf("target directory %s does not exist or is empty", dir)
+	}
+
+	files := []string{
+		dir + "/cmd/" + flag.Name + ".go",
+		dir + "/deploy/values/" + flag.Name + ".yaml",
+		dir + "/internal/" + flag.Name,
+	}
+
+	// 检查所有可能的目标路径是否已存在
+	for _, file := range files {
+		if stat, err := os.Stat(file); err == nil {
+			if stat.IsDir() {
+				return fmt.Errorf("target directory already exists: %s", file)
+			} else {
+				return fmt.Errorf("target file already exists: %s", file)
+			}
+		}
 	}
 
 	dstMod, err := readMod(dir)
@@ -75,19 +85,22 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		if err != nil {
 			return errors.WithStack(err)
 		}
-
 		prefixs := []string{
-			"cmd/cronjob",
-			"deploy/values/cronjob",
-			"internal/cronjob",
+			"cmd/" + kind,
+			"deploy/values/" + kind,
+			"internal/" + kind,
 		}
+		var matched bool
 		for _, prefix := range prefixs {
-			if !strings.HasPrefix(rel, prefix) {
-				return nil
+			if strings.HasPrefix(rel, prefix) {
+				matched = true
+				break
 			}
 		}
-
-		dst := filepath.Join(dir, rel)
+		if !matched {
+			return nil
+		}
+		dst := strings.Replace(filepath.Join(dir, rel), kind, flag.Name, 1)
 		if d.IsDir() {
 			if err := os.MkdirAll(dst, 0o777); err != nil {
 				return errors.WithStack(err)
@@ -101,17 +114,24 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		}
 
 		switch rel {
-		case "cmd/cronjob.go":
-			data, err = fixCmdCronjobGo(data, dir)
-		case "deploy/values/cronjob.yaml":
-			data = bytes.ReplaceAll(data, []byte("grocer-cronjob"), []byte(path.Base(dstMod)+"-"+cronjobFlag.Name))
-		case "internal/cronjob/fx.go":
-			data, err = fixInternalCronjobFxGo(data, dir, dstMod)
-		case "internal/cronjob/repo.go":
-			data, err = fixInternalCronjobRepoGo(data, dir, dstMod)
-		case "internal/cronjob/repository.go":
-			data, err = fixInternalCronjobRepositoryGo(data, dir, dstMod)
-		case "internal/cronjob/service.go":
+		case "deploy/values/" + kind + ".yaml":
+			data = bytes.ReplaceAll(data, []byte("grocer-"+kind), []byte(path.Base(dstMod)+"-"+flag.Name))
+			dst = strings.TrimSuffix(dst, ".yaml")
+			if err := os.MkdirAll(dst, 0o777); err != nil {
+				return errors.WithStack(err)
+			}
+			for _, env := range envs {
+				_ = env
+			}
+			_ = data
+			return nil
+		case "cmd/" + kind + ".go",
+			"internal/" + kind + "/fx.go",
+			"internal/" + kind + "/model.go",
+			"internal/" + kind + "/repo.go",
+			"internal/" + kind + "/repository.go",
+			"internal/" + kind + "/service.go":
+			data = bytes.ReplaceAll(data, []byte(kind), []byte(flag.Name))
 		}
 		if err != nil {
 			return err
@@ -131,168 +151,6 @@ func cronjobRun(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	log.Printf("add cron job %s in %s", cronjobFlag.Name, dir)
+	log.Printf("add %s %s in %s\n", kind, flag.Name, dir)
 	return nil
-}
-
-func fixInternalCronjobFxGo(data []byte, dir, mod string) ([]byte, error) {
-	filename := "internal/cronjob/fx.go"
-	fset := token.NewFileSet()
-	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse %s", filename)
-	}
-
-	buf := edit.NewBuffer(data)
-	newName := cronjobFlag.Name
-
-	// 遍历 AST 查找并替换所有相关的 cronjob 标识符
-	ast.Inspect(f, func(n ast.Node) bool {
-		// 处理 fx.Module 的参数，如 fx.Module("cronjob", ...)
-		call, ok := n.(*ast.CallExpr)
-		if !ok {
-			return true
-		}
-		sel, ok := call.Fun.(*ast.SelectorExpr)
-		if !ok {
-			return true
-		}
-		ident, ok := sel.X.(*ast.Ident)
-		if !ok || ident.Name != "fx" || sel.Sel.Name != "Module" {
-			return true
-		}
-		if len(call.Args) == 0 {
-			return true
-		}
-		arg, ok := call.Args[0].(*ast.BasicLit)
-		if !ok || arg.Kind != token.STRING {
-			return true
-		}
-		oldVal, _ := strconv.Unquote(arg.Value)
-		if oldVal != "cronjob" {
-			return true
-		}
-		buf.Replace(
-			fset.Position(arg.Pos()).Offset,
-			fset.Position(arg.End()).Offset,
-			strconv.Quote(newName),
-		)
-		return true
-	})
-
-	return buf.Bytes(), nil
-}
-
-func fixInternalCronjobRepositoryGo(data []byte, dir, mod string) ([]byte, error) {
-	filename := "internal/cronjob/repository.go"
-	fset := token.NewFileSet()
-	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse %s", filename)
-	}
-
-	buf := edit.NewBuffer(data)
-	newName := cronjobFlag.Name
-
-	// 遍历 AST 查找并替换所有相关的 cronjob 标识符
-	ast.Inspect(f, func(n ast.Node) bool {
-		// 处理 db, err, _ := dbs.Load("cronjob") 和 rd, err, _ := rds.Load("cronjob")
-		// 替换调用参数中的 "cronjob" 为新名称，但不替换包名
-		call, ok := n.(*ast.CallExpr)
-		if !ok {
-			return true
-		}
-		sel, ok := call.Fun.(*ast.SelectorExpr)
-		if !ok {
-			return true
-		}
-		ident, ok := sel.X.(*ast.Ident)
-		if !ok || (ident.Name != "dbs" && ident.Name != "rds") || sel.Sel.Name != "Load" {
-			return true
-		}
-		if len(call.Args) == 0 {
-			return true
-		}
-		arg, ok := call.Args[0].(*ast.BasicLit)
-		if !ok || arg.Kind != token.STRING {
-			return true
-		}
-		oldVal, _ := strconv.Unquote(arg.Value)
-		if oldVal != "cronjob" {
-			return true
-		}
-		buf.Replace(
-			fset.Position(arg.Pos()).Offset,
-			fset.Position(arg.End()).Offset,
-			strconv.Quote(newName),
-		)
-		return true
-	})
-
-	return buf.Bytes(), nil
-}
-
-func fixInternalCronjobRepoGo(data []byte, dir, mod string) ([]byte, error) {
-	// 目前 repo.go 与 repository.go 处理逻辑相同
-	return fixInternalCronjobRepositoryGo(data, dir, mod)
-}
-
-func fixCmdCronjobGo(data []byte, name string) ([]byte, error) {
-	filename := "cmd/cronjob.go"
-	fset := token.NewFileSet()
-	f, err := parser.ParseFile(fset, filename, data, parser.ParseComments)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse %s", filename)
-	}
-
-	buf := edit.NewBuffer(data)
-
-	// 遍历 AST 查找 rootCmd 变量的 Use 字段
-	ast.Inspect(f, func(n ast.Node) bool {
-		x, ok := n.(*ast.CompositeLit)
-		if !ok {
-			return true
-		}
-
-		sel, ok := x.Type.(*ast.SelectorExpr)
-		if !ok {
-			return true
-		}
-
-		ident, ok := sel.X.(*ast.Ident)
-		if !ok || ident.Name != "cobra" || sel.Sel.Name != "Command" {
-			return true
-		}
-
-		// 遍历结构体字段
-		for _, elt := range x.Elts {
-			kv, ok := elt.(*ast.KeyValueExpr)
-			if !ok {
-				continue
-			}
-
-			key, ok := kv.Key.(*ast.Ident)
-			if !ok || key.Name != "Use" {
-				continue
-			}
-
-			val, ok := kv.Value.(*ast.BasicLit)
-			if !ok || val.Kind != token.STRING {
-				continue
-			}
-
-			oldVal, _ := strconv.Unquote(val.Value)
-			newVal := strings.Replace(oldVal, "cronjob", name, -1)
-			if newVal != oldVal {
-				buf.Replace(
-					fset.Position(kv.Value.Pos()).Offset,
-					fset.Position(kv.Value.End()).Offset,
-					strconv.Quote(newVal),
-				)
-			}
-		}
-		return true
-	})
-
-	return buf.Bytes(), nil
 }

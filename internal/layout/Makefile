@@ -87,10 +87,7 @@ help:
 	@echo "  docker-build              - Build docker image with VERSION (default: latest git tag)"
 	@echo "  docker-push               - Push docker image with VERSION (default: latest git tag)"
 	@echo "  docker-release            - Build and push docker image (convenience target)"
-	@echo "  run-cronjob               - Run cronjob locally with env vars (set NACOS_CONFIG_*)"
-	@echo "  run-job                   - Run job locally with env vars (set NACOS_CONFIG_*)"
-	@echo "  run-grpc                  - Run grpc service locally with env vars (set NACOS_CONFIG_*)"
-	@echo "  run-http                  - Run http service locally with env vars (set NACOS_CONFIG_*)"
+	@echo "  run-[CmdName]             - Run cmd locally with env vars (set NACOS_CONFIG_*)"
 	@echo "  helm-dry-run              - Run helm dry-run to test deployment"
 	@echo "  help                      - Show this help message"
 

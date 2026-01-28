@@ -14,6 +14,8 @@ import (
 	"golang.org/x/mod/module"
 )
 
+var envs = []string{"dev", "test", "pre", "prod"}
+
 func getSrcModInfo() (string, string, error) {
 	srcMod := "github.com/soyacen/grocer/internal/layout"
 	srcModVers := srcMod + "@latest"

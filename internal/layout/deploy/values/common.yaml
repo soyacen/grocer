@@ -10,7 +10,7 @@ imagePullSecrets:
   - name: regcred
 
 env:
-  env: production
+  env: prod
 
 nacos:
   configMap: nacos-config
