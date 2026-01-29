@@ -12,11 +12,10 @@ import (
 var Level *slog.LevelVar
 
 func Init() {
-	Level = &slog.LevelVar{}
 	if config.IsDev() {
-		Level.Set(slog.LevelDebug)
+		Level = slogx.DebugLevel()
 	} else {
-		Level.Set(slog.LevelInfo)
+		Level = slogx.InfoLevel()
 	}
 	slog.SetDefault(slog.New(slogx.WithLevel(slogx.WithContext(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{AddSource: true})), Level)))
 }

@@ -355,12 +355,10 @@ github.com/soyacen/gonfig/resource/nacos v0.0.8 h1:MprQGLLVVuK3goWUU2su6hVvGpIeR
 github.com/soyacen/gonfig/resource/nacos v0.0.8/go.mod h1:/NFa1UShVLKYD6XBRurG7j2eaYw/s65MdispeeWacYU=
 github.com/soyacen/goose v1.7.3 h1:1PYyYsTSKaWh7eKXcYGSrsuoJzjQHzLl133OC1ycNgM=
 github.com/soyacen/goose v1.7.3/go.mod h1:d9GwdrXGANdeZLoQJKcCoCVpjXfOm23bUe2MjnsMI9E=
-github.com/soyacen/gox v0.3.6 h1:iAauy51yoAo1U/VwcOX4StqrfuyyCG07Ku+RwPSsWDQ=
-github.com/soyacen/gox v0.3.6/go.mod h1:ST3lYnYThgxA+ByY0r5c4qToOLc5upKPQtt1DkXnNSU=
 github.com/soyacen/gox v0.3.7 h1:v4EJygyyQntoIJeTdz1li1ikokPaAKKY283CItEgoFQ=
 github.com/soyacen/gox v0.3.7/go.mod h1:ST3lYnYThgxA+ByY0r5c4qToOLc5upKPQtt1DkXnNSU=
-github.com/soyacen/grocer v0.0.30 h1:04DWPwFbSM/3ZvKxjupGOUN0VNmoVtiHZWfQ0cwuhcs=
-github.com/soyacen/grocer v0.0.30/go.mod h1:aGR585ZgbbLGh2dfqFtCQQCttTvyE4bKMzifKs2MJOw=
+github.com/soyacen/grocer v0.0.31 h1:vHLcTGIrZDURmPlCos43G2+lM3GYgISSiHxhpxtAnQg=
+github.com/soyacen/grocer v0.0.31/go.mod h1:n/2k+7BM7HhPxLOZmkvYGkovPzQVSG6d/Y84xmEzG8I=
 github.com/spf13/cast v1.10.0 h1:h2x0u2shc1QuLHfxi+cTJvs30+ZAHOGRic8uyGTDWxY=
 github.com/spf13/cast v1.10.0/go.mod h1:jNfB8QC9IA6ZuY2ZjDp0KtFO2LZZlg4S/7bzP6qqeHo=
 github.com/spf13/cobra v1.10.2 h1:DMTTonx5m65Ic0GOoRY2c16WCbHxOOw6xxezuLaBpcU=

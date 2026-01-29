@@ -2,7 +2,7 @@ package job
 
 import (
 	"context"
-	"fmt"
+	"log/slog"
 )
 
 type Service struct {
@@ -10,7 +10,7 @@ type Service struct {
 }
 
 func (s *Service) Run(ctx context.Context) error {
-	fmt.Println("implement logic here")
+	slog.Info("implement logic here")
 	return nil
 }
 
