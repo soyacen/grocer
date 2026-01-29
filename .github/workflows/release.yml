@@ -47,13 +47,14 @@ jobs:
           sed -i "s|github.com/soyacen/grocer v[0-9]\+\.[0-9]\+\.[0-9]\+|github.com/soyacen/grocer $VERSION|g" internal/layout/go.mod
           echo "Updated versions in internal/layout/go.mod to $VERSION"
           sed -i "s|github.com/soyacen/grocer v[0-9]\+\.[0-9]\+\.[0-9]\+|github.com/soyacen/grocer $VERSION|g" internal/layout/go.mod
+          cd internal/layout/go.mod && go mod tidy
+          
 
       - name: Commit and push changes directly
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add cmd/version.go
-          git add internal/layout/go.mod
+          git add .
           git commit -m "chore: update version to $VERSION"
           git push
           
