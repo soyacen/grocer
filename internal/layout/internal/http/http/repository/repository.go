@@ -8,7 +8,7 @@ import (
 
 type Repository interface{}
 
-type repositoryImpl struct {
+type RepositoryImpl struct {
 	db *sqlx.DB
 	rd redis.UniversalClient
 }
@@ -22,5 +22,5 @@ func NewRepository(dbs *lazyload.Group[*sqlx.DB], rds *lazyload.Group[redis.Univ
 	if err != nil {
 		return nil, err
 	}
-	return &repositoryImpl{db: db, rd: rd}, nil
+	return &RepositoryImpl{db: db, rd: rd}, nil
 }

@@ -1,4 +1,4 @@
-package grpc
+package repository
 
 import (
 	"github.com/jmoiron/sqlx"
@@ -6,12 +6,14 @@ import (
 	"github.com/soyacen/gox/conc/lazyload"
 )
 
-type Repository struct {
+type Repository interface{}
+
+type RepositoryImpl struct {
 	db *sqlx.DB
 	rd redis.UniversalClient
 }
 
-func NewRepository(dbs *lazyload.Group[*sqlx.DB], rds *lazyload.Group[redis.UniversalClient]) (*Repository, error) {
+func NewRepository(dbs *lazyload.Group[*sqlx.DB], rds *lazyload.Group[redis.UniversalClient]) (Repository, error) {
 	db, err, _ := dbs.Load("grpc")
 	if err != nil {
 		return nil, err
@@ -20,5 +22,5 @@ func NewRepository(dbs *lazyload.Group[*sqlx.DB], rds *lazyload.Group[redis.Univ
 	if err != nil {
 		return nil, err
 	}
-	return &Repository{db: db, rd: rd}, nil
+	return &RepositoryImpl{db: db, rd: rd}, nil
 }
