@@ -19,7 +19,7 @@ type GreeterService interface {
 	SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error)
 }
 
-func AppendGreeterRoute(router *http.ServeMux, service GreeterService, opts ...server.Option) *http.ServeMux {
+func AppendGreeterHttpRoute(router *http.ServeMux, service GreeterService, opts ...server.Option) *http.ServeMux {
 	options := server.NewOptions(opts...)
 	handler := greeterHandler{
 		service: service,
@@ -102,9 +102,9 @@ func (encoder greeterResponseEncoder) SayHello(ctx context.Context, w http.Respo
 	return server.EncodeResponse(ctx, w, resp, encoder.marshalOptions)
 }
 
-func NewGreeterClient(target string, opts ...client.Option) GreeterService {
+func NewGreeterHttpClient(target string, opts ...client.Option) GreeterService {
 	options := client.NewOptions(opts...)
-	client := &greeterClient{
+	client := &greeterHttpClient{
 		client: options.Client(),
 		encoder: greeterRequestEncoder{
 			target:         target,
@@ -123,7 +123,7 @@ func NewGreeterClient(target string, opts ...client.Option) GreeterService {
 	return client
 }
 
-type greeterClient struct {
+type greeterHttpClient struct {
 	client                  *http.Client
 	encoder                 greeterRequestEncoder
 	decoder                 greeterResponseDecoder
@@ -132,7 +132,7 @@ type greeterClient struct {
 	middleware              client.Middleware
 }
 
-func (c *greeterClient) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
+func (c *greeterHttpClient) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -207,7 +207,7 @@ type UserService interface {
 	ListUser(ctx context.Context, req *ListUserRequest) (*ListUserResponse, error)
 }
 
-func AppendUserRoute(router *http.ServeMux, service UserService, opts ...server.Option) *http.ServeMux {
+func AppendUserHttpRoute(router *http.ServeMux, service UserService, opts ...server.Option) *http.ServeMux {
 	options := server.NewOptions(opts...)
 	handler := userHandler{
 		service: service,
@@ -530,9 +530,9 @@ func (encoder userResponseEncoder) ListUser(ctx context.Context, w http.Response
 	return server.EncodeResponse(ctx, w, resp, encoder.marshalOptions)
 }
 
-func NewUserClient(target string, opts ...client.Option) UserService {
+func NewUserHttpClient(target string, opts ...client.Option) UserService {
 	options := client.NewOptions(opts...)
-	client := &userClient{
+	client := &userHttpClient{
 		client: options.Client(),
 		encoder: userRequestEncoder{
 			target:         target,
@@ -551,7 +551,7 @@ func NewUserClient(target string, opts ...client.Option) UserService {
 	return client
 }
 
-type userClient struct {
+type userHttpClient struct {
 	client                  *http.Client
 	encoder                 userRequestEncoder
 	decoder                 userResponseDecoder
@@ -560,7 +560,7 @@ type userClient struct {
 	middleware              client.Middleware
 }
 
-func (c *userClient) CreateUser(ctx context.Context, req *CreateUserRequest) (*CreateUserResponse, error) {
+func (c *userHttpClient) CreateUser(ctx context.Context, req *CreateUserRequest) (*CreateUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -579,7 +579,7 @@ func (c *userClient) CreateUser(ctx context.Context, req *CreateUserRequest) (*C
 	return resp, nil
 }
 
-func (c *userClient) DeleteUser(ctx context.Context, req *DeleteUserRequest) (*DeleteUserResponse, error) {
+func (c *userHttpClient) DeleteUser(ctx context.Context, req *DeleteUserRequest) (*DeleteUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -598,7 +598,7 @@ func (c *userClient) DeleteUser(ctx context.Context, req *DeleteUserRequest) (*D
 	return resp, nil
 }
 
-func (c *userClient) ModifyUser(ctx context.Context, req *ModifyUserRequest) (*ModifyUserResponse, error) {
+func (c *userHttpClient) ModifyUser(ctx context.Context, req *ModifyUserRequest) (*ModifyUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -617,7 +617,7 @@ func (c *userClient) ModifyUser(ctx context.Context, req *ModifyUserRequest) (*M
 	return resp, nil
 }
 
-func (c *userClient) UpdateUser(ctx context.Context, req *UpdateUserRequest) (*UpdateUserResponse, error) {
+func (c *userHttpClient) UpdateUser(ctx context.Context, req *UpdateUserRequest) (*UpdateUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -636,7 +636,7 @@ func (c *userClient) UpdateUser(ctx context.Context, req *UpdateUserRequest) (*U
 	return resp, nil
 }
 
-func (c *userClient) GetUser(ctx context.Context, req *GetUserRequest) (*GetUserResponse, error) {
+func (c *userHttpClient) GetUser(ctx context.Context, req *GetUserRequest) (*GetUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
@@ -655,7 +655,7 @@ func (c *userClient) GetUser(ctx context.Context, req *GetUserRequest) (*GetUser
 	return resp, nil
 }
 
-func (c *userClient) ListUser(ctx context.Context, req *ListUserRequest) (*ListUserResponse, error) {
+func (c *userHttpClient) ListUser(ctx context.Context, req *ListUserRequest) (*ListUserResponse, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}

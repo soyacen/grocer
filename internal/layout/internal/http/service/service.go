@@ -1,12 +1,14 @@
-package grpc
+package http
 
 import (
 	"context"
 	"fmt"
+
+	"github.com/soyacen/grocer/internal/layout/internal/http/repository"
 )
 
 type Service struct {
-	repo *Repository
+	repo repository.Repository
 }
 
 func (s *Service) Run(ctx context.Context) error {
@@ -14,6 +16,6 @@ func (s *Service) Run(ctx context.Context) error {
 	return nil
 }
 
-func NewService(repo *Repository) *Service {
+func NewService(repo repository.Repository) *Service {
 	return &Service{repo: repo}
 }

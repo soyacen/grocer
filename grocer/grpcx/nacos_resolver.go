@@ -3,7 +3,6 @@ package grpcx
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"slices"
 	"strings"
 	"time"
@@ -35,12 +34,7 @@ type nacosResolverTarget struct {
 }
 
 func (b *nacosResolverBuilder) Build(tgt resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (resolver.Resolver, error) {
-	dsn := strings.Join([]string{b.Scheme() + ":/", tgt.URL.Host, tgt.URL.Path + "?" + tgt.URL.RawQuery}, "/")
-	rawURL, err := url.Parse(dsn)
-	if err != nil {
-		return nil, errors.Wrap(err, "nacosx: malformed URL")
-	}
-	target, err := nacosx.ParseDSN(rawURL)
+	target, err := nacosx.ParseDSN(&tgt.URL)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrong nacos URL")
 	}
@@ -50,7 +44,7 @@ func (b *nacosResolverBuilder) Build(tgt resolver.Target, cc resolver.ClientConn
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	pipe := make(chan []model.Instance, 1)
-	go watchNacosService(ctx, cli, target, rawURL.Path, pipe)
+	go watchNacosService(ctx, cli, target, tgt.URL.Path, pipe)
 	go populateEndpoints(ctx, cc, pipe)
 
 	return &nacosResolver{cancelFunc: cancel, client: cli}, nil

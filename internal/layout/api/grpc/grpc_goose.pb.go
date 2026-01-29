@@ -18,7 +18,7 @@ type GreeterService interface {
 	SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error)
 }
 
-func AppendGreeterRoute(router *http.ServeMux, service GreeterService, opts ...server.Option) *http.ServeMux {
+func AppendGreeterHttpRoute(router *http.ServeMux, service GreeterService, opts ...server.Option) *http.ServeMux {
 	options := server.NewOptions(opts...)
 	handler := greeterHandler{
 		service: service,
@@ -101,9 +101,9 @@ func (encoder greeterResponseEncoder) SayHello(ctx context.Context, w http.Respo
 	return server.EncodeResponse(ctx, w, resp, encoder.marshalOptions)
 }
 
-func NewGreeterClient(target string, opts ...client.Option) GreeterService {
+func NewGreeterHttpClient(target string, opts ...client.Option) GreeterService {
 	options := client.NewOptions(opts...)
-	client := &greeterClient{
+	client := &greeterHttpClient{
 		client: options.Client(),
 		encoder: greeterRequestEncoder{
 			target:         target,
@@ -122,7 +122,7 @@ func NewGreeterClient(target string, opts ...client.Option) GreeterService {
 	return client
 }
 
-type greeterClient struct {
+type greeterHttpClient struct {
 	client                  *http.Client
 	encoder                 greeterRequestEncoder
 	decoder                 greeterResponseDecoder
@@ -131,7 +131,7 @@ type greeterClient struct {
 	middleware              client.Middleware
 }
 
-func (c *greeterClient) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
+func (c *greeterHttpClient) SayHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
 	if err := goose.ValidateRequest(ctx, req, c.shouldFailFast, c.onValidationErrCallback); err != nil {
 		return nil, err
 	}
