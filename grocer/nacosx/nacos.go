@@ -1,16 +1,25 @@
 package nacosx
 
 import (
+	"net"
+	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/cockroachdb/errors"
+	"github.com/go-playground/form"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"github.com/soyacen/gox/conc/lazyload"
+	"github.com/soyacen/gox/errorx"
+	"github.com/soyacen/gox/strconvx"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
+
+const Scheme = "nacos"
 
 func (options *Options) AsNacosClientParam() vo.NacosClientParam {
 	serverConfig := constant.NewServerConfig(
@@ -113,6 +122,36 @@ func (options *Options) AsNacosClientParam() vo.NacosClientParam {
 	}
 
 	return vo.NacosClientParam{ClientConfig: clientConfig, ServerConfigs: serverConfigs}
+}
+
+func ParseDSN(rawURL *url.URL) (*Options, error) {
+
+
+	if rawURL.Scheme != Scheme || len(rawURL.Host) == 0 /*|| len(strings.TrimLeft(rawURL.Path, "/")) == 0*/ {
+		return nil, errors.Errorf("nacosx: malformed URL('%s'). Must be in the next format: 'nacos://host:port/service?param=value'", rawURL.String())
+	}
+
+	addr, port, err := net.SplitHostPort(rawURL.Host)
+	if err != nil {
+		return nil, errors.Wrap(err, "nacosx: malformed URL")
+	}
+
+	options := &Options{
+		IpAddr: wrapperspb.String(addr),
+		Port:   wrapperspb.UInt64(errorx.Ignore(strconv.ParseUint(port, 10, 64))),
+	}
+	decoder := form.NewDecoder()
+	decoder.SetTagName("json")
+	decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) { return strconvx.ParseWrapperBool(vals[0]) }, wrapperspb.Bool(false))
+	decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) { return strconvx.ParseWrapperInt32(vals[0]) }, wrapperspb.Int32(0))
+	decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) { return strconvx.ParseWrapperUint32(vals[0]) }, wrapperspb.UInt64(0))
+	decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) { return wrapperspb.String(vals[0]), nil }, wrapperspb.String(""))
+	decoder.RegisterCustomTypeFunc(func(vals []string) (interface{}, error) { return time.ParseDuration(vals[0]) }, time.Duration(0))
+	err = decoder.Decode(options, rawURL.Query())
+	if err != nil {
+		return nil, errors.Wrap(err, "Malformed URL parameters")
+	}
+	return options, nil
 }
 
 func NewConfigClients(config *Config) *lazyload.Group[config_client.IConfigClient] {

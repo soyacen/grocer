@@ -2,10 +2,12 @@ package grpcx
 
 import (
 	"context"
-	"errors"
+	"os"
+	"strconv"
 
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
+	"github.com/soyacen/gox/errorx"
 )
 
 type nacosOptions struct {
@@ -33,10 +35,6 @@ func GroupName(name string) NacosOption {
 	return func(r *nacosOptions) {
 		r.GroupName = name
 	}
-}
-
-func groupName(o *nacosOptions) string {
-	return o.GroupName
 }
 
 type nacosRegistrar struct {
@@ -72,11 +70,11 @@ func (r *nacosRegistrar) Register(ctx context.Context) error {
 
 func (r *nacosRegistrar) Deregister(ctx context.Context) error {
 	param := vo.DeregisterInstanceParam{
-		Ip:          r.IP,           // 服务实例IP
-		Port:        uint64(r.Port), // 服务实例port
+		Ip:          os.Getenv("POD_IP"),                                              // 服务实例IP
+		Port:        errorx.Ignore(strconv.ParseUint(os.Getenv("GRPC_PORT"), 10, 64)), // 服务实例port
 		Cluster:     r.nacosOptions.ClusterName,
 		ServiceName: r.ServiceName,
-		GroupName:   groupName(r.nacosOptions),
+		GroupName:   r.nacosOptions.GroupName,
 		Ephemeral:   true, // 是否临时实例
 	}
 	ok, err := r.namingClient.DeregisterInstance(param)

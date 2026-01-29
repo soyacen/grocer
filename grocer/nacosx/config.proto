@@ -2,9 +2,9 @@ syntax = "proto3";
 package grocer.nacosx;
 option go_package = "github.com/soyacen/grocer/grocer/nacosx;nacosx";
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
 import "grocer/protobufx/tls.proto";
-import "google/protobuf/duration.proto";
 
 message Config {
   map<string, Options> configs = 1;
@@ -45,6 +45,8 @@ message Options {
   google.protobuf.Duration    timeout                 = 30; // timeout for requesting Nacos server, default value is 10000ms
   google.protobuf.Int64Value  beat_interval           = 31; // the time interval for sending beat to server, default value is 5000ms
   map<string, string>         app_conn_labels         = 32; // app conn labels
+
+  google.protobuf.StringValue group_name = 33;
 }
 
 message ClientLogSamplingConfig {

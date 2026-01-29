@@ -99,9 +99,10 @@ type Options struct {
 	EndpointContextPath  *wrapperspb.StringValue  `protobuf:"bytes,27,opt,name=endpoint_context_path,json=endpointContextPath,proto3" json:"endpoint_context_path,omitempty"`                                                         // the address server endpoint contextPath
 	EndpointQueryParams  *wrapperspb.StringValue  `protobuf:"bytes,28,opt,name=endpoint_query_params,json=endpointQueryParams,proto3" json:"endpoint_query_params,omitempty"`                                                         // the address server endpoint query params
 	ClusterName          *wrapperspb.StringValue  `protobuf:"bytes,29,opt,name=cluster_name,json=clusterName,proto3" json:"cluster_name,omitempty"`                                                                                   // the address server clusterName
-	TimeoutMs            *durationpb.Duration     `protobuf:"bytes,30,opt,name=timeout_ms,json=timeoutMs,proto3" json:"timeout_ms,omitempty"`                                                                                         // timeout for requesting Nacos server, default value is 10000ms
+	Timeout              *durationpb.Duration     `protobuf:"bytes,30,opt,name=timeout,proto3" json:"timeout,omitempty"`                                                                                                              // timeout for requesting Nacos server, default value is 10000ms
 	BeatInterval         *wrapperspb.Int64Value   `protobuf:"bytes,31,opt,name=beat_interval,json=beatInterval,proto3" json:"beat_interval,omitempty"`                                                                                // the time interval for sending beat to server, default value is 5000ms
 	AppConnLabels        map[string]string        `protobuf:"bytes,32,rep,name=app_conn_labels,json=appConnLabels,proto3" json:"app_conn_labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // app conn labels
+	GroupName            *wrapperspb.StringValue  `protobuf:"bytes,33,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -339,9 +340,9 @@ func (x *Options) GetClusterName() *wrapperspb.StringValue {
 	return nil
 }
 
-func (x *Options) GetTimeoutMs() *durationpb.Duration {
+func (x *Options) GetTimeout() *durationpb.Duration {
 	if x != nil {
-		return x.TimeoutMs
+		return x.Timeout
 	}
 	return nil
 }
@@ -356,6 +357,13 @@ func (x *Options) GetBeatInterval() *wrapperspb.Int64Value {
 func (x *Options) GetAppConnLabels() map[string]string {
 	if x != nil {
 		return x.AppConnLabels
+	}
+	return nil
+}
+
+func (x *Options) GetGroupName() *wrapperspb.StringValue {
+	if x != nil {
+		return x.GroupName
 	}
 	return nil
 }
@@ -500,12 +508,12 @@ var File_grocer_nacosx_config_proto protoreflect.FileDescriptor
 
 const file_grocer_nacosx_config_proto_rawDesc = "" +
 	"\n" +
-	"\x1agrocer/nacosx/config.proto\x12\rgrocer.nacosx\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1agrocer/protobufx/tls.proto\x1a\x1egoogle/protobuf/duration.proto\"\x9a\x01\n" +
+	"\x1agrocer/nacosx/config.proto\x12\rgrocer.nacosx\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1agrocer/protobufx/tls.proto\"\x9a\x01\n" +
 	"\x06Config\x12<\n" +
 	"\aconfigs\x18\x01 \x03(\v2\".grocer.nacosx.Config.ConfigsEntryR\aconfigs\x1aR\n" +
 	"\fConfigsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12,\n" +
-	"\x05value\x18\x02 \x01(\v2\x16.grocer.nacosx.OptionsR\x05value:\x028\x01\"\xfd\x10\n" +
+	"\x05value\x18\x02 \x01(\v2\x16.grocer.nacosx.OptionsR\x05value:\x028\x01\"\xb5\x11\n" +
 	"\aOptions\x124\n" +
 	"\x06scheme\x18\x01 \x01(\v2\x1c.google.protobuf.StringValueR\x06scheme\x12?\n" +
 	"\fcontext_path\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\vcontextPath\x125\n" +
@@ -538,11 +546,12 @@ const file_grocer_nacosx_config_proto_rawDesc = "" +
 	"\x14async_update_service\x18\x1a \x01(\v2\x1a.google.protobuf.BoolValueR\x12asyncUpdateService\x12P\n" +
 	"\x15endpoint_context_path\x18\x1b \x01(\v2\x1c.google.protobuf.StringValueR\x13endpointContextPath\x12P\n" +
 	"\x15endpoint_query_params\x18\x1c \x01(\v2\x1c.google.protobuf.StringValueR\x13endpointQueryParams\x12?\n" +
-	"\fcluster_name\x18\x1d \x01(\v2\x1c.google.protobuf.StringValueR\vclusterName\x128\n" +
-	"\n" +
-	"timeout_ms\x18\x1e \x01(\v2\x19.google.protobuf.DurationR\ttimeoutMs\x12@\n" +
+	"\fcluster_name\x18\x1d \x01(\v2\x1c.google.protobuf.StringValueR\vclusterName\x123\n" +
+	"\atimeout\x18\x1e \x01(\v2\x19.google.protobuf.DurationR\atimeout\x12@\n" +
 	"\rbeat_interval\x18\x1f \x01(\v2\x1b.google.protobuf.Int64ValueR\fbeatInterval\x12Q\n" +
-	"\x0fapp_conn_labels\x18  \x03(\v2).grocer.nacosx.Options.AppConnLabelsEntryR\rappConnLabels\x1a@\n" +
+	"\x0fapp_conn_labels\x18  \x03(\v2).grocer.nacosx.Options.AppConnLabelsEntryR\rappConnLabels\x12;\n" +
+	"\n" +
+	"group_name\x18! \x01(\v2\x1c.google.protobuf.StringValueR\tgroupName\x1a@\n" +
 	"\x12AppConnLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x8e\x01\n" +
@@ -619,23 +628,24 @@ var file_grocer_nacosx_config_proto_depIdxs = []int32{
 	6,  // 27: grocer.nacosx.Options.endpoint_context_path:type_name -> google.protobuf.StringValue
 	6,  // 28: grocer.nacosx.Options.endpoint_query_params:type_name -> google.protobuf.StringValue
 	6,  // 29: grocer.nacosx.Options.cluster_name:type_name -> google.protobuf.StringValue
-	11, // 30: grocer.nacosx.Options.timeout_ms:type_name -> google.protobuf.Duration
+	11, // 30: grocer.nacosx.Options.timeout:type_name -> google.protobuf.Duration
 	12, // 31: grocer.nacosx.Options.beat_interval:type_name -> google.protobuf.Int64Value
 	5,  // 32: grocer.nacosx.Options.app_conn_labels:type_name -> grocer.nacosx.Options.AppConnLabelsEntry
-	9,  // 33: grocer.nacosx.ClientLogSamplingConfig.initial:type_name -> google.protobuf.Int32Value
-	9,  // 34: grocer.nacosx.ClientLogSamplingConfig.there_after:type_name -> google.protobuf.Int32Value
-	6,  // 35: grocer.nacosx.ClientLogRollingConfig.filename:type_name -> google.protobuf.StringValue
-	9,  // 36: grocer.nacosx.ClientLogRollingConfig.max_size:type_name -> google.protobuf.Int32Value
-	9,  // 37: grocer.nacosx.ClientLogRollingConfig.max_age:type_name -> google.protobuf.Int32Value
-	9,  // 38: grocer.nacosx.ClientLogRollingConfig.max_backups:type_name -> google.protobuf.Int32Value
-	8,  // 39: grocer.nacosx.ClientLogRollingConfig.local_time:type_name -> google.protobuf.BoolValue
-	8,  // 40: grocer.nacosx.ClientLogRollingConfig.compress:type_name -> google.protobuf.BoolValue
-	1,  // 41: grocer.nacosx.Config.ConfigsEntry.value:type_name -> grocer.nacosx.Options
-	42, // [42:42] is the sub-list for method output_type
-	42, // [42:42] is the sub-list for method input_type
-	42, // [42:42] is the sub-list for extension type_name
-	42, // [42:42] is the sub-list for extension extendee
-	0,  // [0:42] is the sub-list for field type_name
+	6,  // 33: grocer.nacosx.Options.group_name:type_name -> google.protobuf.StringValue
+	9,  // 34: grocer.nacosx.ClientLogSamplingConfig.initial:type_name -> google.protobuf.Int32Value
+	9,  // 35: grocer.nacosx.ClientLogSamplingConfig.there_after:type_name -> google.protobuf.Int32Value
+	6,  // 36: grocer.nacosx.ClientLogRollingConfig.filename:type_name -> google.protobuf.StringValue
+	9,  // 37: grocer.nacosx.ClientLogRollingConfig.max_size:type_name -> google.protobuf.Int32Value
+	9,  // 38: grocer.nacosx.ClientLogRollingConfig.max_age:type_name -> google.protobuf.Int32Value
+	9,  // 39: grocer.nacosx.ClientLogRollingConfig.max_backups:type_name -> google.protobuf.Int32Value
+	8,  // 40: grocer.nacosx.ClientLogRollingConfig.local_time:type_name -> google.protobuf.BoolValue
+	8,  // 41: grocer.nacosx.ClientLogRollingConfig.compress:type_name -> google.protobuf.BoolValue
+	1,  // 42: grocer.nacosx.Config.ConfigsEntry.value:type_name -> grocer.nacosx.Options
+	43, // [43:43] is the sub-list for method output_type
+	43, // [43:43] is the sub-list for method input_type
+	43, // [43:43] is the sub-list for extension type_name
+	43, // [43:43] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() { file_grocer_nacosx_config_proto_init() }
