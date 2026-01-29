@@ -93,9 +93,9 @@ func ConvertToUniversalOptions(options *Options) elasticsearch.Config {
 
 // NewClients creates a lazy loading group for Elasticsearch clients
 // It allows creating multiple clients based on the provided configuration map
-func NewClients(config *Config) *lazyload.Group[*elasticsearch.Client] {
-	return &lazyload.Group[*elasticsearch.Client]{
-		New: func(key string) (*elasticsearch.Client, error) {
+func NewClients(config *Config) *lazyload.Group[*elasticsearch.TypedClient] {
+	return &lazyload.Group[*elasticsearch.TypedClient]{
+		New: func(key string) (*elasticsearch.TypedClient, error) {
 			configs := config.GetConfigs()
 			options, ok := configs[key]
 			if !ok {
@@ -103,7 +103,7 @@ func NewClients(config *Config) *lazyload.Group[*elasticsearch.Client] {
 			}
 			return NewClient(options)
 		},
-		Finalize: func(ctx context.Context, client *elasticsearch.Client) error {
+		Finalize: func(ctx context.Context, client *elasticsearch.TypedClient) error {
 			return client.Close(ctx)
 		},
 	}
@@ -111,6 +111,6 @@ func NewClients(config *Config) *lazyload.Group[*elasticsearch.Client] {
 
 // NewClient creates a new Elasticsearch client with the given options
 // It converts the protobuf options to the elasticsearch.Config and initializes the client
-func NewClient(options *Options) (*elasticsearch.Client, error) {
-	return elasticsearch.NewClient(ConvertToUniversalOptions(options))
+func NewClient(options *Options) (*elasticsearch.TypedClient, error) {
+	return elasticsearch.NewTypedClient(ConvertToUniversalOptions(options))
 }

@@ -13,12 +13,21 @@ type IConfig interface {
 	GetConfigs() map[string]IOptions
 }
 
+type IOptions interface {
+	GetHostPort() *wrapperspb.StringValue
+	GetNamespace() *wrapperspb.StringValue
+}
+
+type ISDKOptions interface {
+	GetSDKOptions() client.Options
+}
+
 func NewClients(config IConfig) *lazyload.Group[client.Client] {
 	return &lazyload.Group[client.Client]{
 		New: func(key string) (client.Client, error) {
 			options, ok := config.GetConfigs()[key]
 			if !ok {
-				return nil, errors.Errorf("s3x: config %s not found", key)
+				return nil, errors.Errorf("temporalx: config %s not found", key)
 			}
 			return NewClient(options)
 		},
@@ -29,19 +38,10 @@ func NewClients(config IConfig) *lazyload.Group[client.Client] {
 	}
 }
 
-type IOptions interface {
-	GetHostPort() *wrapperspb.StringValue
-	GetNamespace() *wrapperspb.StringValue
-}
-
-type ISDKOptions interface {
-	GetSDKOptions() client.Options
-}
-
 func NewClient(options IOptions) (client.Client, error) {
 	var sdkOption client.Options
-	if sdk, ok := options.(ISDKOptions); ok {
-		sdkOption = sdk.GetSDKOptions()
+	if getter, ok := options.(ISDKOptions); ok {
+		sdkOption = getter.GetSDKOptions()
 	}
 	if options.GetHostPort() != nil {
 		sdkOption.HostPort = options.GetHostPort().GetValue()
